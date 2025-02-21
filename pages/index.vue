@@ -3,7 +3,9 @@
 <template>
   <div class="w-screen flex flex-col lg:flex-row">
     <!-- 左侧固定区域 -->
-    <div class="w-full lg:w-[20%] ml-0 lg:ml-[10%] h-full pt-20 lg:fixed left-0 top-0">
+    <div
+      class="w-full lg:flex lg:flex-col lg:items-end lg:w-[20%] ml-0 lg:ml-[10%] h-full pt-20 lg:fixed left-0 top-0"
+    >
       <BaseIntroCard />
     </div>
 

@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="p-4 md:px-[20%] lg:pr-[20%] lg:pl-4">
+  <div class="p-4 md:px-[20%] lg:pr-[20%] lg:pl-4 lg:max-w-screen-xl">
     <p class="indent-4">
       初めてウェブサイトを作成したのは、小学校5年生の時でした。大学入学前には、何度かACMコンテストに挑戦し、大学ではデジタルメディア技術を専攻いたしました。在学中より実務的な開発に携わるようになり、その後、ご縁があって浙江安宣信息技术有限公司にて取締役を務めさせていただいております。主に技術選定やモジュール開発を担当し、日々研鑽を積んでおります。また、クロスプラットフォーム開発やWeb開発を深く研究しつつ、GISやWebGLにも触れ、その知見を広げております。
     </p>
@@ -47,7 +47,7 @@
               <TechIcon name="rust" size="2.4rem" icon="/svg/rust-color.svg" />
             </div>
             <div class="px-4 flex flex-col justify-center">...</div>
-            <UDivider label="Framworks" orientation="vertical" />
+            <UDivider label="Frameworks" orientation="vertical" />
             <div class="h-full flex flex-col gap-1 flex-wrap ml-4">
               <TechIcon name="vuejs" size="2.4rem" icon="/svg/vuedotjs-color.svg" />
               <TechIcon name="nuxtjs" size="2.4rem" icon="/svg/nuxtdotjs-color.svg" />
