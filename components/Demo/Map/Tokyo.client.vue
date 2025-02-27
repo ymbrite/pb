@@ -4,6 +4,12 @@ import { WMTSTileLayer } from 'maptalks.wmts'
 import { createVNode, render } from 'vue'
 import PositionMarker from './PositionMarker.vue'
 
+// use dark
+
+// TODO: map dark mode
+const colorMode = useColorMode()
+
+
 const mapRef = ref(null)
 const HANGZHOU_LNGLAT = gcj02towgs84(139.7036319, 35.6937632)
 const TOKYO_LNGLAT = [139.7036319, 35.6937632]
@@ -52,17 +58,6 @@ onMounted(async () => {
 })
 
 async function generateWhereIamMarker() {
-  const marker = new maptalks.Marker(TOKYO_LNGLAT, {
-    symbol: {
-      markerType: 'ellipse',
-      markerWidth: 30,
-      markerHeight: 30,
-      markerFill: '#f00',
-      markerLineColor: '#fff',
-      markerLineWidth: 2,
-    },
-  })
-
   const vNode = createVNode(PositionMarker, {
     active: computed(() => true),
     data: 'where I am',
@@ -107,7 +102,6 @@ async function generateWhereIamMarker() {
     eventsPropagation: true,
   })
   uiMarker.addTo(map.value)
-  marker.addTo(map.value)
 }
 
 async function generateMarkers() {
