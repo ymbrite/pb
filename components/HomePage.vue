@@ -116,5 +116,6 @@
 .tech-item {
   flex-grow: 0; /* 避免 Safari 计算错误 */
   flex-shrink: 0;
+  justify-items: center;
 }
 </style>
