@@ -31,44 +31,68 @@
       <div class="">
         <div>
           <div class="text-xl mb-0">I build apps mainly with</div>
-          <div
-            class="hidden lg:flex h-[6.5rem] gap-1 p-2 border-2 border-dashed rounded-md dark:bg-gray-800"
-          >
-            <TechIcon name="javascript" size="5rem" icon="/svg/javascript-color.svg" />
-            <!-- <img class="w-10 h-10" src="/svg/typescript-color.svg" alt="typescript" /> -->
-            <div class="flex flex-col gap-1 flex-wrap">
-              <TechIcon name="typescript" size="2.4rem" icon="/svg/typescript-color.svg" />
-              <!-- node -->
-              <TechIcon name="nodejs" size="2.4rem" icon="/svg/nodedotjs-color.svg" />
-              <TechIcon name="C" size="2.4rem" icon="/svg/c-color.svg" />
-              <!-- node -->
-              <TechIcon name="C++" size="2.4rem" icon="/svg/cplusplus-color.svg" />
-              <!-- rust -->
-              <TechIcon name="rust" size="2.4rem" icon="/svg/rust-color.svg" />
+          <div class="flex flex-wrap justify-start gap-1">
+            <div
+              class="h-full flex flex-col items-center p-2 border-2 border-dashed rounded-md dark:bg-gray-800"
+            >
+              <div class="h-[5.5rem] flex gap-2">
+                <TechIcon name="javascript" size="5rem" icon="/svg/javascript-color.svg" />
+                <!-- <img class="w-10 h-10" src="/svg/typescript-color.svg" alt="typescript" /> -->
+                <div class="h-full flex flex-col gap-1 flex-wrap">
+                  <TechIcon name="typescript" size="2.4rem" icon="/svg/typescript-color.svg" />
+                  <!-- node -->
+                  <TechIcon name="nodejs" size="2.4rem" icon="/svg/nodedotjs-color.svg" />
+                  <TechIcon name="C" size="2.4rem" icon="/svg/c-color.svg" />
+                  <!-- node -->
+                  <TechIcon name="C++" size="2.4rem" icon="/svg/cplusplus-color.svg" />
+                  <!-- rust -->
+                  <TechIcon name="rust" size="2.4rem" icon="/svg/rust-color.svg" />
+                </div>
+              </div>
+              Languages
             </div>
-            <div class="px-4 flex flex-col justify-center">...</div>
-            <UDivider label="Frameworks" orientation="vertical" />
-            <div class="h-full flex flex-col gap-1 flex-wrap ml-4">
-              <TechIcon name="vuejs" size="2.4rem" icon="/svg/vuedotjs-color.svg" />
-              <TechIcon name="nuxtjs" size="2.4rem" icon="/svg/nuxtdotjs-color.svg" />
-              <!-- react -->
-              <TechIcon name="react" size="2.4rem" icon="/svg/react-color.svg" />
-              <TechIcon name="react native" size="2.4rem" icon="/svg/react-native-color.svg" />
-              <TechIcon name="electron" size="2.4rem" icon="/svg/electron-color.svg" />
-              <TechIcon name="nestjs" size="2.4rem" icon="/svg/nestjs.svg" />
-              <TechIcon name="tailwindcss" size="2.4rem" icon="/svg/tailwindcss-color.svg" />
-              <TechIcon name="unity" size="2.4rem" icon="/svg/unity.svg" />
-              <TechIcon name="vite" size="2.4rem" icon="/svg/vite-color.svg" />
-              <TechIcon name="webpack" size="2.4rem" icon="/svg/webpack-color.svg" />
-              <TechIcon name="rollup" size="2.4rem" icon="/svg/rollupdotjs-color.svg" />
-              <TechIcon name="turborepo" size="2.4rem" icon="/svg/turborepo-color.svg" />
-              <div class="h-full px-4 flex flex-col justify-center">...</div>
+
+            <div
+              class="h-full flex flex-col items-center p-2 border-2 border-dashed rounded-md dark:bg-gray-800"
+            >
+              <div class="h-[5.5rem] flex gap-2">
+                <div class="h-full flex flex-col gap-1 flex-wrap">
+                  <TechIcon name="vuejs" size="2.4rem" icon="/svg/vuedotjs-color.svg" />
+                  <TechIcon name="nuxtjs" size="2.4rem" icon="/svg/nuxtdotjs-color.svg" />
+                  <!-- react -->
+                  <TechIcon name="react" size="2.4rem" icon="/svg/react-color.svg" />
+                  <TechIcon name="react native" size="2.4rem" icon="/svg/react-native-color.svg" />
+                  <TechIcon name="electron" size="2.4rem" icon="/svg/electron-color.svg" />
+                  <TechIcon name="nestjs" size="2.4rem" icon="/svg/nestjs.svg" />
+                  <TechIcon name="tailwindcss" size="2.4rem" icon="/svg/tailwindcss-color.svg" />
+                  <TechIcon name="unity" size="2.4rem" icon="/svg/unity.svg" />
+                  <TechIcon name="vite" size="2.4rem" icon="/svg/vite-color.svg" />
+                  <TechIcon name="webpack" size="2.4rem" icon="/svg/webpack-color.svg" />
+                  <TechIcon name="rollup" size="2.4rem" icon="/svg/rollupdotjs-color.svg" />
+                  <TechIcon name="turborepo" size="2.4rem" icon="/svg/turborepo-color.svg" />
+                </div>
+              </div>
+              Frameworks
             </div>
-            <UDivider label="Tools" orientation="vertical" />
-            <div class="h-full flex flex-col gap-1 flex-wrap ml-4">
-              <!-- vscode -->
-              <TechIcon name="vscode" size="2.4rem" icon="/svg/visualstudiocode-color.svg" />
-              <TechIcon name="arc browser" size="2.6rem" icon="/svg/arc-logo.svg" />
+            <div
+              class="h-full flex flex-col items-center p-2 border-2 border-dashed rounded-md dark:bg-gray-800"
+            >
+              <div class="h-[5.5rem] flex gap-2">
+                <div class="h-full flex flex-col gap-1 flex-wrap">
+                  <!-- vscode -->
+                  <TechIcon name="vscode" size="2.4rem" icon="/svg/visualstudiocode-color.svg" />
+                  <TechIcon name="arc browser" size="2.6rem" icon="/svg/arc-logo.svg" />
+                  <TechIcon
+                    name="android studio"
+                    size="2.4rem"
+                    icon="/svg/androidstudio-color.svg"
+                  />
+                  <TechIcon name="docker" size="2.4rem" icon="/svg/docker-color.svg" />
+                  <TechIcon name="postman" size="2.4rem" icon="/svg/postman-color.svg" />
+                  <TechIcon name="warp" size="2.4rem" icon="/svg/warp-color.svg" />
+                </div>
+              </div>
+              Tools
             </div>
           </div>
 
@@ -85,7 +109,7 @@
             <!-- rust -->
             <TechIcon name="rust" size="4rem" icon="/svg/rust-color.svg" />
           </div>
-          <div class="text-lg mt-2">Frameworks&Tools</div>
+          <div class="lg:hidden text-lg mt-2">Frameworks&Tools</div>
           <div
             class="lg:hidden flex h-[6.8rem] p-2 border-2 border-dashed rounded-md dark:bg-gray-800"
           >
