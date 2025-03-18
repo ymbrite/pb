@@ -34,9 +34,10 @@ onMounted(async () => {
   map.value.config({ doubleClickZoom: false })
 
   // 创建 InfoWindows
-  createInfoWindow('japan', TOKYO_LNGLAT, '📍 東京', '2024-10 到着 / 日本語能力試験N1合格')
-  createInfoWindow('hangzhou', HANGZHOU_LNGLAT, '🏢 杭州', '会社の仕事交代 / 2024-07 N2 合格')
   createInfoWindow('university', UNIVERSITY_LNGLAT, '🎓 杭州電子科技大学', 'デジタルメディア学部')
+  createInfoWindow('hangzhou', HANGZHOU_LNGLAT, '🏢 杭州', '会社の仕事交代 / 2024-07 N2 合格')
+  createInfoWindow('japan', TOKYO_LNGLAT, '📍 東京', '2024-10 到着 / 日本語能力試験N1合格')
+  focusOnLocation('japan')
 })
 
 // 创建 InfoWindow（UIMarker），默认显示在标记点正下方
@@ -58,7 +59,7 @@ function createInfoWindow(
   const uiMarker = new maptalks.ui.UIMarker(coordinates, {
     content: container.firstElementChild,
     verticalAlignment: 'top', // 保持默认的对齐方式
-    autoPan: true,
+    autoPan: false,
     // offset: [0, -60], // 向下偏移 20px，确保在标记点正下方
   })
 
