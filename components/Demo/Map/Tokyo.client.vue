@@ -34,13 +34,13 @@ onMounted(async () => {
   map.value.config({ doubleClickZoom: false })
 
   // 创建 InfoWindows
-  createInfoWindow('japan', TOKYO_LNGLAT, '📍 東京', '2024-10 到着 / 日本語能力試験N1 合格')
+  createInfoWindow('japan', TOKYO_LNGLAT, '📍 東京', '2024-10 到着 / 日本語能力試験N1合格')
   createInfoWindow('hangzhou', HANGZHOU_LNGLAT, '🏢 杭州', '会社の仕事交代 / 2024-07 N2 合格')
   createInfoWindow(
     'university',
     UNIVERSITY_LNGLAT,
     '🎓 杭州電子科技大学',
-    '休学終わり / 学歴を取る'
+    'デジタルメディア学部'
   )
 })
 
