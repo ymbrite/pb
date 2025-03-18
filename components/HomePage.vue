@@ -1,18 +1,23 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const isOpen = ref(false)
+const activeTitle = ref('')
+const activeYoutubeID = ref('')
+</script>
 
 <template>
-  <div class="p-4 md:px-[20%] lg:pr-[20%] lg:pl-4 lg:max-w-screen-xl">
+  <div class="p-4 md:px-[12%] lg:w-[44rem] lg:pl-4 lg:pr-0">
     <p class="indent-4">
       初めてウェブサイトを作成したのは、小学校5年生の時でした。大学入学前には、何度かACMコンテストに挑戦し、大学ではデジタルメディア技術を専攻いたしました。在学中より実務的な開発に携わるようになり、その後、ご縁があって浙江安宣信息技术有限公司にて取締役を務めさせていただいております。主に技術選定やモジュール開発を担当し、日々研鑽を積んでおります。また、クロスプラットフォーム開発やWeb開発を深く研究しつつ、GISやWebGLにも触れ、その知見を広げております。
     </p>
     <div class="flex flex-col lg:flex-row gap-2 mt-2">
-      <div class="lg:w-1/3">
+      <div class="lg:w-[16rem]">
         <div class="font-bold text-lg">留学を選んだ道</div>
         <p class="indent-4">
-          一番の理由は、このままでは成長が停滞してしまうという危機感を抱いたことです。現在の環境では、自身の成長が横ばいになりつつあり、技術を体系的に理解し、その本質を深く追求したいという強い関心を持っています。
+          一番の理由は、このままでは成長が停滞するという危機感を抱いたからです。現在の環境では成長が横ばいになりつつあり、技術を体系的に学び、その本質を深く追求したいと考えました。
         </p>
+
         <p class="indent-4">
-          もう一つの理由は、弊社の技術が十分にモジュール化されており、私が不在でも開発業務に支障が出ない状態になっていることです。また、事業が安定期に入った今、無理な拡大は研究力の不足による大きなリスクを伴うため、より深く学ぶことが最善の選択だと考えています。
+          加えて、弊社の技術が十分にモジュール化され、私が不在でも開発に支障が出ない状態になっていることです。事業が安定期に入った今、無理な拡大は研究力の不足によるリスクが大きいため、専門性を深めることが最善の選択だと判断しました。
         </p>
       </div>
 
@@ -21,14 +26,8 @@
       </div>
     </div>
     <div class="mt-4">
-      <GradientTitle title="サンプル" subtitle="開発について" />
-
-      <div class="font-bold text-lg">CrossPlatform</div>
-      <div class="font-bold text-lg">PVZ(create.js)</div>
-    </div>
-    <div class="mt-4">
       <GradientTitle title="ツール" subtitle="私が使っています" />
-      <div class="">
+      <div class="hidden lg:block">
         <div>
           <div class="text-xl mb-0">I build apps mainly with</div>
           <div class="flex flex-wrap justify-start gap-1">
@@ -98,6 +97,97 @@
         </div>
       </div>
     </div>
+    <div class="mt-4">
+      <GradientTitle title="作ってきたもの" subtitle="What I've done" />
+
+      <div class="text-lg">CrossPlatform（PC/モバイル向けプロジェクトアーキテクチャ）</div>
+      <!-- https://g.imgtg.com/uploads/7247/67d7f4e842b70.png -->
+      <img class="w-full" src="https://g.imgtg.com/uploads/7247/67d7f9af4b97d.png" alt="CrossPlatform" />
+      <div class="text-lg mt-4">Projects</div>
+
+      <DemoSwiperElement
+        container-class="hidden md:block h-[16rem] w-full p-4"
+        element-class=""
+        :data="[
+          {
+            id: 'Qz2o3qFEDCc',
+            title: 'Web対応の3Dインタラクティブマーケット',
+            coverUrl: 'https://g.imgtg.com/uploads/7247/67d91aa543bbf.png',
+          },
+          {
+            id: 'wBHVMHtBVXY',
+            title: 'Web対応の3Dインタラクティブマーケット',
+            coverUrl: 'https://g.imgtg.com/uploads/7247/67d91b22756be.png',
+          },
+          {
+            id: 'poErMe8IEwg',
+            title: 'AI搭載スマートレジスケール',
+            coverUrl: 'https://g.imgtg.com/uploads/7247/67d931db0b0fd.png',
+          },
+        ]"
+        :options="{
+          effect: 'cube',
+          loop: true,
+          autoplay: { delay: 5000 },
+          navigation: true,
+          pagination: { clickable: true },
+        }"
+      >
+        <template #default="{ data }">
+          <div
+            @click="((isOpen = true), (activeYoutubeID = data.id), (activeTitle = data.title))"
+            :style="{
+              backgroundImage: `url(${data.coverUrl})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }"
+            alt="cover"
+            class="h-full w-full object-cover cursor-pointer"
+          >
+            <div
+              class="w-full h-full transition-all flex justify-center items-center text-lg text-white"
+            >
+              <div class="bg-black bg-opacity-50 p-2 rounded-md">
+                {{ data.title }}
+              </div>
+            </div>
+          </div>
+          <UModal v-model="isOpen" prevent-close>
+            <UCard>
+              <template #header>
+                <div class="flex justify-between">
+                  <div>{{ activeTitle }}</div>
+                  <UButton
+                    color="gray"
+                    variant="ghost"
+                    icon="i-heroicons-x-mark-20-solid"
+                    class="-my-1"
+                    @click="isOpen = false"
+                  />
+                </div>
+              </template>
+              <iframe
+                tabindex="-1"
+                class="h-64 w-full"
+                :src="`https://www.youtube.com/embed/${activeYoutubeID}`"
+                allowfullscreen
+                referrerpolicy="no-referrer"
+                :key="activeYoutubeID"
+              ></iframe>
+            </UCard>
+          </UModal>
+        </template>
+      </DemoSwiperElement>
+      <div class="flex gap-1"></div>
+      <!-- <div class="text-lg mt-4">AI搭載スマートレジスケール</div> -->
+      <!-- <iframe
+        class="w-full"
+        src="https://www.youtube.com/embed/poErMe8IEwg"
+        allowfullscreen
+        referrerpolicy="no-referrer"
+      ></iframe> -->
+      <!-- <div class="text-lg mt-4">PVZ(create.js)</div> -->
+    </div>
 
     <div class="mt-4">
       <GradientTitle title="ブログ" subtitle="技術ログ" />
@@ -117,5 +207,6 @@
   flex-grow: 0; /* 避免 Safari 计算错误 */
   flex-shrink: 0;
   justify-items: center;
+  text-align: center;
 }
 </style>

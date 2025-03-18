@@ -1,46 +1,26 @@
 <script setup lang="ts">
 import * as maptalks from 'maptalks'
-import { WMTSTileLayer } from 'maptalks.wmts'
 import { createVNode, render } from 'vue'
 import PositionMarker from './PositionMarker.vue'
 
-// use dark
-
-// TODO: map dark mode
-const colorMode = useColorMode()
-
-
+// 地图 DOM
 const mapRef = ref(null)
-const HANGZHOU_LNGLAT = gcj02towgs84(139.7036319, 35.6937632)
-const TOKYO_LNGLAT = [139.7036319, 35.6937632]
-const START_LNGLAT = [139.5836319, 35.7837632]
 
-// 获取数据
-const {
-  data: articles,
-  pending,
-  execute,
-  refresh,
-} = await useAsyncData(
-  'latest-posts',
-  async () => {
-    return queryContent('/blog').limit(5).sort({ published: -1 }).find()
-  },
-  { server: false, immediate: false }
-)
+// 关键地点坐标
+const HANGZHOU_LNGLAT = [120.1551, 30.2741] // 杭州
+const TOKYO_LNGLAT = [139.7036, 35.6937] // 东京
+const UNIVERSITY_LNGLAT = [120.3493, 30.3195] // 杭州电子科技大学
+const START_LNGLAT = TOKYO_LNGLAT
 
 const map = shallowRef<any>(null)
-// map state: japan | hangzhou | university to show different markers
 const mapState = ref<'japan' | 'hangzhou' | 'university'>('japan')
 
-const uiMarkers = shallowRef<any>([])
-const activeIdx = ref(0)
-const maxZIndex = ref(1000)
-const __instance = getCurrentInstance()
+const uiMarkers = shallowRef<any>([]) // 存储 UIMarker
+
 onMounted(async () => {
   await nextTick()
   map.value = new maptalks.Map(mapRef.value, {
-    center: START_LNGLAT,
+    center: TOKYO_LNGLAT,
     zoom: 10,
     pitch: 30,
     baseLayer: new maptalks.TileLayer('base', {
@@ -49,250 +29,194 @@ onMounted(async () => {
       attribution: false,
     }),
   })
-  map.value.config({
-    doubleClickZoom: false,
-  })
+  map.value.config({ doubleClickZoom: false })
 
-  // generateMarkers()
-  generateWhereIamMarker()
+  // 创建 InfoWindows
+  createInfoWindow('japan', TOKYO_LNGLAT, '📍 東京', '2024-10 到着 / 日本語能力試験N1 合格')
+  createInfoWindow('hangzhou', HANGZHOU_LNGLAT, '🏢 杭州', '会社の仕事交代 / 2024-07 N2 合格')
+  createInfoWindow(
+    'university',
+    UNIVERSITY_LNGLAT,
+    '🎓 杭州電子科技大学',
+    '休学終わり / 学歴を取る'
+  )
 })
 
-async function generateWhereIamMarker() {
+// 创建 InfoWindow（UIMarker），默认显示在标记点正下方
+function createInfoWindow(
+  name: 'japan' | 'hangzhou' | 'university',
+  coordinates: number[],
+  title: string,
+  content: string
+) {
   const vNode = createVNode(PositionMarker, {
-    active: computed(() => true),
-    data: 'where I am',
-    onClick: () => {
-      // activeIdx.value = index
-      // uiMarkers.value[index].setZIndex(maxZIndex.value)
-      // maxZIndex.value += 1
-      // map.value.panTo(c)
-    },
-    onFocus: () => {
-      // activeIdx.value = index
-      // uiMarkers.value.map((m: any, i: number) => {
-      //   if (i === index) {
-      //     // m.show()
-      //     map.value.panTo(c)
-      //   } else {
-      //     m.hide()
-      //   }
-      // })
-    },
-    onRecover: () => {
-      // uiMarkers.value.map((m: any, i: number) => {
-      //   if (!m.isVisible()) {
-      //     m.show()
-      //   }
-      // })
-    },
+    active: computed(() => mapState.value === name),
+    title,
+    content,
   })
-  if (!__instance) {
-    console.log(__instance!.appContext)
-    return
-  }
-  vNode.appContext = __instance?.appContext
 
   const container = document.createElement('div')
   render(vNode, container)
 
-  const uiMarker = new maptalks.ui.UIMarker(TOKYO_LNGLAT, {
+  const uiMarker = new maptalks.ui.UIMarker(coordinates, {
     content: container.firstElementChild,
-    verticalAlignment: 'top',
+    verticalAlignment: 'top', // 保持默认的对齐方式
     autoPan: true,
-    eventsPropagation: true,
+    offset: [0, 60], // 向下偏移 20px，确保在标记点正下方
   })
+
   uiMarker.addTo(map.value)
+  uiMarkers.value.push({ name, marker: uiMarker })
 }
 
-async function generateMarkers() {
-  await execute()
-  if (!articles.value) {
-    return
-  }
-  // clear markers
-  uiMarkers.value.forEach((m: any) => {
-    m.remove()
-  })
-  uiMarkers.value = []
-  const coordinates = randomCoordinates(articles.value.length)
-  coordinates.forEach((c, index) => {
-    try {
-      const vNode = createVNode(PositionMarker, {
-        active: computed(() => activeIdx.value === index),
-        data: articles.value![index],
-        onClick: () => {
-          activeIdx.value = index
-          uiMarkers.value[index].setZIndex(maxZIndex.value)
-          maxZIndex.value += 1
+// 让地图平移到指定地点，并显示对应的 InfoWindow
+function focusOnLocation(location: 'japan' | 'hangzhou' | 'university') {
+  mapState.value = location
+  const targetCoords =
+    location === 'japan'
+      ? TOKYO_LNGLAT
+      : location === 'hangzhou'
+        ? HANGZHOU_LNGLAT
+        : UNIVERSITY_LNGLAT
 
-          map.value.panTo(c)
-        },
-        onFocus: () => {
-          activeIdx.value = index
-          uiMarkers.value.map((m: any, i: number) => {
-            if (i === index) {
-              // m.show()
-              map.value.panTo(c)
-            } else {
-              m.hide()
-            }
-          })
-        },
-        onRecover: () => {
-          uiMarkers.value.map((m: any, i: number) => {
-            if (!m.isVisible()) {
-              m.show()
-            }
-          })
-        },
-      })
-      if (!__instance) {
-        console.log(__instance!.appContext)
-        return
-      }
-      vNode.appContext = __instance?.appContext
+  map.value.panTo(targetCoords, { duration: 1000 })
 
-      const container = document.createElement('div')
-      render(vNode, container)
-
-      const uiMarker = new maptalks.ui.UIMarker(c, {
-        content: container.firstElementChild,
-        verticalAlignment: 'top',
-        autoPan: true,
-        eventsPropagation: true,
-        zIndex: index,
-      })
-      uiMarker.addTo(map.value)
-      uiMarkers.value.push(uiMarker)
-    } catch (error) {
-      console.error(error)
+  // 显示 InfoWindow
+  uiMarkers.value.forEach(({ name, marker }) => {
+    if (name === location) {
+      marker.show()
+    } else {
+      marker.hide()
     }
   })
-}
-
-function randomCoordinates(num: number) {
-  const coordinates = []
-  for (let i = 0; i < num; i++) {
-    const lng = 139.5 + Math.random() * 1
-    const lat = 35.4 + Math.random() * 0.5
-    coordinates.push([lng, lat])
-  }
-  return coordinates
 }
 </script>
 
 <template>
   <div class="bg-amber-100 h-full overflow-hidden rounded-md relative">
+    <!-- 地图控制按钮 -->
     <div class="absolute left-1 top-1 z-10">
-      <!-- {{ mapState }} -->
-      <div class="flex gap-1">
+      <div class="flex gap-2">
         <div
-          class="hover:underline cursor-pointer"
+          class="cursor-pointer font-bold transition-all"
           :class="{
-            'underline text-blue-500': mapState === 'university',
+            'text-blue-600 underline': mapState === 'university',
+            'text-gray-500': mapState !== 'university',
           }"
-          @click="mapState = 'university'"
+          @click="focusOnLocation('university')"
         >
-          UNIVERSITY
+          🎓 UNIVERSITY
         </div>
         |
         <div
-          class="hover:underline cursor-pointer"
+          class="cursor-pointer font-bold transition-all"
           :class="{
-            'underline text-blue-500': mapState === 'hangzhou',
+            'text-blue-600 underline': mapState === 'hangzhou',
+            'text-gray-500': mapState !== 'hangzhou',
           }"
-          @click="mapState = 'hangzhou'"
+          @click="focusOnLocation('hangzhou')"
         >
-          🇨🇳HANGZHOU
+          🇨🇳 HANGZHOU
         </div>
         |
         <div
-          class="hover:underline cursor-pointer"
+          class="cursor-pointer font-bold transition-all"
           :class="{
-            'underline text-blue-500': mapState === 'japan',
+            'text-blue-600 underline': mapState === 'japan',
+            'text-gray-500': mapState !== 'japan',
           }"
-          @click="mapState = 'japan'"
+          @click="focusOnLocation('japan')"
         >
-          🇯🇵JAPAN
+          🇯🇵 JAPAN
         </div>
       </div>
-      <div class="p-2 text-xs md:text-sm w-[60%] md:w-[16rem] bg-transparent pointer-events-none">
+
+      <!-- 时间线 -->
+      <div class="p-2 text-xs md:text-xs w-[60%] md:w-[18rem] bg-transparent">
         <div
-          class="transition-all"
+          @click="focusOnLocation('japan')"
+          class="cursor-pointer transition-all"
           :class="{
+            'border-blue-500 border-l-2 pl-2 text-blue-600': mapState === 'japan',
             'text-gray-500 border-gray-300': mapState !== 'japan',
-            'border-blue-500 border-l-2 pl-2': mapState === 'japan',
           }"
         >
-          2024-03 日本留学確定
+          🇯🇵 2024-03 日本留学決定
         </div>
         <div
-          class="border-l-2 pl-2"
+          @click="focusOnLocation('university')"
+          class="cursor-pointer transition-all"
           :class="{
+            'border-blue-500 border-l-2 pl-2 text-blue-600': mapState === 'university',
             'text-gray-500 border-gray-300': mapState !== 'university',
-            'border-blue-500': mapState === 'university',
           }"
         >
-          休学終わり、学歴を取る
+          🎓 休学終わり、学歴を取る
         </div>
         <div
-          class="transition-all border-l-2 pl-2"
+          @click="focusOnLocation('hangzhou')"
+          class="cursor-pointer transition-all"
           :class="{
+            'border-blue-500 border-l-2 pl-2 text-blue-600': mapState === 'hangzhou',
             'text-gray-500 border-gray-300': mapState !== 'hangzhou',
-            'border-blue-500 border-l-2 pl-2': mapState === 'hangzhou',
           }"
         >
-          会社の仕事交代
+          🇨🇳 会社の仕事交代
         </div>
         <div
-          class="transition-all"
+          @click="focusOnLocation('hangzhou')"
+          class="cursor-pointer transition-all"
           :class="{
+            'border-blue-500 border-l-2 pl-2 text-blue-600': mapState === 'hangzhou',
             'text-gray-500 border-gray-300': mapState !== 'hangzhou',
-            'border-blue-500 border-l-2 pl-2': mapState === 'hangzhou',
           }"
         >
-          2024-07 日本語能力試験N2(合格)
+          📚 2024-07 日本語能力試験N2(合格)
         </div>
         <div
-          class="transition-all"
+          @click="focusOnLocation('hangzhou')"
+          class="cursor-pointer transition-all"
           :class="{
+            'border-blue-500 border-l-2 pl-2 text-blue-600': mapState === 'hangzhou',
             'text-gray-500 border-gray-300': mapState !== 'hangzhou',
-            'border-blue-500 border-l-2 pl-2': mapState === 'hangzhou',
           }"
         >
-          2024-08 TOEFLの準備開始
+          📝 2024-08 TOEFLの準備開始
         </div>
         <div
-          class="transition-all"
+          @click="focusOnLocation('hangzhou')"
+          class="cursor-pointer transition-all"
           :class="{
+            'border-blue-500 border-l-2 pl-2 text-blue-600': mapState === 'hangzhou',
             'text-gray-500 border-gray-300': mapState !== 'hangzhou',
-            'border-blue-500 border-l-2 pl-2': mapState === 'hangzhou',
           }"
         >
-          2024-09 TOEFL試験 (90点)
+          🎯 2024-09 TOEFL試験 (90点)
         </div>
         <div
-          class="transition-all"
+          @click="focusOnLocation('japan')"
+          class="cursor-pointer transition-all"
           :class="{
+            'border-blue-500 border-l-2 pl-2 text-blue-600': mapState === 'japan',
             'text-gray-500 border-gray-300': mapState !== 'japan',
-            'border-blue-500 border-l-2 pl-2': mapState === 'japan',
           }"
         >
-          2024-10 日本に到着、日本語学校
+          ✈️ 2024-10 日本に到着、日本語学校
         </div>
         <div
-          class="transition-all"
+          @click="focusOnLocation('japan')"
+          class="cursor-pointer transition-all"
           :class="{
+            'border-blue-500 border-l-2 pl-2 text-blue-600': mapState === 'japan',
             'text-gray-500 border-gray-300': mapState !== 'japan',
-            'border-blue-500 border-l-2 pl-2': mapState === 'japan',
           }"
         >
-          2024-12 日本語能力試験N1(合格)
+          🎓 2024-12 日本語能力試験N1(合格)
         </div>
       </div>
     </div>
+
+    <!-- 地图 -->
     <div class="w-full h-full bg-teal-500" ref="mapRef"></div>
   </div>
 </template>
-
-<style scope></style>
