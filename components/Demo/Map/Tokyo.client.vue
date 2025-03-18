@@ -21,12 +21,14 @@ onMounted(async () => {
   await nextTick()
   map.value = new maptalks.Map(mapRef.value, {
     center: TOKYO_LNGLAT,
-    zoom: 10,
-    pitch: 30,
+    zoom: 9,
+    pitch: 60,
     baseLayer: new maptalks.TileLayer('base', {
       urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
       subdomains: ['a', 'b', 'c', 'd'],
-      attribution: false,
+      attribution:
+        '&copy; <a href="http://www.osm.org/copyright">OSM</a> contributors, ' +
+        '&copy; <a href="https://carto.com/attributions">CARTO</a>',
     }),
   })
   map.value.config({ doubleClickZoom: false })
@@ -62,7 +64,7 @@ function createInfoWindow(
     content: container.firstElementChild,
     verticalAlignment: 'top', // 保持默认的对齐方式
     autoPan: true,
-    offset: [0, 60], // 向下偏移 20px，确保在标记点正下方
+    // offset: [0, -60], // 向下偏移 20px，确保在标记点正下方
   })
 
   uiMarker.addTo(map.value)
@@ -94,43 +96,42 @@ function focusOnLocation(location: 'japan' | 'hangzhou' | 'university') {
 
 <template>
   <div class="bg-amber-100 h-full overflow-hidden rounded-md relative">
-    <!-- 地图控制按钮 -->
-    <div class="absolute left-1 top-1 z-10">
-      <div class="flex gap-2">
-        <div
-          class="cursor-pointer font-bold transition-all"
-          :class="{
-            'text-blue-600 underline': mapState === 'university',
-            'text-gray-500': mapState !== 'university',
-          }"
-          @click="focusOnLocation('university')"
-        >
-          🎓 UNIVERSITY
-        </div>
-        |
-        <div
-          class="cursor-pointer font-bold transition-all"
-          :class="{
-            'text-blue-600 underline': mapState === 'hangzhou',
-            'text-gray-500': mapState !== 'hangzhou',
-          }"
-          @click="focusOnLocation('hangzhou')"
-        >
-          🇨🇳 HANGZHOU
-        </div>
-        |
-        <div
-          class="cursor-pointer font-bold transition-all"
-          :class="{
-            'text-blue-600 underline': mapState === 'japan',
-            'text-gray-500': mapState !== 'japan',
-          }"
-          @click="focusOnLocation('japan')"
-        >
-          🇯🇵 JAPAN
-        </div>
+    <div class="absolute left-1 top-1 flex gap-2 z-10">
+      <div
+        class="cursor-pointer font-bold transition-all"
+        :class="{
+          'text-blue-600 underline': mapState === 'university',
+          'text-gray-500': mapState !== 'university',
+        }"
+        @click="focusOnLocation('university')"
+      >
+        🎓 UNIVERSITY
       </div>
-
+      |
+      <div
+        class="cursor-pointer font-bold transition-all"
+        :class="{
+          'text-blue-600 underline': mapState === 'hangzhou',
+          'text-gray-500': mapState !== 'hangzhou',
+        }"
+        @click="focusOnLocation('hangzhou')"
+      >
+        🇨🇳 HANGZHOU
+      </div>
+      |
+      <div
+        class="cursor-pointer font-bold transition-all"
+        :class="{
+          'text-blue-600 underline': mapState === 'japan',
+          'text-gray-500': mapState !== 'japan',
+        }"
+        @click="focusOnLocation('japan')"
+      >
+        🇯🇵 JAPAN
+      </div>
+    </div>
+    <!-- 地图控制按钮 -->
+    <div class="absolute left-1 bottom-4 z-10">
       <!-- 时间线 -->
       <div class="p-2 text-xs md:text-xs w-[60%] md:w-[18rem] bg-transparent">
         <div
