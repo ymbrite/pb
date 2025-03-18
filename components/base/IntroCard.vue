@@ -1,15 +1,26 @@
 <script setup lang="ts">
 import { useClipboard } from '@vueuse/core'
-const source = ref('parz1zhou@gmail.com')
-const { text, copy, copied, isSupported } = useClipboard({ source })
-const handleCopyEmailToClipboard = () => {
-  copy()
-}
+
+// 第一个邮箱（仕事メール）
+const source1 = ref('parz1zhou@gmail.com')
+const {
+  text: text1,
+  copy: copy1,
+  copied: copied1,
+  isSupported: isSupported1,
+} = useClipboard({ source: source1 })
+
+// 第二个邮箱（アカデミックメール）
 const source2 = ref('parzivor@gmail.com')
-const { text2, copy2, copied2, isSupported2 } = useClipboard({ source2 })
-const handleCopyEmailToClipboard2 = () => {
-  copy2()
-}
+const {
+  text: text2,
+  copy: copy2,
+  copied: copied2,
+  isSupported: isSupported2,
+} = useClipboard({ source: source2 })
+
+const handleCopyEmailToClipboard1 = () => copy1()
+const handleCopyEmailToClipboard2 = () => copy2()
 </script>
 
 <template>
@@ -38,32 +49,34 @@ const handleCopyEmailToClipboard2 = () => {
     <div class="mb-4 text-sm">物に喜ばず、己に悲しまず。</div>
 
     <!-- <div class="text-sm">['aivə]</div> -->
+    <!-- 仕事メール -->
     <div class="text-sm text-gray-400">仕事メール</div>
     <div class="flex items-center mt-[-0.5rem]">
       <div class="underline">
         <a href="mailto:parz1zhou@gmail.com" @click.stop> parz1zhou@gmail.com </a>
       </div>
       <UButton
-        :icon="copied ? 'i-carbon-checkmark' : 'i-carbon-copy'"
+        :icon="copied1 ? 'i-carbon-checkmark' : 'i-carbon-copy'"
         size="xs"
         color="gray"
         variant="ghost"
-        aria-label="Theme"
-        @click="handleCopyEmailToClipboard"
+        aria-label="Copy Email"
+        @click="handleCopyEmailToClipboard1"
       />
     </div>
 
+    <!-- アカデミックメール -->
     <div class="text-sm text-gray-400">アカデミックメール</div>
     <div class="flex items-center mt-[-0.5rem]">
       <div class="underline">
-        <a href="mailto:parz1zhou@gmail.com" @click.stop> parzivor@gmail.com </a>
+        <a href="mailto:parzivor@gmail.com" @click.stop> parzivor@gmail.com </a>
       </div>
       <UButton
         :icon="copied2 ? 'i-carbon-checkmark' : 'i-carbon-copy'"
         size="xs"
         color="gray"
         variant="ghost"
-        aria-label="Theme"
+        aria-label="Copy Email"
         @click="handleCopyEmailToClipboard2"
       />
     </div>
