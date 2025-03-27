@@ -21,7 +21,7 @@ const activeYoutubeID = ref('')
         </p>
       </div>
 
-      <div class="lg:flex-grow h-80 lg:h-auto">
+      <div class="lg:grow h-80 lg:h-auto">
         <DemoMapTokyo />
       </div>
     </div>
@@ -204,8 +204,8 @@ const activeYoutubeID = ref('')
   align-items: center;
 }
 .tech-item {
-  flex-grow: 0; /* 避免 Safari 计算错误 */
-  flex-shrink: 0;
+  grow: 0; /* 避免 Safari 计算错误 */
+  shrink: 0;
   justify-items: center;
   text-align: center;
 }

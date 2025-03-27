@@ -44,7 +44,7 @@ const curLocaleName = computed(() => {
       <code>{{ item.code }}</code>
       <!-- <UIcon
         :name="item.code"
-        class="flex-shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto"
+        class="shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto"
       /> -->
     </template>
   </UDropdown>

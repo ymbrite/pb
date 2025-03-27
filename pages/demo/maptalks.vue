@@ -5,7 +5,7 @@ const [DefineTemplate, ReuseTemplate] = createReusableTemplate<{ text: string }>
 
 <template>
   <DefineTemplate v-slot="{ text }">
-    <div class="absolute top-1 left-1 z-10 bg-teal-500 text-white p-1 rounded">
+    <div class="absolute top-1 left-1 z-10 bg-teal-500 text-white p-1 rounded-sm">
       {{ text }}
     </div>
   </DefineTemplate>
@@ -14,7 +14,7 @@ const [DefineTemplate, ReuseTemplate] = createReusableTemplate<{ text: string }>
     <BaseMemory class="absolute bottom-8 left-0 bg-teal-500 p-4 text-white z-50" />
     <div class="flex flex-wrap gap-4">
       <BaseDashWrapper class="w-[45%] h-[20rem] relative">
-        <!-- <div class="absolute top-1 left-1 z-10 bg-teal-500 text-white p-1 rounded">Bare map</div> -->
+        <!-- <div class="absolute top-1 left-1 z-10 bg-teal-500 text-white p-1 rounded-sm">Bare map</div> -->
         <ReuseTemplate text="Bare map" />
         <DemoMapBare />
       </BaseDashWrapper>

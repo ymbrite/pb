@@ -10,7 +10,7 @@
     </div>
 
     <!-- 右侧自适应区域 -->
-    <div class="w-full lg:ml-[30%] flex-grow flex flex-col justify-start items-start">
+    <div class="w-full lg:ml-[30%] grow flex flex-col justify-start items-start">
       <HomePage />
     </div>
   </div>

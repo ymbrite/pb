@@ -24,7 +24,7 @@ const recover = () => {
 
 <template>
   <div
-    class="bg-white p-1 w-40 rounded-md cursor-pointer border-dashed border-2 shadow hover:shadow-2xl hover:bg-teal-50 transition-all"
+    class="bg-white p-1 w-40 rounded-md cursor-pointer border-dashed border-2 shadow-sm hover:shadow-2xl hover:bg-teal-50 transition-all"
     :class="{
       'border-teal-500 bg-teal-50 shadow-2xl z-10': active.value,
     }"
