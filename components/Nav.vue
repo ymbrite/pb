@@ -7,7 +7,7 @@ const colorModeArray = ['system', 'light', 'dark', 'sepia']
   <div>
     <ClientOnly>
       <h1>Color mode: {{ colorMode.preference }}</h1>
-      <USelect v-model="colorMode.preference" :options="colorModeArray" />
+      <USelect v-model="colorMode.preference" :items="colorModeArray" />
     </ClientOnly>
   </div>
 </template>

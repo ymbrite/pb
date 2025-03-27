@@ -28,6 +28,7 @@ defineProps({
 
 <style>
 .prose .content-tip p {
-  @apply my-0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 </style>

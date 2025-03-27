@@ -90,7 +90,7 @@ onUnmounted(() => {
             </div>
           </div>
         </div>
-        <UDivider />
+        <USeparator />
         <ContentRenderer v-if="doc" ref="nuxtContent" :value="doc">
           <template #empty>
             <div class="text-xl">Document is empty</div>

@@ -102,7 +102,11 @@ const activeYoutubeID = ref('')
 
       <div class="text-lg">CrossPlatform（PC/モバイル向けプロジェクトアーキテクチャ）</div>
       <!-- https://g.imgtg.com/uploads/7247/67d7f4e842b70.png -->
-      <img class="w-full" src="https://g.imgtg.com/uploads/7247/67d7f9af4b97d.png" alt="CrossPlatform" />
+      <img
+        class="w-full"
+        src="https://g.imgtg.com/uploads/7247/67d7f9af4b97d.png"
+        alt="CrossPlatform"
+      />
       <div class="text-lg mt-4">Projects</div>
 
       <DemoSwiperElement
@@ -134,47 +138,45 @@ const activeYoutubeID = ref('')
         }"
       >
         <template #default="{ data }">
-          <div
-            @click="((isOpen = true), (activeYoutubeID = data.id), (activeTitle = data.title))"
-            :style="{
-              backgroundImage: `url(${data.coverUrl})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
+          <UModal
+            :title="data.title"
+            :close="{
+              color: 'primary',
+              variant: 'outline',
+              class: 'rounded-full',
             }"
-            alt="cover"
-            class="h-full w-full object-cover cursor-pointer"
           >
             <div
-              class="w-full h-full transition-all flex justify-center items-center text-lg text-white"
+              @click="((activeYoutubeID = data.id), (activeTitle = data.title))"
+              :style="{
+                backgroundImage: `url(${data.coverUrl})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }"
+              alt="cover"
+              class="h-full w-full object-cover cursor-pointer"
             >
-              <div class="bg-black bg-opacity-50 p-2 rounded-md">
-                {{ data.title }}
+              <div
+                class="w-full h-full transition-all flex justify-center items-center text-lg text-white"
+              >
+                <div class="bg-black bg-opacity-50 p-2 rounded-md">
+                  {{ data.title }}
+                </div>
               </div>
             </div>
-          </div>
-          <UModal v-model="isOpen" prevent-close>
-            <UCard>
-              <template #header>
-                <div class="flex justify-between">
-                  <div>{{ activeTitle }}</div>
-                  <UButton
-                    color="gray"
-                    variant="ghost"
-                    icon="i-heroicons-x-mark-20-solid"
-                    class="-my-1"
-                    @click="isOpen = false"
-                  />
-                </div>
-              </template>
-              <iframe
-                tabindex="-1"
-                class="h-64 w-full"
-                :src="`https://www.youtube.com/embed/${activeYoutubeID}`"
-                allowfullscreen
-                referrerpolicy="no-referrer"
-                :key="activeYoutubeID"
-              ></iframe>
-            </UCard>
+
+            <template #body>
+              <div class="p-0">
+                <iframe
+                  tabindex="-1"
+                  class="h-64 w-full"
+                  :src="`https://www.youtube.com/embed/${activeYoutubeID}`"
+                  allowfullscreen
+                  referrerpolicy="no-referrer"
+                  :key="activeYoutubeID"
+                ></iframe>
+              </div>
+            </template>
           </UModal>
         </template>
       </DemoSwiperElement>
