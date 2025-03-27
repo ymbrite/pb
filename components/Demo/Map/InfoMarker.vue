@@ -42,7 +42,7 @@ const recover = () => {
       </div>
       <div class="font-medium">{{ dataValue.title }}</div>
     </div>
-    <UButton color="black" block :to="dataValue._path">前往</UButton>
+    <UButton color="neutral" block :to="dataValue._path">前往</UButton>
   </div>
 </template>
 

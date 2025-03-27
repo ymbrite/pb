@@ -44,6 +44,9 @@ export default defineNuxtConfig({
         file: 'ja-JP.json',
       },
     ],
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
   },
 
   content: {

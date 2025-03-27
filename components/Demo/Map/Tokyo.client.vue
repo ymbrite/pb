@@ -80,7 +80,7 @@ function focusOnLocation(location: 'japan' | 'hangzhou' | 'university') {
   map.value.panTo(targetCoords, { duration: 1000 })
 
   // 显示 InfoWindow
-  uiMarkers.value.forEach(({ name, marker }) => {
+  uiMarkers.value.forEach(({ name, marker }: any) => {
     if (name === location) {
       marker.show()
     } else {

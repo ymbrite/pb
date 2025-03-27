@@ -100,7 +100,7 @@ const links = [
       <ClientOnly>
         <UButton
           :icon="colorModeIcon"
-          color="gray"
+          color="neutral"
           variant="ghost"
           aria-label="Theme"
           @click="hanldeColorModeClick"
@@ -112,7 +112,7 @@ const links = [
       </ClientOnly>
       <UButton
         icon="i-carbon-logo-github"
-        color="gray"
+        color="neutral"
         variant="ghost"
         aria-label="Theme"
         to="https://github.com/parz1/blog"
@@ -124,34 +124,24 @@ const links = [
       <UButton
         icon="i-carbon-logo-github"
         size="xl"
-        color="gray"
+        color="neutral"
         variant="ghost"
         aria-label="Theme"
         to="https://github.com/parz1/blog"
         target="_blank"
       ></UButton>
-      <UButton
-        icon="i-carbon-menu"
-        size="xl"
-        color="gray"
-        variant="ghost"
-        aria-label="Theme"
-        @click="isMenuOpen = true"
-      >
-        <template #fallback>
-          <div class="w-8 h-8"></div>
+      <!-- <USlideover>
+        <UButton icon="i-carbon-menu" size="xl" color="neutral" variant="ghost" aria-label="Theme">
+          <template #fallback>
+            <div class="w-8 h-8"></div>
+          </template>
+        </UButton>
+        <template #content>
+          <div class="p-4 flex-1">
+            <UNavigationMenu orientation="vertical" :items="links" />
+          </div>
         </template>
-      </UButton>
-      <USlideover
-        v-model="isMenuOpen"
-        :ui="{
-          width: 'max-w-60',
-        }"
-      >
-        <div class="p-4 flex-1">
-          <UVerticalNavigation :links="links" />
-        </div>
-      </USlideover>
+      </USlideover> -->
     </div>
   </div>
 </template>

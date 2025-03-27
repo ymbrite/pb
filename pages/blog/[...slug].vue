@@ -54,7 +54,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen max-w-(--breakpoint-sm) md:max-w-(--breakpoint-xl) py-4 flex justify-center">
+  <div
+    class="min-h-screen max-w-(--breakpoint-sm) md:max-w-(--breakpoint-xl) py-4 flex justify-center"
+  >
     <div class="relative w-60 hidden md:block">
       <div class="sticky top-20 flex flex-col items-start pr-4">
         <div class="text-xl font-normal">Table of Content</div>
@@ -79,7 +81,7 @@ onUnmounted(() => {
               <UBadge
                 v-for="tag in doc?.tags"
                 :key="tag"
-                color="white"
+                color="neutral"
                 variant="solid"
                 class="mr-1"
               >
@@ -103,30 +105,38 @@ onUnmounted(() => {
 </template>
 
 <style>
+/* assets/css/prose.css */
 .prose p {
-  @apply my-3;
-}
-/* .prose h2 a, */
-.prose h3 a,
-.prose h4 a,
-.prose h5 a,
-.prose h6 a {
-  @apply no-underline mt-1;
+  margin-top: 2rem; /* = my-8 */
+  margin-bottom: 2rem;
 }
 
 .prose h2 {
-  @apply mt-8 mb-4 text-3xl;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.875rem; /* = text-3xl */
+  line-height: 2.25rem;
   scroll-margin-top: 5rem;
 }
+
 .prose h3,
 .prose h4,
 .prose h5,
 .prose h6 {
-  @apply mt-4 mb-2;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
   scroll-margin-top: 5rem;
 }
 
+.prose h3 a,
+.prose h4 a,
+.prose h5 a,
+.prose h6 a {
+  text-decoration: none; /* no-underline */
+  margin-top: 0.25rem;
+}
+
 .prose {
-  @apply leading-normal;
+  line-height: 1.5; /* leading-normal */
 }
 </style>
