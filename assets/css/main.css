@@ -38,3 +38,10 @@
     border-color: var(--color-gray-200, currentColor);
   }
 }
+
+.ip-jp {
+  text-indent: 1em;
+}
+.ip-zh {
+  text-indent: 2em;
+}

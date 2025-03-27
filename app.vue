@@ -11,11 +11,11 @@ useHead({
 </script>
 
 <template>
-  <UApp>
-    <NuxtLayout>
+  <NuxtLayout>
+    <UApp>
       <NuxtPage />
-    </NuxtLayout>
-  </UApp>
+    </UApp>
+  </NuxtLayout>
 </template>
 
 <style>
