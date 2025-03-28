@@ -14,5 +14,11 @@
   "tailwindCSS.experimental.classRegex": [
     ["ui:\\s*{([^)]*)\\s*}", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ],
-  "css.customData": [".vscode/tailwind.json"]
+  "css.customData": [
+    ".vscode/tailwind.json"
+  ],
+  "i18n-ally.localesPaths": [
+    "i18n",
+    "i18n/lang"
+  ]
 }

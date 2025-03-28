@@ -28,10 +28,17 @@ const props = defineProps({
 </script>
 
 <template>
-  <pre
-    v-bind="$attrs"
-    :class="props.class"
-  ><span v-if="language" style="font-weight: 800;">[{{ language }}]</span><span v-if="filename" style="font-weight: 800;">{{ filename }}</span><slot /></pre>
+  <div class="relative">
+    <pre
+      v-bind="$attrs"
+      :class="[props.class]"
+      style="padding: 0.5rem; padding-top: 2rem"
+    ><slot /></pre>
+    <div class="absolute top-2 left-4 text-neutral-300">
+      <span v-if="language">[{{ language }}]&nbsp;</span>
+      <span v-if="filename">{{ filename }}</span>
+    </div>
+  </div>
 </template>
 
 <style>
