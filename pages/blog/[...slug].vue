@@ -4,7 +4,7 @@ const route = useRoute()
 const { data: doc } = await useAsyncData(
   'page-data',
   () => {
-    return queryCollection('devlogs').path(route.path).first()
+    return queryCollection('blog').path(route.path).first()
   },
   { lazy: true }
 )
