@@ -56,8 +56,8 @@ export default defineNuxtConfig({
       /* Other options for `pg` */
     },
     preview: {
-      // api: 'https://api.nuxt.studio',
-      dev: true,
+      api: 'https://api.nuxt.studio',
+      // dev: true,
     },
     build: {
       markdown: {
