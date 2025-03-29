@@ -1,7 +1,11 @@
 <script setup lang="ts">
-const { data: articles } = await useAsyncData('latest-posts', () => queryCollection('blog').all(), {
-  lazy: true,
-})
+const { data: articles } = await useAsyncData(
+  'latest-posts',
+  () => queryCollection('blog').order('published', 'DESC').all(),
+  {
+    lazy: true,
+  }
+)
 </script>
 
 <template>
