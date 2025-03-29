@@ -1,20 +1,15 @@
-import { serverQueryContent } from '#content/server'
 import { SitemapStream, streamToPromise } from 'sitemap'
+import { Readable } from 'stream'
 
 export default defineEventHandler(async event => {
-  // Fetch all documents
-  const docs = await serverQueryContent(event).find()
   const sitemap = new SitemapStream({
     hostname: 'https://parz1.goder.club',
   })
+  const links = [
+    { url: '/', changefreq: 'daily', priority: 1 },
+    { url: '/blog', changefreq: 'daily', priority: 0.8 },
+    { url: '/demo', changefreq: 'weekly', priority: 0.7 },
+  ]
 
-  for (const doc of docs) {
-    sitemap.write({
-      url: doc._path,
-      changefreq: 'monthly',
-    })
-  }
-  sitemap.end()
-
-  return streamToPromise(sitemap)
+  return streamToPromise(Readable.from(links).pipe(sitemap)).then(data => data.toString())
 })

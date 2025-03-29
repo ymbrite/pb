@@ -1,5 +1,5 @@
 <template>
   <section>
-    <ContentSlot />
+    <slot />
   </section>
 </template>

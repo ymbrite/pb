@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { data: articles } = await useAsyncData(
   'latest-posts',
-  () => queryContent('/blog/posts').sort({ published: -1 }).find(),
+  () => queryCollection('/blog/posts').sort({ published: -1 }).find(),
   { lazy: true }
 )
 </script>

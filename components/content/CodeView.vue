@@ -21,7 +21,7 @@ defineProps({
       {{ filename }}
     </span>
     <span>
-      <ContentSlot />
+      <slot />
     </span>
   </section>
 </template>

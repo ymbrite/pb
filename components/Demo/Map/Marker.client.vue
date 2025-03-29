@@ -17,7 +17,7 @@ const {
 } = await useAsyncData(
   'latest-posts',
   async () => {
-    return queryContent('/blog').limit(5).sort({ published: -1 }).find()
+    return queryCollection('/blog').limit(5).sort({ published: -1 }).find()
   },
   { server: false, immediate: false }
 )

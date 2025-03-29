@@ -1,19 +1,16 @@
 <script setup lang="ts">
 const route = useRoute()
-const { slug } = route.params
 
 const { data: doc } = await useAsyncData(
   'page-data',
   () => {
-    // if slug is array, join it with '/'
-    const joinedSlug = Array.isArray(slug) ? slug.join('/') : slug
-    return queryContent(`/blog/${joinedSlug}`).findOne()
+    return queryCollection('devlogs').path(route.path).first()
   },
   { lazy: true }
 )
 
 useSeoMeta({
-  ogImage: `https://parz1.goder.club/posts/${slug}.png`,
+  ogImage: doc.value?.cover,
   twitterCard: 'summary_large_image',
   articleAuthor: ['ivor'],
 })
