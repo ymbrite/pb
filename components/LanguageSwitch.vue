@@ -1,17 +1,19 @@
-<script setup>
+<script setup lang="ts">
+import type { DropdownMenuItem } from '@nuxt/ui'
+
 const { locale: curLocale, locales, setLocale } = useI18n()
 
-const items = computed(() => [
+const items = computed<DropdownMenuItem[]>(() =>
   locales.value.map(locale => ({
     label: locale.name,
     code: locale.code,
     disabled: locale.code === curLocale.value,
-    click: () => {
+    onSelect: () => {
       console.log(locale.code)
       setLocale(locale.code)
     },
-  })),
-])
+  }))
+)
 
 const curLocaleName = computed(() => {
   return locales.value.find(locale => locale.code === curLocale.value)?.name
@@ -26,7 +28,7 @@ const curLocaleName = computed(() => {
   >
     {{ locale.name }}
   </NuxtLink> -->
-  <UDropdown :items="items" :popper="{ placement: 'bottom-start', arrow: true }">
+  <UDropdownMenu :items="items" :content="{ side: 'bottom' }" arrow>
     <div class="flex items-center gap-2 hover:text-primary-600 cursor-pointer">
       <UIcon name="i-carbon-ibm-watson-language-translator" />
       <span>{{ curLocaleName }}</span>
@@ -44,8 +46,8 @@ const curLocaleName = computed(() => {
       <code>{{ item.code }}</code>
       <!-- <UIcon
         :name="item.code"
-        class="flex-shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto"
+        class="shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto"
       /> -->
     </template>
-  </UDropdown>
+  </UDropdownMenu>
 </template>

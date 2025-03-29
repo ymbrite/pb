@@ -51,9 +51,9 @@ watchDebounced(
 <template>
   <div class="max-h-82 overflow-auto">
     <nav class="mt-4 flex">
-      <div class="relative w-1 overflow-hidden rounded bg-secondary">
+      <div class="relative w-1 overflow-hidden rounded-sm bg-secondary">
         <div
-          class="absolute left-0 w-full rounded bg-blue-600 transition-all duration-200"
+          class="absolute left-0 w-full rounded-sm bg-blue-600 transition-all duration-200"
           :style="{ height: `${sliderHeight}px`, top: `${sliderTop}px` }"
         ></div>
       </div>

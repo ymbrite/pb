@@ -8,24 +8,17 @@
     "*.css": "tailwindcss"
   },
   "editor.quickSuggestions": {
-    "strings": true
+    "strings": "on"
   },
-  "tailwindCSS.experimental.configFile": "tailwind.config.ts",
+  "tailwindCSS.classAttributes": ["class", "ui"],
   "tailwindCSS.experimental.classRegex": [
-    [
-      "ui:\\s*{([^)]*)\\s*}",
-      "[\"'`]([^\"'`]*).*?[\"'`]"
-    ],
-    [
-      "/\\*\\s?ui\\s?\\*/\\s*{([^;]*)}",
-      ":\\s*[\"'`]([^\"'`]*).*?[\"'`]"
-    ]
+    ["ui:\\s*{([^)]*)\\s*}", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ],
-  "tailwindCSS.classAttributes": [
-    "class",
-    "className",
-    "ngClass",
-    "ui"
+  "css.customData": [
+    ".vscode/tailwind.json"
   ],
-  "css.customData": [".vscode/tailwind.json"]
+  "i18n-ally.localesPaths": [
+    "i18n",
+    "i18n/lang"
+  ]
 }

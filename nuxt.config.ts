@@ -44,6 +44,9 @@ export default defineNuxtConfig({
         file: 'ja-JP.json',
       },
     ],
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
   },
 
   content: {
@@ -71,11 +74,7 @@ export default defineNuxtConfig({
     // },
   },
 
-  css: ['~/assets/css/main.scss', '~/assets/css/line-numbers.css'],
-
-  ui: {
-    icons: ['carbon'],
-  },
+  css: ['~/assets/css/main.css', '~/assets/css/line-numbers.css'],
 
   runtimeConfig: {
     githubToken: process.env.NUXT_GITHUB_TOKEN,
