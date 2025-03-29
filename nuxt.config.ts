@@ -52,25 +52,36 @@ export default defineNuxtConfig({
   content: {
     database: {
       type: 'postgres',
-      url: process.env.POSTGRES_URL,
+      url: process.env.POSTGRES_URL || '',
       /* Other options for `pg` */
     },
     preview: {
-      api: 'https://api.nuxt.studio',
+      // api: 'https://api.nuxt.studio',
       dev: true,
     },
-    navigation: {
-      fields: ['title', 'description', 'published', 'slug', 'tags'],
+    build: {
+      markdown: {
+        remarkPlugins: {
+          'remark-math': {},
+          'remark-emoji': {},
+        },
+        rehypePlugins: {
+          'rehype-katex': { output: 'html' },
+        },
+        highlight: {
+          theme: 'github-dark',
+          langs: ['zsh', 'c', 'cpp', 'rust', 'vue', 'ts', 'js', 'json', 'python', 'asm', 'md'],
+        },
+      },
     },
-    markdown: {
+    renderer: {
       anchorLinks: true,
-      remarkPlugins: ['remark-math', 'remark-emoji'],
-      rehypePlugins: [['rehype-katex', { output: 'html' }]],
     },
-    highlight: {
-      theme: 'github-dark',
-      langs: ['zsh', 'c', 'cpp', 'rust', 'vue', 'ts', 'js', 'json', 'python', 'asm', 'md'],
-    },
+    // TODO: check if this is needed
+    // navigation: {
+    //   fields: ['title', 'description', 'published', 'slug', 'tags'],
+    // },
+
     // sources: {
     //   github: {
     //     driver: 'github', // Driver used to fetch contents (view unstorage documentation)

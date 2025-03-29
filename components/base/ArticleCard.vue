@@ -17,7 +17,7 @@ const getReadableDate = dateString => {
 </script>
 
 <template>
-  <NuxtLink :to="article._path" class="group">
+  <NuxtLink :to="article.path" class="group">
     <article>
       <div class="flex gap-4">
         <time
