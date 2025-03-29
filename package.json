@@ -54,6 +54,7 @@
     "maptalks.three": "^0.38.3",
     "maptalks.wmts": "^1.0.3",
     "mermaid": "^10.9.1",
+    "pg": "^8.14.1",
     "rehype-katex": "^7.0.0",
     "remark-emoji": "^4.0.1",
     "remark-math": "^6.0.0",

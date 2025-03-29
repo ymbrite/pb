@@ -5,7 +5,9 @@ const { data: articles } = await useAsyncData(
   { lazy: true }
 )
 
-const { data: posts } = await useAsyncData('blog', () => queryCollection('blog').all())
+const { data: posts } = await useAsyncData('blog', () =>
+  queryCollection('content').path('/blog').all()
+)
 </script>
 
 <template>

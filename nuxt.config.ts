@@ -50,6 +50,11 @@ export default defineNuxtConfig({
   },
 
   content: {
+    database: {
+      type: 'postgres',
+      url: process.env.POSTGRES_URL,
+      /* Other options for `pg` */
+    },
     preview: {
       api: 'https://api.nuxt.studio',
       dev: true,
