@@ -5,7 +5,8 @@ published: 2024/05/24
 ---
 
 ## What is Corepack
-::tip{title="Attention:" icon="i-carbon-ai"}
+
+::tip{icon="i-carbon-ai" title="Attention:"}
 This paragraph is mostly written by ChatGPT
 ::
 
