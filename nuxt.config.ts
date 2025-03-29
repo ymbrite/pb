@@ -50,6 +50,10 @@ export default defineNuxtConfig({
   },
 
   content: {
+    preview: {
+      api: 'https://api.nuxt.studio',
+      dev: true,
+    },
     navigation: {
       fields: ['title', 'description', 'published', 'slug', 'tags'],
     },

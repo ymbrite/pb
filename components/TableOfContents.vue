@@ -18,7 +18,7 @@ const tocLinksH2: Ref<Array<HTMLElement>> = ref([])
 const tocLinksH3: Ref<Array<HTMLElement>> = ref([])
 
 // const { data: blogPost } = await useAsyncData(`blogToc`, () =>
-//   queryContent(`/posts/devlogs/os-sync`).findOne()
+//   queryCollection(`/posts/devlogs/os-sync`).findOne()
 // )
 const tocLinks = computed(() => props.doc?.body?.toc?.links ?? [])
 

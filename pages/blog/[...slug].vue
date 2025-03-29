@@ -7,7 +7,7 @@ const { data: doc } = await useAsyncData(
   () => {
     // if slug is array, join it with '/'
     const joinedSlug = Array.isArray(slug) ? slug.join('/') : slug
-    return queryContent(`/blog/${joinedSlug}`).findOne()
+    return queryCollection(`/blog/${joinedSlug}`).findOne()
   },
   { lazy: true }
 )

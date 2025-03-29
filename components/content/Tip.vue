@@ -19,7 +19,7 @@ defineProps({
           <UIcon class="text-4xl" :name="icon" />
         </template>
         <template #description>
-          <ContentSlot />
+          <slot />
         </template>
       </UAlert>
     </section>
