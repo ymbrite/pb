@@ -32,8 +32,8 @@ const handleCopyEmailToClipboard2 = () => copy2()
         alt="avatar"
       />
     </div>
-    <div class="mt-0">
-      <span class="text-4xl font-bold">parz1</span>
+    <div class="mt-2">
+      <span class="text-3xl">parz1</span>
     </div>
     <div class="mt-4 mb-0">
       <div class="text-sm flex justify-start items-center gap-2">

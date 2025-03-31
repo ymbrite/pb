@@ -10,7 +10,7 @@ const activeYoutubeID = ref('')
     </p>
     <div class="flex flex-col lg:flex-row gap-2 mt-2">
       <div class="lg:w-[16rem]">
-        <div class="font-bold text-lg">留学を選んだ道</div>
+        <div class="font-bold text-xl mb-2">留学を選んだ道</div>
         <p class="indent-4">
           一番の理由は、このままでは成長が停滞するという危機感を抱いたからです。現在の環境では成長が横ばいになりつつあり、技術を体系的に学び、その本質を深く追求したいと考えました。
         </p>
@@ -25,7 +25,8 @@ const activeYoutubeID = ref('')
       </div>
     </div>
     <div class="mt-4">
-      <GradientTitle title="ツール" subtitle="私が使っています" />
+      <!-- <GradientTitle title="ツール" subtitle="私が使っています" /> -->
+      <div class="text-xl font-bold mb-2 mt-6">ツール</div>
       <div class="hidden lg:block">
         <div>
           <div class="text-xl mb-0">I build apps mainly with</div>
@@ -97,8 +98,8 @@ const activeYoutubeID = ref('')
       </div>
     </div>
     <div class="mt-4">
-      <GradientTitle title="作ってきたもの" subtitle="What I've done" />
-
+      <!-- <GradientTitle title="作ってきたもの" subtitle="What I've done" /> -->
+      <div class="text-xl font-bold mb-2 mt-6">作ってきたもの</div>
       <div class="text-lg">CrossPlatform（PC/モバイル向けプロジェクトアーキテクチャ）</div>
       <!-- https://g.imgtg.com/uploads/7247/67d7f4e842b70.png -->
       <img
@@ -191,7 +192,8 @@ const activeYoutubeID = ref('')
     </div>
 
     <div class="mt-4">
-      <GradientTitle title="ブログ" subtitle="技術ログ" />
+      <!-- <GradientTitle title="ブログ" subtitle="技術ログ" /> -->
+      <div class="text-xl font-bold mt-6 mb-4">ブログ</div>
       <PostsPreview />
     </div>
   </div>
