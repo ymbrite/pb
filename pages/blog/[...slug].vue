@@ -104,8 +104,8 @@ onUnmounted(() => {
 <style>
 /* assets/css/prose.css */
 .prose p {
-  margin-top: 2rem; /* = my-8 */
-  margin-bottom: 2rem;
+  margin-top: 0.5rem; /* = my-8 */
+  margin-bottom: 0.5rem;
 }
 
 .prose h2 {
@@ -120,6 +120,7 @@ onUnmounted(() => {
 .prose h4,
 .prose h5,
 .prose h6 {
+  font-size: 1.25rem; /* = text-2xl */
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   scroll-margin-top: 5rem;
