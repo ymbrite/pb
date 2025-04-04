@@ -9,7 +9,7 @@ const items = computed<DropdownMenuItem[]>(() =>
     code: locale.code,
     disabled: locale.code === curLocale.value,
     onSelect: () => {
-      console.log(locale.code)
+      // console.log(locale.code)
       setLocale(locale.code)
     },
   }))
@@ -28,10 +28,10 @@ const curLocaleName = computed(() => {
   >
     {{ locale.name }}
   </NuxtLink> -->
-  <UDropdownMenu :items="items" :content="{ side: 'bottom' }" arrow>
+  <UDropdownMenu :items="items" :content="{ side: 'bottom', align: 'end' }">
     <div class="flex items-center gap-2 hover:text-primary-600 cursor-pointer">
       <UIcon name="i-carbon-ibm-watson-language-translator" />
-      <span>{{ curLocaleName }}</span>
+      <!-- <span class="text-xs">{{ curLocaleName }}</span> -->
     </div>
     <!-- <UButton color="white" label="Options" trailing-icon="i-heroicons-chevron-down-20-solid" /> -->
     <!-- <UButton
@@ -41,13 +41,20 @@ const curLocaleName = computed(() => {
       trailing-icon="i-heroicons-chevron-down-20-solid"
     /> -->
     <template #item="{ item }">
-      <span class="truncate">{{ item.label }}</span>
-      <span class="flex-1"></span>
-      <code>{{ item.code }}</code>
-      <!-- <UIcon
-        :name="item.code"
-        class="shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto"
-      /> -->
+      <div
+        class="w-full flex justify-between"
+        :class="{
+          'cursor-pointer': !item.disabled,
+        }"
+      >
+        <span class="truncate">{{ item.label }}</span>
+        <span class="flex-1"></span>
+        <code>{{ item.code }}</code>
+        <!-- <UIcon
+          :name="item.code"
+          class="shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto"
+        /> -->
+      </div>
     </template>
   </UDropdownMenu>
 </template>
