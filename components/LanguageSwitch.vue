@@ -45,6 +45,7 @@ const curLocaleName = computed(() => {
         class="w-full flex justify-between"
         :class="{
           'cursor-pointer': !item.disabled,
+          'text-gray-400 dark:text-gray-500': item.disabled,
         }"
       >
         <span class="truncate">{{ item.label }}</span>
