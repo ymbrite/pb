@@ -74,7 +74,7 @@ const handleCopyEmailToClipboard2 = () => copy2()
       <UButton
         :icon="copied2 ? 'i-carbon-checkmark' : 'i-carbon-copy'"
         size="xs"
-        color="gray"
+        color="neutral"
         variant="ghost"
         aria-label="Copy Email"
         @click="handleCopyEmailToClipboard2"
@@ -85,7 +85,7 @@ const handleCopyEmailToClipboard2 = () => copy2()
     <div class="flex">
       <UPopover mode="hover" :popper="{ placement: 'bottom' }">
         <a href="https://github.com/parz1" target="_blank" @click.stop>
-          <UButton icon="i-carbon-logo-github" color="gray" variant="ghost" aria-label="Theme">
+          <UButton icon="i-carbon-logo-github" color="neutral" variant="ghost" aria-label="Theme">
             <template #fallback>GitHub</template>
           </UButton>
         </a>
@@ -101,7 +101,7 @@ const handleCopyEmailToClipboard2 = () => copy2()
       </UPopover>
       <UPopover mode="hover" :popper="{ placement: 'bottom' }">
         <a href="https://twitter.com/parz1zhou" target="_blank" @click.stop>
-          <UButton icon="i-carbon-logo-x" color="gray" variant="ghost" aria-label="Theme">
+          <UButton icon="i-carbon-logo-x" color="neutral" variant="ghost" aria-label="Theme">
             <template #fallback>X</template>
           </UButton>
         </a>
@@ -119,7 +119,12 @@ const handleCopyEmailToClipboard2 = () => copy2()
       <!-- instgram -->
       <UPopover mode="hover" :popper="{ placement: 'bottom' }">
         <a href="https://www.instagram.com/_parz1/" target="_blank" @click.stop>
-          <UButton icon="i-carbon-logo-instagram" color="gray" variant="ghost" aria-label="Theme">
+          <UButton
+            icon="i-carbon-logo-instagram"
+            color="neutral"
+            variant="ghost"
+            aria-label="Theme"
+          >
             <template #fallback>Instagram</template>
           </UButton>
         </a>
