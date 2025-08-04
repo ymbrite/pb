@@ -19,6 +19,10 @@ const head = useLocaleHead({
         <template v-for="meta in head.meta" :key="meta.id">
           <Meta :id="meta.id" :property="meta.property" :content="meta.content" />
         </template>
+        <link
+          href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css"
+          rel="stylesheet"
+        />
       </Head>
       <Body class="overflow-x-hidden">
         <Header />
