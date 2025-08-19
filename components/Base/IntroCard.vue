@@ -81,6 +81,10 @@ const handleCopyEmailToClipboard2 = () => copy2()
       />
     </div>
 
+    <ULink to="/about" class="mt-4">
+      <UButton color="neutral" variant="outline" size="sm">About Me</UButton>
+    </ULink>
+
     <div class="text-gray-500 mt-4">Links</div>
     <div class="flex">
       <UPopover mode="hover" :popper="{ placement: 'bottom' }">
@@ -90,7 +94,7 @@ const handleCopyEmailToClipboard2 = () => copy2()
           </UButton>
         </a>
 
-        <template #panel>
+        <template #content>
           <div class="p-2 text-sm">
             @parz1
             <div class="text-xs mt-1 font-light">
@@ -106,7 +110,7 @@ const handleCopyEmailToClipboard2 = () => copy2()
           </UButton>
         </a>
 
-        <template #panel>
+        <template #content>
           <div class="p-2 text-sm">
             @parz1zhou
             <div class="text-xs mt-1 font-light">
@@ -129,7 +133,7 @@ const handleCopyEmailToClipboard2 = () => copy2()
           </UButton>
         </a>
 
-        <template #panel>
+        <template #content>
           <div class="p-2 text-sm">
             @_parz1
             <div class="text-xs mt-1 font-light">

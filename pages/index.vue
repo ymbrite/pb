@@ -11,7 +11,8 @@
 
     <!-- 右侧自适应区域 -->
     <div class="w-full lg:ml-[30%] grow flex flex-col justify-start items-start">
-      <HomePage />
+      <!-- <HomePage /> -->
+      I need some time to figure out what to do next.
     </div>
   </div>
 </template>
