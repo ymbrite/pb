@@ -6,7 +6,7 @@ import InfoMarker from './InfoMarker.vue'
 
 const mapRef = ref(null)
 const centerLngLat = gcj02towgs84(139.7036319, 35.6937632)
-const mapCenterCoor: [number, number] = [centerLngLat[0], centerLngLat[1]]
+const mapCenterCoor = [centerLngLat[0], centerLngLat[1]]
 
 // 获取数据
 const {
@@ -17,7 +17,7 @@ const {
 } = await useAsyncData(
   'latest-posts',
   async () => {
-    return queryCollection('/blog').limit(5).sort({ published: -1 }).find()
+    return queryCollection('blog').limit(5).order('published', 'DESC').all()
   },
   { server: false, immediate: false }
 )

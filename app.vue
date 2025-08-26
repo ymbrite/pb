@@ -1,21 +1,11 @@
-<script setup>
-useSeoMeta({
-  title: 'parz1 ZHOU',
-})
-
-//<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-useHead({
-  title: 'parz1 ZHOU',
-  meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }],
-})
-</script>
+<script setup></script>
 
 <template>
-  <NuxtLayout>
-    <UApp>
+  <UApp>
+    <NuxtLayout>
       <NuxtPage />
-    </UApp>
-  </NuxtLayout>
+    </NuxtLayout>
+  </UApp>
 </template>
 
 <style>

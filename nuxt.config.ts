@@ -4,6 +4,13 @@ export default defineNuxtConfig({
 
   app: {
     // pageTransition: { name: 'page', mode: 'out-in' },
+    head: {
+      meta: [
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        // 无需 user-scalable=no —— 影响可访问性，不建议关缩放
+      ],
+      titleTemplate: 'parz1 ZHOU',
+    },
   },
 
   vue: {

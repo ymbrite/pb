@@ -4,7 +4,7 @@ import { WMTSTileLayer } from 'maptalks.wmts'
 const mapRef = ref(null)
 const tiandiKey = '4ec9de06ee7d2a644f0a7061032e5d27'
 const centerLngLat = gcj02towgs84(139.7036319, 35.6937632)
-const mapCenterCoor: [number, number] = [centerLngLat[0], centerLngLat[1]]
+const mapCenterCoor: [number, number] = [centerLngLat[0] as number, centerLngLat[1] as number]
 
 const map = shallowRef(null)
 
