@@ -51,56 +51,65 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div
-    class="min-h-screen max-w-(--breakpoint-sm) md:max-w-(--breakpoint-xl) py-4 flex justify-center"
-  >
-    <div class="relative w-60 hidden md:block">
-      <div class="sticky top-20 flex flex-col items-start pr-4">
-        <div class="text-xl font-normal">Table of Content</div>
-        <ClientOnly>
-          <TableOfContents :active-toc-id="activeTocId" :doc="doc" />
-        </ClientOnly>
-
-        <!-- <UCard class="w-full my-4"> TODO: sharing module </UCard> -->
-      </div>
-    </div>
-
+  <template v-if="!doc">
+    <div class="text-xl">Page not found</div>
+    <p>Oops! The content you're looking for doesn't exist.</p>
+    <NuxtLink to="/">Go back home</NuxtLink>
+  </template>
+  <template v-else>
     <div
-      class="nuxt-content w-screen px-4 md:px-0 md:max-w-2xl prose dark:prose-invert prose-blockquote:not-italic prose-pre:bg-gray-900 prose-pre:border prose-pre:border-gray-800 prose-pre:rounded-lg prose-pre:p-4 prose-pre:overflow-x-auto prose-pre:my-4 prose-code:bg-gray-100 prose-code:dark:bg-gray-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-img:ring-1 prose-img:ring-gray-200 dark:prose-img:ring-white/10 prose-img:rounded-lg"
+      class="min-h-screen max-w-(--breakpoint-sm) md:max-w-(--breakpoint-xl) py-4 flex justify-center"
     >
-      <article>
-        <div class="mb-4">
-          <div class="text-4xl font-extrabold font-sans text-black dark:text-white">
-            {{ doc?.title }}
-          </div>
-          <div class="text-lg mb-2">{{ doc?.description }}</div>
-          <div class="text-gray-500 flex gap-4">
-            {{ doc?.published }}
-            <div>
-              <UBadge
-                v-for="tag in doc?.tags"
-                :key="tag"
-                color="neutral"
-                variant="solid"
-                class="mr-1"
-              >
-                {{ tag }}
-              </UBadge>
+      <div class="relative w-60 hidden md:block">
+        <div class="sticky top-20 flex flex-col items-start pr-4">
+          <div class="text-xl font-normal">Table of Content</div>
+          <ClientOnly>
+            <TableOfContents :active-toc-id="activeTocId" :doc="doc" />
+          </ClientOnly>
+
+          <!-- <UCard class="w-full my-4"> TODO: sharing module </UCard> -->
+        </div>
+      </div>
+
+      <div
+        class="nuxt-content w-screen px-4 md:px-0 md:max-w-2xl prose dark:prose-invert prose-blockquote:not-italic prose-pre:bg-gray-900 prose-pre:border prose-pre:border-gray-800 prose-pre:rounded-lg prose-pre:p-4 prose-pre:overflow-x-auto prose-pre:my-4 prose-code:bg-gray-100 prose-code:dark:bg-gray-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-img:ring-1 prose-img:ring-gray-200 dark:prose-img:ring-white/10 prose-img:rounded-lg"
+      >
+        <article>
+          <div class="mb-4">
+            <div class="text-4xl font-extrabold font-sans text-black dark:text-white">
+              {{ doc?.title }}
+            </div>
+            <div class="text-lg mb-2">{{ doc?.description }}</div>
+            <div class="text-gray-500 flex gap-4">
+              {{ doc?.published }}
+              <div>
+                <UBadge
+                  v-for="tag in doc?.tags"
+                  :key="tag"
+                  color="neutral"
+                  variant="solid"
+                  class="mr-1"
+                >
+                  {{ tag }}
+                </UBadge>
+              </div>
             </div>
           </div>
-        </div>
-        <USeparator />
-        <ContentRenderer v-if="doc" ref="nuxtContent" :value="doc">
-          <template #empty>
-            <div class="text-xl">Document is empty</div>
-            <p>maybe I will write it tomorrow... :)</p>
-          </template>
-        </ContentRenderer>
-      </article>
-    </div>
+          <USeparator />
+          <ContentRenderer v-if="doc" ref="nuxtContent" :value="doc">
+            <template #empty>
+              <div class="text-xl">Document is empty</div>
+              <p>maybe I will write it tomorrow... :)</p>
+            </template>
+          </ContentRenderer>
+        </article>
+      </div>
 
-    <div></div>
-  </div>
+      <div class="hidden md:block">
+        <!-- right sidebar -->
+      </div>
+    </div>
+  </template>
 </template>
 
 <style>
