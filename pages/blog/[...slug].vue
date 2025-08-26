@@ -12,7 +12,7 @@ const { data: doc } = await useAsyncData(
 useSeoMeta({
   ogImage: doc.value?.cover,
   twitterCard: 'summary_large_image',
-  articleAuthor: ['ivor'],
+  articleAuthor: ['parz1'],
 })
 useHead({
   link: [
@@ -57,7 +57,9 @@ onUnmounted(() => {
     <div class="relative w-60 hidden md:block">
       <div class="sticky top-20 flex flex-col items-start pr-4">
         <div class="text-xl font-normal">Table of Content</div>
-        <TableOfContents :active-toc-id="activeTocId" :doc="doc" />
+        <ClientOnly>
+          <TableOfContents :active-toc-id="activeTocId" :doc="doc" />
+        </ClientOnly>
 
         <!-- <UCard class="w-full my-4"> TODO: sharing module </UCard> -->
       </div>

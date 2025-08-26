@@ -72,6 +72,10 @@ export default defineNuxtConfig({
           theme: 'github-dark',
           langs: ['zsh', 'c', 'cpp', 'rust', 'vue', 'ts', 'js', 'json', 'python', 'asm', 'md'],
         },
+        toc: {
+          depth: 3,
+          searchDepth: 2,
+        },
       },
     },
     renderer: {
