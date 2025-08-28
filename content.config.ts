@@ -11,7 +11,7 @@ export default defineContentConfig({
         categories: z.array(z.string()).optional(),
         tags: z.array(z.string()).optional(),
         cover: z.string().optional(),
-        published: z.date(),
+        published: z.string().datetime(),
       }),
     }),
     posts: defineCollection({
@@ -23,7 +23,7 @@ export default defineContentConfig({
         categories: z.array(z.string()).optional(),
         tags: z.array(z.string()).optional(),
         cover: z.string().optional(),
-        published: z.date(),
+        published: z.string().datetime(),
       }),
     }),
     devlogs: defineCollection({
@@ -35,7 +35,7 @@ export default defineContentConfig({
         categories: z.array(z.string()).optional(),
         tags: z.array(z.string()).optional(),
         cover: z.string().optional(),
-        published: z.date(),
+        published: z.string().datetime(),
       }),
     }),
   },
