@@ -1,12 +1,4 @@
 <script setup lang="ts">
-/**
- * SSR-safe TOC 组件：
- * ✅ 仅在客户端绑定 IO / 访问 document
- * ✅ 初始对齐移到 onMounted（避免 SSR 阶段触发）
- * ✅ 所有工具函数都做了 process.client 守卫
- * ✅ performance/IntersectionObserver 不存在时有兜底
- */
-
 import type { BlogCollectionItem } from '@nuxt/content'
 
 const props = withDefaults(
@@ -25,7 +17,7 @@ const sliderTop = ref(0)
 
 const tocLinks = computed(() => props.doc?.body?.toc?.links ?? [])
 
-/** 归一化 hash → id */
+/** hash → id（支持中文 hash） */
 const normalizedHashId = computed<string | null>(() => {
   const raw = route.hash?.slice(1) || ''
   if (!raw) return null
@@ -42,26 +34,7 @@ const effectiveId = computed<string | null>(
   () => normalizedHashId.value ?? ioActiveId.value ?? props.activeTocId ?? null
 )
 
-/** ✅ SSR-safe：仅在客户端做 raf 重试 */
-const rafTry = async (fn: () => boolean, timeoutMs = 300) => {
-  if (!process.client) return
-  const now =
-    typeof performance !== 'undefined' && performance.now
-      ? () => performance.now()
-      : () => Date.now()
-  const start = now()
-  return new Promise<void>(resolve => {
-    const tick = () => {
-      if (fn() || now() - start > timeoutMs) return resolve()
-      requestAnimationFrame(tick)
-    }
-    requestAnimationFrame(tick)
-  })
-}
-
-/** ✅ SSR-safe：仅在客户端查询 DOM */
 const updateSliderById = (id: string | null) => {
-  if (!process.client) return false
   if (!id) return false
   const tocEl = document.getElementById(`toc-${id}`)
   if (!tocEl) return false
@@ -71,52 +44,40 @@ const updateSliderById = (id: string | null) => {
 }
 
 const onClick = async (id: string) => {
-  lastUserClickAt.value =
-    typeof performance !== 'undefined' && performance.now ? performance.now() : Date.now()
-  const hash = `#${id}`
-  if (route.hash !== hash) {
-    await router.replace({ hash })
-  }
+  lastUserClickAt.value = performance.now()
+  const hash = `#${id}` // 不再 encode，避免 router 选择器警告
+  if (route.hash !== hash) await router.replace({ hash })
   await nextTick()
-  if (process.client) {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-    updateSliderById(id) || (await rafTry(() => updateSliderById(id)))
-  }
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  updateSliderById(id)
 }
 
-/** ✅ SSR-safe：仅在客户端收集 heading 元素 */
+/** 从 toc 收集正文 headings（现在包含 H1 了，只要 searchDepth=1） */
 const collectHeadingEls = () => {
-  if (!process.client) return [] as HTMLElement[]
   const ids: string[] = []
-  const flatten = (links: any[] = []) => {
+  const walk = (links: any[] = []) => {
     for (const l of links) {
       if (l?.id) ids.push(l.id)
-      if (Array.isArray(l?.children)) flatten(l.children)
+      if (Array.isArray(l?.children)) walk(l.children)
     }
   }
-  flatten(tocLinks.value)
+  walk(tocLinks.value)
   return ids.map(id => document.getElementById(id)).filter((el): el is HTMLElement => !!el)
 }
 
 let io: IntersectionObserver | null = null
 
-/** ✅ SSR-safe：仅在客户端绑定 IO，且存在性检查 */
 const bindIO = () => {
-  if (!process.client) return
   if (io) {
     io.disconnect()
     io = null
   }
   const targets = collectHeadingEls()
-  if (!targets.length) return
-  if (typeof IntersectionObserver === 'undefined') return
+  if (!targets.length || typeof IntersectionObserver === 'undefined') return
 
   io = new IntersectionObserver(
     entries => {
-      const now =
-        typeof performance !== 'undefined' && performance.now ? performance.now() : Date.now()
-      if (now - lastUserClickAt.value < 600) return
-
+      if (performance.now() - lastUserClickAt.value < 600) return
       const visible = entries
         .filter(e => e.isIntersecting && e.intersectionRatio > 0)
         .map(e => {
@@ -127,11 +88,9 @@ const bindIO = () => {
             ratio: e.intersectionRatio,
           }
         })
-
       if (!visible.length) return
       visible.sort((a, b) => a.topDist - b.topDist || b.ratio - a.ratio)
       const topId = visible[0]?.id || null
-
       if (topId && topId !== ioActiveId.value) {
         ioActiveId.value = topId
         updateSliderById(topId)
@@ -147,33 +106,26 @@ const bindIO = () => {
   for (const el of targets) io.observe(el)
 }
 
-/** ✅ 初次对齐与重绑：只在客户端进行 */
 const rebindAndAlign = async () => {
-  if (!process.client) return
   await nextTick()
   bindIO()
   const id = effectiveId.value
-  updateSliderById(id) || (await rafTry(() => updateSliderById(id)))
+  updateSliderById(id)
 }
 
-/** ✅ 监听改为非 immediate，避免 SSR 阶段触发 */
 watch(
   () => [route.fullPath, normalizedHashId.value, tocLinks.value?.length],
   () => {
     rebindAndAlign()
-  },
-  { immediate: false }
+  }
 )
 
-/** ✅ mounted 后再跑第一次（客户端） */
 onMounted(() => {
   rebindAndAlign()
 })
 onBeforeUnmount(() => {
-  if (io) {
-    io.disconnect()
-    io = null
-  }
+  io?.disconnect()
+  io = null
 })
 </script>
 

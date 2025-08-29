@@ -1,0 +1,157 @@
+/* assets/css/prose.css */
+
+/* 容器：开大行距、去掉宽度限制（按文档站风格） */
+.prose {
+  @apply leading-relaxed max-w-none;
+  /* Typography 插件的颜色变量（亮色） */
+  --tw-prose-body: theme(colors.gray.800);
+  --tw-prose-headings: inherit;
+  --tw-prose-links: theme(colors.primary.600);
+  --tw-prose-bold: theme(colors.gray.900);
+  --tw-prose-counters: theme(colors.gray.500);
+  --tw-prose-bullets: theme(colors.gray.500);
+  --tw-prose-hr: theme(colors.gray.200);
+  --tw-prose-quotes: theme(colors.gray.700);
+  --tw-prose-quote-borders: theme(colors.gray.300);
+  --tw-prose-captions: theme(colors.gray.500);
+  --tw-prose-code: theme(colors.gray.900);
+  --tw-prose-pre-code: theme(colors.gray.100);
+  --tw-prose-pre-bg: theme(colors.gray.900);
+  --tw-prose-th-borders: theme(colors.gray.300);
+  --tw-prose-td-borders: theme(colors.gray.200);
+}
+
+/* 暗色：用 prose-invert 或直接覆盖变量都行；两者可同时存在 */
+.dark .prose {
+  --tw-prose-body: theme(colors.gray.200);
+  --tw-prose-headings: inherit;
+  --tw-prose-links: theme(colors.primary.400);
+  --tw-prose-bold: theme(colors.gray.100);
+  --tw-prose-counters: theme(colors.gray.400);
+  --tw-prose-bullets: theme(colors.gray.600);
+  --tw-prose-hr: theme(colors.gray.700);
+  --tw-prose-quotes: theme(colors.gray.300);
+  --tw-prose-quote-borders: theme(colors.gray.700);
+  --tw-prose-captions: theme(colors.gray.400);
+  --tw-prose-code: theme(colors.gray.100);
+  --tw-prose-pre-code: theme(colors.gray.100);
+  --tw-prose-pre-bg: theme(colors.gray.800);
+  --tw-prose-th-borders: theme(colors.gray.700);
+  --tw-prose-td-borders: theme(colors.gray.700);
+}
+
+/* 段落更紧凑一点 */
+.prose p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose :where(h1, h2, h3, h4, h5, h6) a {
+  @apply font-bold text-gray-900 dark:text-gray-100;
+}
+
+/* 标题尺寸与锚点滚动偏移（有固定头部时很关键） */
+.prose h1 {
+  @apply text-4xl font-extrabold tracking-tight mt-8 mb-4 scroll-mt-24;
+}
+.prose h2 {
+  @apply text-3xl font-bold leading-9 mt-4 mb-4 scroll-mt-24;
+}
+.prose :where(h3, h4, h5, h6) {
+  @apply text-xl font-bold mt-4 mb-2 scroll-mt-24;
+}
+
+/* nuxt/content 的锚链图标隐藏，hover 再显 */
+.prose :where(h2, h3, h4, h5, h6) a[aria-hidden='true'] {
+  @apply no-underline text-gray-300 dark:text-gray-600 opacity-0 transition-opacity;
+  margin-left: 0.25em;
+}
+.prose :where(h2, h3, h4, h5, h6):hover a[aria-hidden='true'] {
+  @apply opacity-100;
+}
+.prose :where(h2, h3, h4, h5, h6) a {
+  @apply no-underline;
+}
+
+/* 列表间距与嵌套列表 */
+.prose ul > li,
+.prose ol > li {
+  @apply my-1;
+}
+.prose ul ul,
+.prose ol ol,
+.prose ul ol,
+.prose ol ul {
+  @apply my-1;
+}
+
+/* 引用更清晰一点 */
+.prose blockquote {
+  @apply border-l-4 pl-4;
+}
+
+/* 行内代码做“胶囊”风格，去掉默认反引号 */
+.prose :not(pre) > code {
+  @apply bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded px-1.5 py-0.5;
+}
+.prose :not(pre) > code::before,
+.prose :not(pre) > code::after {
+  content: '';
+}
+
+/* 代码块圆角和阴影，内部 code 去掉背景 */
+.prose pre {
+  @apply rounded-2xl shadow-sm overflow-x-auto;
+}
+.prose pre code {
+  @apply bg-transparent p-0;
+}
+
+/* 表格（如果你用自定义 ProseTable.vue，可删掉此段以免冲突） */
+/* 更美观的 Prose 表格 */
+.prose table {
+  @apply w-full text-center border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm overflow-hidden mx-auto;
+  border-collapse: collapse;
+}
+
+/* 表头 */
+.prose thead th {
+  @apply px-4 py-3 text-sm font-semibold text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-800;
+}
+
+/* 单元格 */
+.prose tbody td {
+  @apply px-4 py-3 text-sm text-gray-800 dark:text-gray-100 border-t border-gray-200 dark:border-gray-700;
+}
+
+/* 隔行条纹 */
+.prose tbody tr:nth-child(even) td {
+  @apply bg-gray-50 dark:bg-gray-900/40;
+}
+
+/* Hover 行高亮 */
+.prose tbody tr:hover td {
+  @apply bg-primary-50 dark:bg-primary-900/30 transition-colors;
+}
+
+
+/* 图片/图注 */
+.prose img {
+  @apply rounded-lg;
+}
+.prose figure {
+  @apply text-center;
+}
+.prose figcaption {
+  @apply text-gray-500 dark:text-gray-400 text-sm mt-2;
+}
+
+/* 脚注区（content 会渲染 .footnotes） */
+.prose .footnotes {
+  @apply border-t mt-8 pt-4 text-sm text-gray-600 dark:text-gray-400;
+}
+
+/* 分割线更淡 */
+.prose hr {
+  @apply my-6 border-gray-200 dark:border-gray-700;
+}

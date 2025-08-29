@@ -80,13 +80,17 @@ export default defineNuxtConfig({
           langs: ['zsh', 'c', 'cpp', 'rust', 'vue', 'ts', 'js', 'json', 'python', 'asm', 'md'],
         },
         toc: {
-          depth: 3,
+          depth: 2,
           searchDepth: 2,
         },
       },
     },
     renderer: {
-      anchorLinks: true,
+      anchorLinks: {
+        h1: true,
+        h2: true,
+        h3: true,
+      },
     },
     // TODO: check if this is needed
     // navigation: {

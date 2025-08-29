@@ -51,7 +51,7 @@ const handleCopyEmailToClipboard2 = () => copy2()
     <!-- <div class="text-sm">['aivə]</div> -->
     <!-- 仕事メール -->
     <div class="text-sm text-gray-400">仕事メール</div>
-    <div class="flex items-center mt-[-0.5rem]">
+    <div class="flex items-center -mt-2">
       <div class="underline">
         <a href="mailto:parz1zhou@gmail.com" @click.stop> parz1zhou@gmail.com </a>
       </div>
@@ -67,7 +67,7 @@ const handleCopyEmailToClipboard2 = () => copy2()
 
     <!-- アカデミックメール -->
     <div class="text-sm text-gray-400">アカデミックメール</div>
-    <div class="flex items-center mt-[-0.5rem]">
+    <div class="flex items-center -mt-2">
       <div class="underline">
         <a href="mailto:parzivor@gmail.com" @click.stop> parzivor@gmail.com </a>
       </div>

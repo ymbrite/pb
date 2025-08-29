@@ -3,33 +3,31 @@ import type { DropdownMenuItem } from '@nuxt/ui'
 
 const colorMode = useColorMode()
 
-const items = computed<DropdownMenuItem>(() => [
-  [
-    {
-      label: 'System',
-      icon: 'i-carbon-laptop',
-      disabled: colorMode.preference === 'system',
-      onSelect: () => {
-        colorMode.preference = 'system'
-      },
+const items = computed<DropdownMenuItem[]>(() => [
+  {
+    label: 'System',
+    icon: 'i-carbon-laptop',
+    disabled: colorMode.preference === 'system',
+    onSelect: () => {
+      colorMode.preference = 'system'
     },
-    {
-      label: 'Light',
-      icon: 'i-carbon-sun',
-      disabled: colorMode.preference === 'light',
-      onSelect: () => {
-        colorMode.preference = 'light'
-      },
+  },
+  {
+    label: 'Light',
+    icon: 'i-carbon-sun',
+    disabled: colorMode.preference === 'light',
+    onSelect: () => {
+      colorMode.preference = 'light'
     },
-    {
-      label: 'Dark',
-      icon: 'i-carbon-moon',
-      disabled: colorMode.preference === 'dark',
-      onSelect: () => {
-        colorMode.preference = 'dark'
-      },
+  },
+  {
+    label: 'Dark',
+    icon: 'i-carbon-moon',
+    disabled: colorMode.preference === 'dark',
+    onSelect: () => {
+      colorMode.preference = 'dark'
     },
-  ],
+  },
 ])
 
 const currentIcon = computed(() => {
@@ -64,7 +62,7 @@ const currentIcon = computed(() => {
         <span class="truncate">{{ item.label }}</span>
         <span class="flex-1"></span>
         <UIcon
-          :name="item.icon"
+          :name="item.icon || 'i-carbon-circle'"
           class="shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto"
         />
       </div>

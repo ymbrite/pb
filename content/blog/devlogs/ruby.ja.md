@@ -11,18 +11,16 @@ tags:
 
 授業中で急にルビがどうやって付くのか気になったので、調べてみた。Wordの中ではルビを振る機能があるけど、Wordを使ってノートをとるのは無理すぎ。Obsidianの中で試した後、ルビはHTMLそのままの機能だと思わなかった。
 
-# ルビとは
+## ルビとは
 ルビは欧米からのもの。当時西洋活版印刷術における「小さい活字のサイズ」の名称である。
-| Diamond<br>~4.5pt | Pearl<br>~5pt | Ruby<br>~5.5pt | Nonpareil<br>~6pt | Minion<br>~7pt | Brevier<br>~8pt |
-|-------------------|---------------|----------------|-------------------|----------------|----------------|
-| Bourgeois<br>~9pt | Long Primer<br>~10pt | Small Pica<br>~11pt | Pica<br>~12pt | Great Primer<br>~18pt |   |
 
-| Key | Type      | Description |
-| --- | --------- | ----------- |
-| 1   | Wonderful | Table       |
-| 2   | Wonderful | Data        |
-| 3   | Wonderful | Website     |
+| Diamond | Pearl | Ruby | Nonpareil | Minion |
+|---------|-------|------|-----------|--------|
+| ~4.5pt  | ~5pt  | ~5.5pt | ~6pt    | ~7pt   |
 
+| Brevier | Bourgeois | Long Primer | Small Pica | Pica  | Great Primer |
+| ------- | --------- | ----------- | ---------- | ----- | ------------ |
+| ~8pt    | ~9pt      | ~10pt       | ~11pt      | ~12pt | ~18pt        |
 
 1. 日本が近代印刷を導入した明治期、西洋の _ruby_（5.5pt 前後）の活字を「漢字の読みを振る小仮名」に使った。
 2. そのまま「ルビ」と呼ばれるようになり、今日では **注音文字（フリガナ）** 全般を指すようになった。
@@ -38,7 +36,7 @@ HTMLの中で元々付いた機能ですので、Nuxt Content で特に設定し
 
 <!-- ルビを振るの段落をくれ -->
 
-
+### so what
 元々付いた機能元々付いた機能元々付いた機能元々付いた機能元々付いた機能元々付いた機能元々付いた機能元々付いた機能元々付いた機能
 
 ## @nuxt/content Hookによる自動変換

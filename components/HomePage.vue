@@ -4,7 +4,7 @@ const activeYoutubeID = ref('')
 </script>
 
 <template>
-  <div class="p-4 md:px-[12%] md:w-screen lg:w-[44rem] lg:pl-4 lg:pr-0">
+  <div class="p-4 md:px-[12%] md:w-screen lg:w-176 lg:pl-4 lg:pr-0">
     <p class="indent-4">
       初めてウェブサイトを作成したのは、小学校5年生の時でした。大学入学前には、何度かACMコンテストに挑戦し、大学ではデジタルメディア技術を専攻いたしました。在学中より実務的な開発に携わるようになり、その後、ご縁があってとある会社にて取締役を務めさせていただいております。主に技術選定やモジュール開発を担当し、日々研鑽を積んでおります。また、クロスプラットフォーム開発やWeb開発を深く研究しつつ、GISやWebGLにも触れ、その知見を広げております。
     </p>
@@ -32,9 +32,9 @@ const activeYoutubeID = ref('')
           <div class="text-xl mb-0">I build apps mainly with</div>
           <div class="flex flex-wrap justify-start gap-1">
             <div
-              class="w-[14.5rem] h-full tech-item p-2 border-2 border-dashed rounded-md dark:bg-gray-800"
+              class="w-58 h-full tech-item p-2 border-2 border-dashed rounded-md dark:bg-gray-800"
             >
-              <div class="h-[5.5rem] flex gap-2">
+              <div class="h-22 flex gap-2">
                 <TechIcon name="javascript" size="5rem" icon="/svg/javascript-color.svg" />
                 <!-- <img class="w-10 h-10" src="/svg/typescript-color.svg" alt="typescript" /> -->
                 <div class="h-full flex flex-col gap-1 flex-wrap">
@@ -52,9 +52,9 @@ const activeYoutubeID = ref('')
             </div>
 
             <div
-              class="w-[17rem] h-full tech-item p-2 border-2 border-dashed rounded-md dark:bg-gray-800"
+              class="w-68 h-full tech-item p-2 border-2 border-dashed rounded-md dark:bg-gray-800"
             >
-              <div class="h-[5.5rem] flex gap-2">
+              <div class="h-22 flex gap-2">
                 <div class="h-full flex flex-col gap-1 flex-wrap">
                   <TechIcon name="vuejs" size="2.4rem" icon="/svg/vuedotjs-color.svg" />
                   <TechIcon name="nuxtjs" size="2.4rem" icon="/svg/nuxtdotjs-color.svg" />
@@ -74,9 +74,9 @@ const activeYoutubeID = ref('')
               Frameworks
             </div>
             <div
-              class="w-[10rem] h-full tech-item p-2 border-2 border-dashed rounded-md dark:bg-gray-800"
+              class="w-40 h-full tech-item p-2 border-2 border-dashed rounded-md dark:bg-gray-800"
             >
-              <div class="h-[5.5rem] flex gap-2">
+              <div class="h-22 flex gap-2">
                 <div class="h-full flex flex-col gap-1 flex-wrap">
                   <!-- vscode -->
                   <TechIcon name="vscode" size="2.4rem" icon="/svg/visualstudiocode-color.svg" />
@@ -110,7 +110,7 @@ const activeYoutubeID = ref('')
       <div class="text-lg mt-4">Projects</div>
 
       <DemoSwiperElement
-        container-class="hidden md:block h-[16rem] w-full p-4"
+        container-class="hidden md:block h-64 w-full p-4"
         element-class=""
         :data="[
           {
