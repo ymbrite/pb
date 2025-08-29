@@ -105,6 +105,17 @@ export default defineNuxtConfig({
     // },
   },
 
+  hooks: {
+    'content:file:beforeParse'({ file }) {
+      if (file.id.endsWith('.md')) {
+        // 把 {漢字 | かんじ} 转换为ruby
+        file.body = file.body.replace(/{(.*?)\s*\|\s*(.*?)}/g, (match, p1, p2) => {
+          return `<ruby>${p1}<rt>${p2}</rt></ruby>`
+        })
+      }
+    },
+  },
+
   css: ['~/assets/css/main.css', '~/assets/css/line-numbers.css'],
 
   runtimeConfig: {

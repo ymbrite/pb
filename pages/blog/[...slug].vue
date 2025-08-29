@@ -119,6 +119,13 @@ onUnmounted(() => {
   margin-bottom: 0.5rem;
 }
 
+.prose h1 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 2.25rem; /* = text-4xl */
+  font-weight: bold;
+}
+
 .prose h2 {
   margin-top: 2rem;
   margin-bottom: 1rem;
