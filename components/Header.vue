@@ -52,26 +52,14 @@ const links = [
       </div>
     </ULink>
     <div class="hidden md:flex items-center gap-3 text-xl pr-4">
-      <ULink
-        to="/"
-        class="hover:underline"
-        active-class="underline text-primary-600 dark:text-primary-400"
-      >
+      <ULink to="/">
         {{ t('menu.home') }}
       </ULink>
-      <ULink
-        to="/blog"
-        class="hover:underline"
-        active-class="underline text-primary-600 dark:text-primary-400"
-      >
+      <ULink to="/blog">
         {{ t('menu.blog') }}
       </ULink>
       <div>{{ t('menu.gallery') }}</div>
-      <ULink
-        to="/demo"
-        class="hover:underline"
-        active-class="underline text-primary-600 dark:text-primary-400"
-      >
+      <ULink to="/demo">
         {{ t('menu.demo') }}
       </ULink>
 
