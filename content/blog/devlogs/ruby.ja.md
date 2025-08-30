@@ -83,7 +83,7 @@ tags:
 2. そのまま「ルビ」と呼ばれるようになり、今日では **注音文字（フリガナ）** 全般を指すようになった。
 3. 現代の HTML/CSS も、この日本語印刷文化を取り入れて仕様化された。
 
-### 例
+### 例: \<ruby\>の形
 
 ```html
 <p>
@@ -101,7 +101,14 @@ HTMLの中で元々付いた機能ですので、Nuxt Content で特に設定し
 <ruby>漢字<rt>かんじ</rt></ruby>
 ```
 
-### @nuxt/content Hook による自動変換
+### hooks による自動変換
+
+Markdown内でルビを簡単に記述できるように、\{漢字|よみ} の形式を自動的に <ruby>漢字<rt>よみ</rt></ruby> に変換する hooks を用意しています。  
+この hooks は、コードブロック内の記述を保護しつつ、通常のテキスト部分のみを変換します。  
+エスケープしたい場合は \{漢字|よみ} のようにバックスラッシュを付けてください。
+
+下記の TypeScript コード例のように実装しています。
+
 
 ```typescript[@/utils/rubyHook.ts]
 export function rubyHook(file: { id: string; body: string }) {
@@ -113,28 +120,29 @@ export function rubyHook(file: { id: string; body: string }) {
     return key
   }
 
-  // 1) 保护 “恰好三个反引号”的代码块：```lang\n ... \n```（不匹配 ````）
-  //    - 支持可选语言标记、可选行尾空格、Win/Unix 换行
+  // 1) Protect code blocks with exactly three backticks: ```lang\n ... \n``` (does not match ````)
+  //    - Supports optional language tag, optional trailing spaces, Win/Unix line endings
   const tripleFence = /(^|\r?\n)```[^\r\n]*\r?\n[\s\S]*?\r?\n```(?=\s*(\r?\n|$))/g
   file.body = file.body.replace(tripleFence, stash)
 
-  // 2) 正文替换：支持 \{…|…} 转义
+  // 2) Main text replacement: supports escaping \{…|…}
   file.body = file.body.replace(/\\?\{(.*?)\s*\|\s*(.*?)}/g, (m, p1, p2) => {
     if (m.startsWith('\\')) return m.slice(1)
     return `<ruby>${p1}<rt>${p2}</rt></ruby>`
   })
 
-  // 3) 还原代码块
+  // 3) Restore code blocks
   file.body = file.body.replace(/__CODE_BLOCK_(\d+)__/g, (_m, i) => vault[+i])
   console.log('[rubyHook] stashed blocks =', vault.length)
 }
 
 ```
 
-### 例
+### 例: \{漢字|かんじ\}の形
 
 ```markdown
 {本件|ほんけん}につきましては、{兎角|とかく}{曖昧模糊|あいまいもこ}たる{前提|ぜんてい}と{相俟|あいま}って{齟齬|そご}が{累積|るいせき}しており、{拙速|せっそく}な{結論|けつろん}を{避|さ}けるべきであると{存|ぞん}じます。とりわけ{恣意的|しいてき}な{解釈|かいしゃく}を{介在|かいざい}させず、{俯瞰|ふかん}的かつ{多角|たかく}的に{精査|せいさ}を{重|かさ}ね、{必要十分|ひつようじゅうぶん}な{合意形成|ごういけいせい}を{図|はか}る所存です。つまり、{要|よう}は{誰|だれ}も{読|よ}まない{冗長|じょうちょう}な{文|ぶん}を{生成|せいせい}しながら、{実|じつ}は{何|なに}も{言|い}っていない——という{話|はなし}です。
 ```
 
 {本件|ほんけん}につきましては、{兎角|とかく}{曖昧模糊|あいまいもこ}たる{前提|ぜんてい}と{相俟|あいま}って{齟齬|そご}が{累積|るいせき}しており、{拙速|せっそく}な{結論|けつろん}を{避|さ}けるべきであると{存|ぞん}じます。とりわけ{恣意的|しいてき}な{解釈|かいしゃく}を{介在|かいざい}させず、{俯瞰|ふかん}的かつ{多角|たかく}的に{精査|せいさ}を{重|かさ}ね、{必要十分|ひつようじゅうぶん}な{合意形成|ごういけいせい}を{図|はか}る所存です。つまり、{要|よう}は{誰|だれ}も{読|よ}まない{冗長|じょうちょう}な{文|ぶん}を{生成|せいせい}しながら、{実|じつ}は{何|なに}も{言|い}っていない——という{話|はなし}です。
+

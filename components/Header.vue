@@ -54,14 +54,14 @@ const links = [
     <div class="hidden md:flex items-center gap-3 text-xl pr-4">
       <ULink
         to="/"
-        class="hover:underline hover:text-teal-500"
+        class="hover:underline"
         active-class="underline text-primary-600 dark:text-primary-400"
       >
         {{ t('menu.home') }}
       </ULink>
       <ULink
         to="/blog"
-        class="hover:underline hover:text-teal-500"
+        class="hover:underline"
         active-class="underline text-primary-600 dark:text-primary-400"
       >
         {{ t('menu.blog') }}
@@ -69,7 +69,7 @@ const links = [
       <div>{{ t('menu.gallery') }}</div>
       <ULink
         to="/demo"
-        class="hover:underline hover:text-teal-500"
+        class="hover:underline"
         active-class="underline text-primary-600 dark:text-primary-400"
       >
         {{ t('menu.demo') }}
