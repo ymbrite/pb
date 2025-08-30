@@ -1,3 +1,4 @@
+import { rubyHook } from './utils/rubyHook'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: ['@nuxt/content', '@nuxt/devtools', '@nuxtjs/device', '@nuxt/ui', '@nuxtjs/i18n'],
@@ -76,7 +77,7 @@ export default defineNuxtConfig({
           'rehype-katex': { output: 'html' },
         },
         highlight: {
-          theme: 'github-dark',
+          theme: 'github-dark-high-contrast',
           langs: ['zsh', 'c', 'cpp', 'rust', 'vue', 'ts', 'js', 'json', 'python', 'asm', 'md'],
         },
         toc: {
@@ -111,12 +112,7 @@ export default defineNuxtConfig({
 
   hooks: {
     'content:file:beforeParse'({ file }) {
-      if (file.id.endsWith('.md')) {
-        // 把 {漢字 | かんじ} 转换为ruby
-        file.body = file.body.replace(/{(.*?)\s*\|\s*(.*?)}/g, (match, p1, p2) => {
-          return `<ruby>${p1}<rt>${p2}</rt></ruby>`
-        })
-      }
+      rubyHook(file)
     },
   },
 

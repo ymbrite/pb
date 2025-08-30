@@ -41,8 +41,4 @@ const props = defineProps({
   </div>
 </template>
 
-<style>
-pre code .line {
-  display: block;
-}
-</style>
+<style></style>
