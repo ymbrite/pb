@@ -9,8 +9,8 @@ const { data: articles } = await useAsyncData(
 </script>
 
 <template>
-  <div class="py-8">
-    <ul class="space-y-4">
+  <div class="py-8 flex justify-center">
+    <ul class="space-y-4 max-w-4xl w-full">
       <li v-for="(article, index) in articles" :key="index">
         <BaseArticleCard :article="article" />
       </li>

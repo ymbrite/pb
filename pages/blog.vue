@@ -12,7 +12,6 @@ const showListTitle = computed(() => showListTitleRoutes.includes(route.path))
 
 <template>
   <UContainer class="min-h-screen">
-    <BlogListTitle v-if="showListTitle" />
     <NuxtPage />
   </UContainer>
 </template>
