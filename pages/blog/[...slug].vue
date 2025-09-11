@@ -1,10 +1,24 @@
 <script setup lang="ts">
 const route = useRoute()
 
+const slugParam = computed(() => {
+  const p = route.params.slug as string | string[] | undefined
+  if (!p) return null
+  return Array.isArray(p) ? p[p.length - 1] : p
+})
+
 const { data: doc } = await useAsyncData(
   'page-data',
-  () => {
-    return queryCollection('blog').path(route.path).first()
+  async () => {
+    if (!slugParam.value) return null
+    // Fetch all blog items and find by slug (frontmatter) or filename (last path segment)
+    const items = await queryCollection('blog').all()
+    const match = items.find((it: any) => {
+      const byFrontmatter = it.slug && it.slug === slugParam.value
+      const byFilename = (it.path || '').split('/').pop() === slugParam.value
+      return byFrontmatter || byFilename
+    })
+    return match || null
   },
   { lazy: true }
 )

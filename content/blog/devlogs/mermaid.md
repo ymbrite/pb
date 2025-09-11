@@ -1,5 +1,6 @@
 ---
 title: Use mermaid in nuxt
+slug: mermaid
 description: 在 Nuxt3 中使用 mermaid
 published: 2024/06/01
 categories:

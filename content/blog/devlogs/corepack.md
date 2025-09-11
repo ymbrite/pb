@@ -1,5 +1,6 @@
 ---
 title: Corepack
+slug: corepack
 description: What is corepack
 published: 2024/05/24
 ---

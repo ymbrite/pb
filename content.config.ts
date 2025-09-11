@@ -7,6 +7,7 @@ export default defineContentConfig({
       source: 'blog/**/*.md',
       schema: z.object({
         title: z.string(),
+        slug: z.string().optional(),
         description: z.string().optional(),
         categories: z.array(z.string()).optional(),
         tags: z.array(z.string()).optional(),
@@ -19,6 +20,7 @@ export default defineContentConfig({
       source: 'blog/posts/*.md',
       schema: z.object({
         title: z.string(),
+        slug: z.string().optional(),
         description: z.string().optional(),
         categories: z.array(z.string()).optional(),
         tags: z.array(z.string()).optional(),
@@ -31,6 +33,7 @@ export default defineContentConfig({
       source: 'blog/devlogs/*.md',
       schema: z.object({
         title: z.string(),
+        slug: z.string().optional(),
         description: z.string().optional(),
         categories: z.array(z.string()).optional(),
         tags: z.array(z.string()).optional(),

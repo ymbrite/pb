@@ -16,7 +16,7 @@ const datetimeAttr = computed(() => publishedDate.value.toISOString())
 </script>
 
 <template>
-  <NuxtLink :to="article.path" class="group">
+  <NuxtLink :to="`/blog/${(article as any).slug ?? (article.path || '').split('/').pop()}`" class="group">
     <article>
       <div class="flex gap-4">
         <time
