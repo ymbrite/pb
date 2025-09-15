@@ -1,7 +1,9 @@
 ---
 title: 管中窥豹 - Swiper in Nuxt3
+slug: swiper-in-nuxt
 description: 尝试在 Nuxt3 中更好使用 Swiper.js，并以此探究 ssr 框架的水合过程
 published: 2024/05/30
+lang: cn
 categories:
   - web
 tags:

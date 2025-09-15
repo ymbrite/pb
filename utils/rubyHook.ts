@@ -20,6 +20,6 @@ export function rubyHook(file: { id: string; body: string }) {
   })
 
   // 3) 还原代码块
-  file.body = file.body.replace(/__CODE_BLOCK_(\d+)__/g, (_m, i) => vault[+i])
+  file.body = file.body.replace(/__CODE_BLOCK_(\d+)__/g, (_m, i) => vault[+i] ?? '')
   console.log('[rubyHook] stashed blocks =', vault.length)
 }

@@ -1,7 +1,9 @@
 ---
 title: OS 模块编程实验题解
+slug: os-module-hw
 description: HDU 潘万彬老师的操作系统课程后作业
 published: 2024/04/11
+lang: cn
 ---
 
 设计一个模块，要求列出系统中所有内核线程的程序名、PID、进程状态、进程优先级、父进程的PID。
