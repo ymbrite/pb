@@ -3,6 +3,7 @@ title: 'RN 安卓开发指南:rocket:'
 description: 'A simple way to convert a SVG to PNG using Canvas'
 published: 2023/6/20
 slug: 'setup-rn'
+lang: cn
 ---
 
 # 环境

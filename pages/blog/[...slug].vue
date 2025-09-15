@@ -7,20 +7,25 @@ const slugParam = computed(() => {
   return Array.isArray(p) ? p[p.length - 1] : p
 })
 
+const { data: variants } = await useAsyncData(
+  'slug-variants',
+  async () => {
+    if (!slugParam.value) return []
+    // Query strictly by slug; frontend will handle variants
+    return await queryCollection('blog').where('slug', '=', slugParam.value).all()
+  },
+  { lazy: true }
+)
+
 const { data: doc } = await useAsyncData(
   'page-data',
   async () => {
-    if (!slugParam.value) return null
-    // Fetch all blog items and find by slug (frontmatter) or filename (last path segment)
-    const items = await queryCollection('blog').all()
-    const match = items.find((it: any) => {
-      const byFrontmatter = it.slug && it.slug === slugParam.value
-      const byFilename = (it.path || '').split('/').pop() === slugParam.value
-      return byFrontmatter || byFilename
-    })
-    return match || null
+    const list = variants.value as any[] | undefined
+    if (!list?.length) return null
+    // default to cn if available, else first
+    return list.find(it => (it.lang || 'cn') === 'cn') || list[0]
   },
-  { lazy: true }
+  { watch: [variants] }
 )
 
 useSeoMeta({
@@ -105,6 +110,7 @@ onUnmounted(() => {
                   {{ tag }}
                 </UBadge>
               </div>
+              <!-- Variants by same slug can be handled by the page UI if needed -->
             </div>
           </div>
           <!-- <USeparator size="lg" /> -->

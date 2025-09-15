@@ -3,6 +3,7 @@ title: 进程间通信
 slug: os-ipc
 description: 进程的三种通信方式
 published: 2024/05/06
+lang: cn
 ---
 
 ## 实验题目

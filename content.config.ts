@@ -8,6 +8,7 @@ export default defineContentConfig({
       schema: z.object({
         title: z.string(),
         slug: z.string().optional(),
+        lang: z.enum(['cn', 'ja', 'en']).default('cn').optional(),
         description: z.string().optional(),
         categories: z.array(z.string()).optional(),
         tags: z.array(z.string()).optional(),
@@ -21,6 +22,7 @@ export default defineContentConfig({
       schema: z.object({
         title: z.string(),
         slug: z.string().optional(),
+        lang: z.enum(['cn', 'ja', 'en']).default('cn').optional(),
         description: z.string().optional(),
         categories: z.array(z.string()).optional(),
         tags: z.array(z.string()).optional(),
@@ -34,6 +36,7 @@ export default defineContentConfig({
       schema: z.object({
         title: z.string(),
         slug: z.string().optional(),
+        lang: z.enum(['cn', 'ja', 'en']).default('cn').optional(),
         description: z.string().optional(),
         categories: z.array(z.string()).optional(),
         tags: z.array(z.string()).optional(),
