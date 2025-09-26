@@ -93,7 +93,7 @@ onUnmounted(() => {
       <div class="nuxt-content w-screen px-4 md:px-0 md:max-w-2xl">
         <article>
           <div class="mb-4">
-            <div class="text-4xl font-extrabold font-sans text-black dark:text-white">
+            <div class="text-4xl font-bold font-serif text-black dark:text-white">
               {{ doc?.title }}
             </div>
             <div class="text-lg mb-2">{{ doc?.description }}</div>

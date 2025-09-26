@@ -37,12 +37,6 @@ const canonical = computed(() => {
         <!-- canonical（可选；nuxt-i18n 的 seo 里有时不会自动加） -->
         <Link rel="canonical" :href="canonical" />
 
-        <!-- 字体加载优化（可选） -->
-        <Link rel="preconnect" href="https://cdn.jsdelivr.net" cross-origin />
-        <Link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css"
-        />
       </Head>
 
       <Body class="overflow-x-hidden">

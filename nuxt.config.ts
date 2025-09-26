@@ -20,40 +20,49 @@ export default defineNuxtConfig({
     },
   },
 
-  i18n: {
-    baseUrl: 'https://parz1.goder.club',
-    strategy: 'no_prefix',
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n_redirected',
-      redirectOn: 'root', // recommended
-      cookieCrossOrigin: true,
-    },
-    lazy: true,
-    langDir: 'lang',
-    defaultLocale: 'en',
-    locales: [
+  fonts: {
+    families: [
       {
-        code: 'en',
-        name: 'English',
-        iso: 'en-US',
-        file: 'en-US.json',
+        name: 'LXGW WenKai',
+        provider: 'fontsource',
+        weights: [300, 500, 700],
+        styles: ['normal'],
+        preload: true,
       },
       {
-        code: 'zh-CN',
-        name: '简体中文',
-        iso: 'zh-CN',
-        file: 'zh-CN.json',
-      },
-      {
-        code: 'ja',
-        name: '日本語',
-        iso: 'ja-JP',
-        file: 'ja-JP.json',
+        name: 'Fira Mono',
+        provider: 'fontsource',
+        weights: [400, 700],
+        styles: ['normal'],
+        preload: true,
       },
     ],
+    defaults: {
+      fallbacks: {
+        serif: ['system-ui'],
+        monospace: ['Courier New', 'monospace'],
+      },
+    },
+  },
+
+  i18n: {
+    baseUrl: 'https://parz1.goder.club',
+    // strategy: 'no_prefix',
+    // detectBrowserLanguage: {
+    //   useCookie: true,
+    //   cookieKey: 'i18n_redirected',
+    //   redirectOn: 'root', // recommended
+    //   cookieCrossOrigin: true,
+    // },
+    // lazy: true,
+    defaultLocale: 'en',
+    locales: [
+      { code: 'en', name: 'English', iso: 'en-US', language: 'en-US', file: 'en-US.json' },
+      { code: 'zh-CN', name: '简体中文', iso: 'zh-CN', language: 'zh-CN', file: 'zh-CN.json' },
+      { code: 'ja', name: '日本語', iso: 'ja-JP', language: 'ja-JP', file: 'ja-JP.json' },
+    ],
     bundle: {
-      optimizeTranslationDirective: false,
+      // optimizeTranslationDirective: false,
     },
   },
 

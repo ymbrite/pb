@@ -5,6 +5,7 @@ import avator from '~/assets/avatar.png'
 const headerRef = ref(null)
 const { styles } = useFixedHeader(headerRef)
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 const isMenuOpen = ref(false)
 const links = [
@@ -46,20 +47,20 @@ const links = [
     :style="styles"
     class="blur-header sticky top-0 w-full z-50 h-16 flex justify-between items-center"
   >
-    <ULink to="/">
+    <ULink :to="localePath('/')">
       <div class="font-sans text-2xl pl-4 font-light">
         <span class="font-bold">parz1</span>
       </div>
     </ULink>
     <div class="hidden md:flex items-center gap-3 text-xl pr-4">
-      <ULink to="/">
+      <ULink :to="localePath('/')">
         {{ t('menu.home') }}
       </ULink>
-      <ULink to="/blog">
+      <ULink :to="localePath('/blog')">
         {{ t('menu.blog') }}
       </ULink>
       <div>{{ t('menu.gallery') }}</div>
-      <ULink to="/demo">
+      <ULink :to="localePath('/demo')">
         {{ t('menu.demo') }}
       </ULink>
 
