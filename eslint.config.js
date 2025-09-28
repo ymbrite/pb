@@ -54,6 +54,7 @@ module.exports = defineConfig([
     'coverage',
     '.nuxt',
     '**/.nuxt/**',
+    'pages/demo/geo.vue', // 临时忽略
   ]),
   {
     files: ['**/*.{ts,tsx,vue}'],

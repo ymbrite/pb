@@ -90,6 +90,9 @@ importers:
       '@eslint/js':
         specifier: ^9.36.0
         version: 9.36.0
+      '@iconify-json/lucide':
+        specifier: ^1.2.68
+        version: 1.2.68
       '@nuxt/devtools':
         specifier: latest
         version: 2.6.5(vite@7.1.7(@types/node@18.19.121)(jiti@2.5.1)(lightningcss@1.30.1)(sass@1.86.0)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.22(typescript@5.9.2))
@@ -574,6 +577,9 @@ packages:
 
   '@iconify-json/carbon@1.2.6':
     resolution: {integrity: sha512-Oat/TUfu1Cpg/inoi6ZIVvNjWoKQJFugpDB6LqpahENf4f2pZKMOUR2B9MCQlje77iRRI5nWQzvUO2kJlXFStw==}
+
+  '@iconify-json/lucide@1.2.68':
+    resolution: {integrity: sha512-lR5xNJdn2CT0iR7lM25G4SewBO4G2hbr3fTWOc3AE9BspflEcneh02E3l9TBaCU/JOHozTJevWLrxBGypD7Tng==}
 
   '@iconify/collections@1.0.589':
     resolution: {integrity: sha512-W5kq146pYqEaqriflgAZSAzljZldzmwxiC9GVZXkpQVDpWw/ujGYcyFTOIqoxbq01K4kd+UJS3yj/Z1cMqSEnQ==}
@@ -7142,6 +7148,10 @@ snapshots:
   '@humanwhocodes/retry@0.4.3': {}
 
   '@iconify-json/carbon@1.2.6':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/lucide@1.2.68':
     dependencies:
       '@iconify/types': 2.0.0
 

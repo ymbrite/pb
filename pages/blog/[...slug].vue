@@ -1,32 +1,26 @@
 <script setup lang="ts">
 const route = useRoute()
+const { locales, locale, setLocale } = useI18n()
 
-const slugParam = computed(() => {
-  const p = route.params.slug as string | string[] | undefined
-  if (!p) return null
-  return Array.isArray(p) ? p[p.length - 1] : p
-})
+const slug = route.params.slug
 
 const { data: variants } = await useAsyncData(
   'slug-variants',
   async () => {
-    if (!slugParam.value) return []
+    if (!slug) return []
     // Query strictly by slug; frontend will handle variants
-    return await queryCollection('blog').where('slug', '=', slugParam.value).all()
+    return await queryCollection('blog').where('slug', '=', slug).all()
   },
-  { lazy: true }
+  // lazy load may cause SEO issue and get some trouble for toc comp
+  { lazy: false }
 )
 
-const { data: doc } = await useAsyncData(
-  'page-data',
-  async () => {
-    const list = variants.value as any[] | undefined
-    if (!list?.length) return null
-    // default to cn if available, else first
-    return list.find(it => (it.lang || 'cn') === 'cn') || list[0]
-  },
-  { watch: [variants] }
-)
+// chose the variant based on locale or default to first
+const doc = computed(() => {
+  if (!variants.value || variants.value.length === 0) return null
+  const byLocale = variants.value.find(item => item.lang === locale.value)
+  return byLocale || variants.value[0]
+})
 
 useSeoMeta({
   ogImage: doc.value?.cover,

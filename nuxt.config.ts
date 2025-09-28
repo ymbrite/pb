@@ -1,52 +1,59 @@
-import { rubyHook } from './utils/rubyHook'
+import { rubyHook } from "./utils/rubyHook"
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxt/content', '@nuxt/devtools', '@nuxtjs/device', '@nuxt/ui', '@nuxtjs/i18n'],
+  modules: [
+    "@nuxt/content",
+    "@nuxt/devtools",
+    "@nuxtjs/device",
+    "@nuxt/ui",
+    "@nuxtjs/i18n",
+  ],
 
   app: {
     // pageTransition: { name: 'page', mode: 'out-in' },
     head: {
       meta: [
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
         // 无需 user-scalable=no —— 影响可访问性，不建议关缩放
       ],
-      titleTemplate: 'parz1 ZHOU',
+      titleTemplate: "parz1 ZHOU",
     },
   },
 
   vue: {
     compilerOptions: {
-      isCustomElement: tag => /^(swiper|swiper-slide|swiper-container)$/.test(tag),
+      isCustomElement: (tag) =>
+        /^(swiper|swiper-slide|swiper-container)$/.test(tag),
     },
   },
 
   fonts: {
     families: [
       {
-        name: 'LXGW WenKai',
-        provider: 'fontsource',
+        name: "LXGW WenKai",
+        provider: "fontsource",
         weights: [300, 500, 700],
-        styles: ['normal'],
+        styles: ["normal"],
         preload: true,
       },
       {
-        name: 'Fira Mono',
-        provider: 'fontsource',
+        name: "Fira Mono",
+        provider: "fontsource",
         weights: [400, 700],
-        styles: ['normal'],
+        styles: ["normal"],
         preload: true,
       },
     ],
     defaults: {
       fallbacks: {
-        serif: ['system-ui'],
-        monospace: ['Courier New', 'monospace'],
+        serif: ["system-ui"],
+        monospace: ["Courier New", "monospace"],
       },
     },
   },
 
   i18n: {
-    baseUrl: 'https://parz1.goder.club',
+    baseUrl: "https://parz1.goder.club",
     // strategy: 'no_prefix',
     // detectBrowserLanguage: {
     //   useCookie: true,
@@ -55,11 +62,29 @@ export default defineNuxtConfig({
     //   cookieCrossOrigin: true,
     // },
     // lazy: true,
-    defaultLocale: 'en',
+    defaultLocale: "en",
     locales: [
-      { code: 'en', name: 'English', iso: 'en-US', language: 'en-US', file: 'en-US.json' },
-      { code: 'zh-CN', name: '简体中文', iso: 'zh-CN', language: 'zh-CN', file: 'zh-CN.json' },
-      { code: 'ja', name: '日本語', iso: 'ja-JP', language: 'ja-JP', file: 'ja-JP.json' },
+      {
+        code: "en",
+        name: "English",
+        iso: "en-US",
+        language: "en-US",
+        file: "en-US.json",
+      },
+      {
+        code: "zh-CN",
+        name: "简体中文",
+        iso: "zh-CN",
+        language: "zh-CN",
+        file: "zh-CN.json",
+      },
+      {
+        code: "ja",
+        name: "日本語",
+        iso: "ja-JP",
+        language: "ja-JP",
+        file: "ja-JP.json",
+      },
     ],
     bundle: {
       // optimizeTranslationDirective: false,
@@ -68,26 +93,42 @@ export default defineNuxtConfig({
 
   content: {
     database: {
-      type: 'postgres',
-      url: process.env.POSTGRES_URL || '',
+      type: "postgres",
+      url: process.env.POSTGRES_URL || "",
       /* Other options for `pg` */
     },
     preview: {
-      api: 'https://api.nuxt.studio',
+      api: "https://api.nuxt.studio",
       // dev: true,
     },
     build: {
       markdown: {
         remarkPlugins: {
-          'remark-math': {},
-          'remark-emoji': {},
+          "remark-math": {},
+          "remark-emoji": {},
         },
         rehypePlugins: {
-          'rehype-katex': { output: 'html' },
+          "rehype-katex": { output: "html" },
         },
         highlight: {
-          theme: 'github-dark-high-contrast',
-          langs: ['zsh', 'c', 'cpp', 'rust', 'vue', 'ts', 'js', 'json', 'python', 'asm', 'md'],
+          theme: "github-dark-high-contrast",
+          langs: [
+            "zsh",
+            "c",
+            "cpp",
+            "rust",
+            "vue",
+            "ts",
+            "js",
+            "json",
+            "python",
+            "asm",
+            "md",
+            "html",
+            "css",
+            "yaml",
+            "markdown",
+          ],
         },
         toc: {
           depth: 2,
@@ -120,12 +161,12 @@ export default defineNuxtConfig({
   },
 
   hooks: {
-    'content:file:beforeParse'({ file }) {
+    "content:file:beforeParse"({ file }) {
       rubyHook(file)
     },
   },
 
-  css: ['~/assets/css/main.css', '~/assets/css/line-numbers.css'],
+  css: ["~/assets/css/main.css", "~/assets/css/line-numbers.css"],
 
   runtimeConfig: {
     githubToken: process.env.NUXT_GITHUB_TOKEN,
@@ -137,9 +178,9 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
-      routes: ['/', '/sitemap.xml'],
+      routes: ["/", "/sitemap.xml"],
     },
   },
 
-  compatibilityDate: '2024-12-05',
+  compatibilityDate: "2024-12-05",
 })
