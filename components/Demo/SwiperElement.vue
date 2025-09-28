@@ -34,8 +34,8 @@ onMounted(() => {
 
 <template>
   <ClientOnly>
-    <swiper-container :class="containerClass" ref="swiperRef" init="false">
-      <swiper-slide :class="elementClass" v-for="(item, idx) in data" :key="idx">
+    <swiper-container ref="swiperRef" :class="containerClass" init="false">
+      <swiper-slide v-for="(item, idx) in data" :key="idx" :class="elementClass">
         <slot :data="item" />
       </swiper-slide>
     </swiper-container>

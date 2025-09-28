@@ -131,82 +131,82 @@ function focusOnLocation(location: 'japan' | 'hangzhou' | 'university') {
       <!-- 时间线 -->
       <div class="p-2 text-xs md:text-xs w-[60%] md:w-[18rem] bg-transparent">
         <div
-          @click="focusOnLocation('japan')"
           class="cursor-pointer transition-all"
           :class="{
             'border-blue-500 border-l-2 pl-2 text-blue-600': mapState === 'japan',
             'text-gray-500 border-gray-300': mapState !== 'japan',
           }"
+          @click="focusOnLocation('japan')"
         >
           🇯🇵 2024-03 日本留学決定
         </div>
         <div
-          @click="focusOnLocation('university')"
           class="cursor-pointer transition-all"
           :class="{
             'border-blue-500 border-l-2 pl-2 text-blue-600': mapState === 'university',
             'text-gray-500 border-gray-300': mapState !== 'university',
           }"
+          @click="focusOnLocation('university')"
         >
           🎓 休学終わり、学歴を取る
         </div>
         <div
-          @click="focusOnLocation('hangzhou')"
           class="cursor-pointer transition-all"
           :class="{
             'border-blue-500 border-l-2 pl-2 text-blue-600': mapState === 'hangzhou',
             'text-gray-500 border-gray-300': mapState !== 'hangzhou',
           }"
+          @click="focusOnLocation('hangzhou')"
         >
           🇨🇳 会社の仕事交代
         </div>
         <div
-          @click="focusOnLocation('hangzhou')"
           class="cursor-pointer transition-all"
           :class="{
             'border-blue-500 border-l-2 pl-2 text-blue-600': mapState === 'hangzhou',
             'text-gray-500 border-gray-300': mapState !== 'hangzhou',
           }"
+          @click="focusOnLocation('hangzhou')"
         >
           📚 2024-07 日本語能力試験N2(合格)
         </div>
         <div
-          @click="focusOnLocation('hangzhou')"
           class="cursor-pointer transition-all"
           :class="{
             'border-blue-500 border-l-2 pl-2 text-blue-600': mapState === 'hangzhou',
             'text-gray-500 border-gray-300': mapState !== 'hangzhou',
           }"
+          @click="focusOnLocation('hangzhou')"
         >
           📝 2024-08 TOEFLの準備開始
         </div>
         <div
-          @click="focusOnLocation('hangzhou')"
           class="cursor-pointer transition-all"
           :class="{
             'border-blue-500 border-l-2 pl-2 text-blue-600': mapState === 'hangzhou',
             'text-gray-500 border-gray-300': mapState !== 'hangzhou',
           }"
+          @click="focusOnLocation('hangzhou')"
         >
           🎯 2024-09 TOEFL試験 (90点)
         </div>
         <div
-          @click="focusOnLocation('japan')"
           class="cursor-pointer transition-all"
           :class="{
             'border-blue-500 border-l-2 pl-2 text-blue-600': mapState === 'japan',
             'text-gray-500 border-gray-300': mapState !== 'japan',
           }"
+          @click="focusOnLocation('japan')"
         >
           ✈️ 2024-10 日本に到着、日本語学校
         </div>
         <div
-          @click="focusOnLocation('japan')"
           class="cursor-pointer transition-all"
           :class="{
             'border-blue-500 border-l-2 pl-2 text-blue-600': mapState === 'japan',
             'text-gray-500 border-gray-300': mapState !== 'japan',
           }"
+          @click="focusOnLocation('japan')"
         >
           🎓 2024-12 日本語能力試験N1(合格)
         </div>
@@ -214,6 +214,6 @@ function focusOnLocation(location: 'japan' | 'hangzhou' | 'university') {
     </div>
 
     <!-- 地图 -->
-    <div class="w-full h-full bg-teal-500" ref="mapRef"></div>
+    <div ref="mapRef" class="w-full h-full bg-teal-500"></div>
   </div>
 </template>

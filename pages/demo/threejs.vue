@@ -97,7 +97,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="threeJsContainer" id="three-js-container" class="w-screen h-screen"></div>
+  <div id="three-js-container" ref="threeJsContainer" class="w-screen h-screen"></div>
 </template>
 
 <style lang="scss" scoped></style>

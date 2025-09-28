@@ -54,11 +54,11 @@ const refreshSwiper = () => {
         <div v-else class="h-40">
           <DemoSwiperElement
             v-if="articles?.length"
+            :key="swiperKey"
             container-class="h-full w-full"
             element-class=""
             :data="articles"
             :options="removeUndefined(swiperOption)"
-            :key="swiperKey"
           >
             <template #default="{ data }">
               <div class="h-full w-full flex justify-center items-center bg-slate-300">

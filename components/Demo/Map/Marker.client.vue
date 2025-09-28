@@ -127,10 +127,10 @@ function randomCoordinates(num: number) {
 <template>
   <div class="w-full h-full">
     <div class="absolute right-1 top-1 z-10">
-      <UButton @click="generateMarkers" :loading="pending">Regenerate</UButton>
+      <UButton :loading="pending" @click="generateMarkers">Regenerate</UButton>
     </div>
-    <UInput type="number" class="absolute right-1 bottom-1 z-10" v-model="activeIdx" />
-    <div class="w-full h-full bg-teal-500" ref="mapRef"></div>
+    <UInput v-model="activeIdx" type="number" class="absolute right-1 bottom-1 z-10" />
+    <div ref="mapRef" class="w-full h-full bg-teal-500"></div>
   </div>
 </template>
 

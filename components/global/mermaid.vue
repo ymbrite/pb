@@ -12,7 +12,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="mermaid" v-if="show">
+  <div v-if="show" class="mermaid">
     <slot></slot>
   </div>
 </template>
