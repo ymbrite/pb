@@ -32,7 +32,7 @@ const {
   async () => {
     // 暂停 2 秒
     await new Promise(resolve => setTimeout(resolve, 1000))
-    return queryCollection('/blog').limit(5).sort({ published: -1 }).find()
+    return queryCollection('blog').limit(5).order('published', 'DESC').all()
   },
   { lazy: true, server: false }
 )
@@ -54,11 +54,11 @@ const refreshSwiper = () => {
         <div v-else class="h-40">
           <DemoSwiperElement
             v-if="articles?.length"
+            :key="swiperKey"
             container-class="h-full w-full"
             element-class=""
             :data="articles"
             :options="removeUndefined(swiperOption)"
-            :key="swiperKey"
           >
             <template #default="{ data }">
               <div class="h-full w-full flex justify-center items-center bg-slate-300">

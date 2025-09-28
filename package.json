@@ -4,35 +4,40 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
+    "lint": "eslint .",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "prepare": "husky install"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.36.0",
+    "@iconify-json/lucide": "^1.2.68",
     "@nuxt/devtools": "latest",
     "@nuxtjs/device": "^3.2.4",
     "@tailwindcss/typography": "^0.5.16",
     "@types/d3-geo": "^3.1.0",
     "@types/node": "^18.19.75",
     "@types/three": "^0.152.1",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.1",
+    "@typescript-eslint/parser": "^8.0.1",
     "@unocss/nuxt": "^0.58.9",
     "commitizen": "^4.3.1",
     "cz-git": "^1.11.0",
-    "eslint": "^8.57.1",
+    "eslint": "^9.5.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-vue": "^9.32.0",
+    "globals": "^16.4.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.3.0",
-    "nuxt": "^4.0.3",
+    "nuxt": "^4.1.2",
+    "prettier": "^3.3.3",
     "sass": "^1.86.0"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx,vue}": "pnpm lint",
+    "**/*.{js,jsx,ts,tsx,vue}": "pnpm exec eslint --fix --max-warnings=0",
     "**/*.{js,jsx,tsx,ts,less,md,json,vue}": [
-      "prettier --write"
+      "pnpm exec prettier --write"
     ]
   },
   "config": {
@@ -45,7 +50,7 @@
     "@intlify/message-compiler": "^11.1.2",
     "@nuxt/content": "^3.4.0",
     "@nuxt/ui": "^3.3.0",
-    "@nuxtjs/i18n": "^9.4.0",
+    "@nuxtjs/i18n": "^10.1.0",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "@vue-flow/core": "^1.42.1",
@@ -67,10 +72,6 @@
     "vue-use-fixed-header": "^2.0.3",
     "vue3-marquee": "^4.2.2"
   },
-  "pnpm": {
-    "overrides": {
-      "@intlify/message-compiler": "^11.1.2"
-    }
-  },
-  "packageManager": "pnpm@9.3.0+sha256.e1f9e8d1a16607a46dd3c158b5f7a7dc7945501d1c6222d454d63d033d1d918f"
+  "pnpm": {},
+  "packageManager": "pnpm@9.15.9+sha512.68046141893c66fad01c079231128e9afb89ef87e2691d69e4d40eee228988295fd4682181bae55b58418c3a253bde65a505ec7c5f9403ece5cc3cd37dcf2531"
 }

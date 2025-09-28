@@ -77,15 +77,15 @@ watchEffect(() => {
           </div>
         </template>
         <ClientOnly>
-          <div class="h-40" v-if="pending">请求中...</div>
+          <div v-if="pending" class="h-40">请求中...</div>
           <!-- container -->
           <div v-else class="h-40 border-2 border-dashed border-black p-4 rounded-lg">
             <!-- Hydration class mismatch -->
             <swiper-container class="h-full" navigation="true" pagination="true" scrollbar="true">
               <swiper-slide
-                class="h-full bg-teal-300 flex items-center justify-center"
                 v-for="(article, idx) in articles"
                 :key="idx"
+                class="h-full bg-teal-300 flex items-center justify-center"
               >
                 <div>{{ article.title }}</div>
               </swiper-slide>
@@ -114,11 +114,11 @@ watchEffect(() => {
           <div v-if="pending" class="h-40">请求中...</div>
           <!-- container -->
           <div v-else class="h-40 border-2 border-dashed border-black p-4 rounded-lg">
-            <swiper-container class="h-full" ref="swiperRef" init="false">
+            <swiper-container ref="swiperRef" class="h-full" init="false">
               <swiper-slide
-                class="h-full bg-teal-300 flex items-center justify-center"
                 v-for="(article, idx) in articles"
                 :key="idx"
+                class="h-full bg-teal-300 flex items-center justify-center"
               >
                 <div>{{ article.title }}</div>
               </swiper-slide>
@@ -135,11 +135,11 @@ watchEffect(() => {
         <div v-if="ssrPending" class="h-40">请求中...</div>
         <!-- container -->
         <div v-else class="h-40 border-2 border-dashed border-black p-4 rounded-lg">
-          <swiper-container class="h-full" ref="swiperRef" init="false">
+          <swiper-container ref="swiperRef" class="h-full" init="false">
             <swiper-slide
-              class="h-full bg-teal-300 flex items-center justify-center"
               v-for="(article, idx) in ssrArticles"
               :key="idx"
+              class="h-full bg-teal-300 flex items-center justify-center"
             >
               <div>{{ article.title }}</div>
             </swiper-slide>

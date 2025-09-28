@@ -25,7 +25,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="w-full h-full bg-teal-500" ref="mapRef"></div>
+  <div ref="mapRef" class="w-full h-full bg-teal-500"></div>
 </template>
 
 <style scope></style>

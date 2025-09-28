@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useClipboard } from '@vueuse/core'
 
+const localePath = useLocalePath()
+
 // 第一个邮箱（仕事メール）
 const source1 = ref('parz1zhou@gmail.com')
 const {
@@ -58,7 +60,7 @@ const handleCopyEmailToClipboard2 = () => copy2()
       <UButton
         :icon="copied1 ? 'i-carbon-checkmark' : 'i-carbon-copy'"
         size="xs"
-        color="gray"
+        color="neutral"
         variant="ghost"
         aria-label="Copy Email"
         @click="handleCopyEmailToClipboard1"
@@ -81,7 +83,7 @@ const handleCopyEmailToClipboard2 = () => copy2()
       />
     </div>
 
-    <ULink to="/about" class="mt-4">
+    <ULink :to="localePath('/about')" class="mt-4">
       <UButton color="neutral" variant="outline" size="sm">About Me</UButton>
     </ULink>
 

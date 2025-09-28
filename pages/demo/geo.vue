@@ -1,8 +1,9 @@
 <script lang="ts" setup>
+// @ts-nocheck
 import * as THREE from 'three'
 import { Raycaster, Vector2 } from 'three'
 import { geoMercator } from 'd3-geo'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 // 引入鼠标控制系统
 

@@ -17,14 +17,14 @@ export const gcj02towgs84 = (lng: string | number, lat: string | number) => {
   } else {
     let dlat = transformlat(lng - 105.0, lat - 35.0)
     let dlng = transformlng(lng - 105.0, lat - 35.0)
-    let radlat = (lat / 180.0) * PI
+    const radlat = (lat / 180.0) * PI
     let magic = Math.sin(radlat)
     magic = 1 - ee * magic * magic
-    let sqrtmagic = Math.sqrt(magic)
+    const sqrtmagic = Math.sqrt(magic)
     dlat = (dlat * 180.0) / (((a * (1 - ee)) / (magic * sqrtmagic)) * PI)
     dlng = (dlng * 180.0) / ((a / sqrtmagic) * Math.cos(radlat) * PI)
-    let mglat = lat + dlat
-    let mglng = lng + dlng
+    const mglat = lat + dlat
+    const mglng = lng + dlng
     return [lng * 2 - mglng, lat * 2 - mglat]
   }
 }

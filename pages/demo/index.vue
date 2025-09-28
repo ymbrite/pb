@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const localePath = useLocalePath()
+</script>
 
 <template>
   <div>
@@ -7,22 +9,22 @@
       <div class="">demos here...</div>
     </div>
     <div class="flex gap-8 p-8">
-      <ULink to="/demo/flow">
+      <ULink :to="localePath('/demo/flow')">
         <UCard> Flow </UCard>
       </ULink>
-      <ULink to="/demo/threejs">
+      <ULink :to="localePath('/demo/threejs')">
         <UCard> Threejs - GLTF </UCard>
       </ULink>
-      <ULink to="/demo/geo">
+      <ULink :to="localePath('/demo/geo')">
         <UCard> Threejs - Geo </UCard>
       </ULink>
-      <ULink to="/demo/scrolls">
-        <UCard> Scorlls </UCard>
+      <ULink :to="localePath('/demo/scrolls')">
+        <UCard> Scrolls </UCard>
       </ULink>
-      <ULink to="/demo/swiper">
+      <ULink :to="localePath('/demo/swiper')">
         <UCard> Swiper </UCard>
       </ULink>
-      <ULink to="/demo/maptalks">
+      <ULink :to="localePath('/demo/maptalks')">
         <UCard> Maptalks </UCard>
       </ULink>
     </div>

@@ -147,7 +147,6 @@ const activeYoutubeID = ref('')
             }"
           >
             <div
-              @click="((activeYoutubeID = data.id), (activeTitle = data.title))"
               :style="{
                 backgroundImage: `url(${data.coverUrl})`,
                 backgroundSize: 'cover',
@@ -155,6 +154,7 @@ const activeYoutubeID = ref('')
               }"
               alt="cover"
               class="h-full w-full object-cover cursor-pointer"
+              @click="((activeYoutubeID = data.id), (activeTitle = data.title))"
             >
               <div
                 class="w-full h-full transition-all flex justify-center items-center text-lg text-white"
@@ -168,12 +168,12 @@ const activeYoutubeID = ref('')
             <template #body>
               <div class="p-0">
                 <iframe
+                  :key="activeYoutubeID"
                   tabindex="-1"
                   class="h-64 w-full"
                   :src="`https://www.youtube.com/embed/${activeYoutubeID}`"
                   allowfullscreen
                   referrerpolicy="no-referrer"
-                  :key="activeYoutubeID"
                 ></iframe>
               </div>
             </template>

@@ -3,7 +3,7 @@ import * as THREE from 'three'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 
 // 引入鼠标控制系统
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 const threeJsContainer = ref<HTMLElement | null>(null)
 
@@ -53,11 +53,10 @@ const init = () => {
     directionalLight.castShadow = true
 
     const d = 300
-    const fov = 45 // 拍摄距离  视野角值越大，场景中的物体越小
     const near = 1 // 相机离视体积最近的距离
     const far = 1000 // 相机离视体积最远的距离
-    const aspect = window.innerWidth / window.innerHeight // 纵横比
-    directionalLight.shadow.camera = new THREE.PerspectiveCamera(fov, aspect, near, far)
+    // 使用正交相机为 DirectionalLight 的阴影提供 left/right/top/bottom 属性
+    directionalLight.shadow.camera = new THREE.OrthographicCamera(-d, d, d, -d, near, far)
     directionalLight.shadow.bias = 0.0001
     directionalLight.shadow.mapSize.width = directionalLight.shadow.mapSize.height = 1024
     scene.add(directionalLight)
@@ -97,7 +96,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="threeJsContainer" id="three-js-container" class="w-screen h-screen"></div>
+  <div id="three-js-container" ref="threeJsContainer" class="w-screen h-screen"></div>
 </template>
 
 <style lang="scss" scoped></style>
