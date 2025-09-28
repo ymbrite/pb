@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { BlogCollectionItem } from '@nuxt/content'
 
+const localePath = useLocalePath()
+
 const props = defineProps<{
   article: BlogCollectionItem
 }>()
@@ -17,7 +19,7 @@ const datetimeAttr = computed(() => publishedDate.value.toISOString())
 
 <template>
   <NuxtLink
-    :to="`/blog/${(article as any).slug ?? (article.path || '').split('/').pop()}`"
+    :to="localePath(`/blog/${(article as any).slug ?? (article.path || '').split('/').pop()}`)"
     class="group"
   >
     <article>

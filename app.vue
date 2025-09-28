@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+import { SpeedInsights } from '@vercel/speed-insights/vue'
+</script>
 
 <template>
   <UApp>
@@ -6,6 +8,10 @@
       <NuxtPage />
     </NuxtLayout>
   </UApp>
+  <!-- 避免 SSR 时的告警 -->
+  <ClientOnly>
+    <SpeedInsights />
+  </ClientOnly>
 </template>
 
 <style>
