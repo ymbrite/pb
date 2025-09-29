@@ -1,44 +1,10 @@
 <script lang="ts" setup>
 import { useFixedHeader } from 'vue-use-fixed-header'
 import LanguageSwitch from './LanguageSwitch.vue'
-import avator from '~/assets/avatar.png'
 const headerRef = ref(null)
 const { styles } = useFixedHeader(headerRef)
 const { t } = useI18n()
 const localePath = useLocalePath()
-
-const isMenuOpen = ref(false)
-const links = [
-  [
-    {
-      label: t('menu.home'),
-      avatar: {
-        src: avator,
-      },
-      to: '/',
-    },
-    {
-      label: t('menu.blog'),
-      icon: 'i-carbon-document',
-      to: '/blog',
-    },
-    {
-      label: t('menu.demo'),
-      icon: 'i-carbon-development',
-      to: '/demo',
-    },
-  ],
-  [
-    {
-      label: 'Examples',
-      icon: 'i-heroicons-light-bulb',
-    },
-    {
-      label: 'Help',
-      icon: 'i-heroicons-question-mark-circle',
-    },
-  ],
-]
 </script>
 
 <template>

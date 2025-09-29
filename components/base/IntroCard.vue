@@ -30,12 +30,12 @@ const handleCopyEmailToClipboard2 = () => copy2()
     <div class="">
       <img
         class="w-20 h-20 md:w-40 md:h-40 bg-black transition-shadow hover:shadow-xl"
-        src="~/assets/avatar.png"
+        src="~/assets/avatar.jpg"
         alt="avatar"
       />
     </div>
     <div class="mt-2">
-      <span class="text-3xl">parz1</span>
+      <span class="text-3xl font-serif">parz1</span>
     </div>
     <div class="mt-4 mb-0">
       <div class="text-sm flex justify-start items-center gap-2">
