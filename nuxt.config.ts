@@ -37,6 +37,13 @@ export default defineNuxtConfig({
         preload: true,
       },
       {
+        name: "Merriweather",
+        provider: "fontsource",
+        weights: [300, 500, 900],
+        styles: ["normal", "italic"],
+        preload: true,
+      },
+      {
         name: "Fira Mono",
         provider: "fontsource",
         weights: [400, 700],

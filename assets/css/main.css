@@ -5,8 +5,8 @@
 @import './prose.css';
 @theme {
   --font-*: initial;
-  --font-sans: 'LXGW WenKai', 'Noto Sans JP';
-  --font-serif: 'LXGW WenKai', 'LXGW Marker Gothic', serif;
+  --font-sans: 'LXGW WenKai TC', 'Noto Sans JP';
+  --font-serif: 'Merriweather', serif;
   --font-mono:
     Fira Code, Cascadia Code, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono,
     Courier New, monospace;
