@@ -13,7 +13,7 @@ const localePath = useLocalePath()
     :style="styles"
     class="blur-header sticky top-0 w-full z-50 h-16 flex justify-between items-center"
   >
-    <ULink :to="localePath('/')">
+    <ULink :to="localePath('/about')">
       <div class="font-sans text-2xl pl-4 font-light">
         <span class="font-bold">parz1</span>
       </div>
