@@ -5,8 +5,8 @@
 @import './prose.css';
 @theme {
   --font-*: initial;
-  --font-sans: 'LXGW WenKai TC', 'Noto Sans JP';
-  --font-serif: 'Merriweather', serif;
+  --font-sans: 'LXGW WenKai', 'Noto Sans JP';
+  --font-serif: 'Source Serif Pro', serif;
   --font-mono:
     Fira Code, Cascadia Code, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono,
     Courier New, monospace;
@@ -14,6 +14,8 @@
 
 :root {
   /* --ui-primary: black; */
+  --ui-secondary: var(--ui-color-neutral-500);
+
   --ui-text-dimmed: var(--ui-color-neutral-400);
   --ui-text-muted: var(--ui-color-neutral-500);
   --ui-text-toned: var(--ui-color-neutral-600);
@@ -35,6 +37,8 @@
 
 .dark {
   /* --ui-primary: white; */
+  --ui-secondary: var(--ui-color-neutral-400);
+
   --ui-text-dimmed: var(--ui-color-neutral-500);
   --ui-text-muted: var(--ui-color-neutral-400);
   --ui-text-toned: var(--ui-color-neutral-300);

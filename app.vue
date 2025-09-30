@@ -1,5 +1,5 @@
 <script setup>
-import { SpeedInsights } from '@vercel/speed-insights/vue'
+// import { SpeedInsights } from '@vercel/speed-insights/vue'
 </script>
 
 <template>
@@ -9,9 +9,9 @@ import { SpeedInsights } from '@vercel/speed-insights/vue'
     </NuxtLayout>
   </UApp>
   <!-- 避免 SSR 时的告警 -->
-  <ClientOnly>
+  <!-- <ClientOnly>
     <SpeedInsights />
-  </ClientOnly>
+  </ClientOnly> -->
 </template>
 
 <style>

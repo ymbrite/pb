@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { useClipboard } from '@vueuse/core'
+import { useClipboard } from "@vueuse/core"
 
 const localePath = useLocalePath()
+const { t } = useI18n()
 
 // 第一个邮箱（仕事メール）
-const source1 = ref('parz1zhou@gmail.com')
+const source1 = ref("parz1zhou@gmail.com")
 const {
   text: text1,
   copy: copy1,
@@ -13,7 +14,7 @@ const {
 } = useClipboard({ source: source1 })
 
 // 第二个邮箱（アカデミックメール）
-const source2 = ref('parzivor@gmail.com')
+const source2 = ref("parzivor@gmail.com")
 const {
   text: text2,
   copy: copy2,
@@ -27,50 +28,63 @@ const handleCopyEmailToClipboard2 = () => copy2()
 
 <template>
   <div class="flex flex-col justify-center items-center lg:items-start">
-    <div class="">
+    <div class="lg:-ml-2">
       <img
-        class="w-20 h-20 md:w-40 md:h-40 bg-black transition-shadow hover:shadow-xl"
+        class="rounded-full w-40 h-40 lg:w-50 lg:h-50 bg-black transition-shadow shadow-xl hover:shadow-2xl"
         src="~/assets/avatar.jpg"
-        alt="avatar"
+        :alt="t('introCard.avatarAlt')"
       />
     </div>
-    <div class="mt-2">
+    <!-- <div class="mt-2">
       <span class="text-3xl font-serif">parz1</span>
-    </div>
-    <div class="mt-4 mb-0">
-      <div class="text-sm flex justify-start items-center gap-2">
-        <div>シュウ</div>
-        <div>ライ</div>
-      </div>
-      <div class="text-xl flex justify-start items-center gap-8">
-        <div>周</div>
-        <div>磊</div>
-      </div>
+    </div> -->
+    <div
+      class="mt-4 mb-0 flex items-center justify-center gap-3 lg:justify-start"
+    >
+      <ruby class="ruby-name">
+        <span class="text-2xl">{{ t("introCard.name.family") }}</span>
+        <rt class="text-sm font-light">
+          {{ t("introCard.name.phoneticFamily") }}
+        </rt>
+      </ruby>
+      <ruby class="">
+        <span class="text-2xl">{{ t("introCard.name.given") }}</span>
+        <rt class="text-sm font-light">
+          {{ t("introCard.name.phoneticGiven") }}
+        </rt>
+      </ruby>
     </div>
 
-    <div class="mb-4 text-sm">物に喜ばず、己に悲しまず。</div>
+    <div class="mt-2 mb-4 whitespace-pre-line text-center lg:text-left">
+      {{ t("introCard.motto") }}
+    </div>
 
-    <!-- <div class="text-sm">['aivə]</div> -->
     <!-- 仕事メール -->
-    <div class="text-sm text-gray-400">仕事メール</div>
-    <div class="flex items-center -mt-2">
-      <div class="underline">
-        <a href="mailto:parz1zhou@gmail.com" @click.stop> parz1zhou@gmail.com </a>
+    <div class="text-sm text-secondary">
+      {{ t("introCard.workEmailLabel") }}
+    </div>
+    <div class="flex items-center -mt-1">
+      <div class="underline font-serif">
+        <a href="mailto:parz1zhou@gmail.com" @click.stop>
+          parz1zhou@gmail.com
+        </a>
       </div>
       <UButton
         :icon="copied1 ? 'i-carbon-checkmark' : 'i-carbon-copy'"
         size="xs"
         color="neutral"
         variant="ghost"
-        aria-label="Copy Email"
+        :aria-label="t('introCard.copyEmailAria')"
         @click="handleCopyEmailToClipboard1"
       />
     </div>
 
     <!-- アカデミックメール -->
-    <div class="text-sm text-gray-400">アカデミックメール</div>
-    <div class="flex items-center -mt-2">
-      <div class="underline">
+    <div class="mt-1 text-sm text-secondary">
+      {{ t("introCard.academicEmailLabel") }}
+    </div>
+    <div class="flex items-center -mt-1">
+      <div class="underline font-serif">
         <a href="mailto:parzivor@gmail.com" @click.stop> parzivor@gmail.com </a>
       </div>
       <UButton
@@ -78,21 +92,24 @@ const handleCopyEmailToClipboard2 = () => copy2()
         size="xs"
         color="neutral"
         variant="ghost"
-        aria-label="Copy Email"
+        :aria-label="t('introCard.copyEmailAria')"
         @click="handleCopyEmailToClipboard2"
       />
     </div>
 
-    <ULink :to="localePath('/about')" class="mt-4">
-      <UButton color="neutral" variant="outline" size="sm">About Me</UButton>
-    </ULink>
-
-    <div class="text-gray-500 mt-4">Links</div>
+    <div class="text-sm text-secondary mt-4">{{ t("introCard.linksTitle") }}</div>
     <div class="flex">
       <UPopover mode="hover" :popper="{ placement: 'bottom' }">
         <a href="https://github.com/parz1" target="_blank" @click.stop>
-          <UButton icon="i-carbon-logo-github" color="neutral" variant="ghost" aria-label="Theme">
-            <template #fallback>GitHub</template>
+          <UButton
+            icon="i-carbon-logo-github"
+            color="neutral"
+            variant="ghost"
+            :aria-label="t('introCard.links.github.ariaLabel')"
+          >
+            <template #fallback>
+              {{ t("introCard.links.github.fallback") }}
+            </template>
           </UButton>
         </a>
 
@@ -100,15 +117,20 @@ const handleCopyEmailToClipboard2 = () => copy2()
           <div class="p-2 text-sm">
             @parz1
             <div class="text-xs mt-1 font-light">
-              Click icon to <span class="font-bold">GitHub</span>
+              {{ t("introCard.links.github.tooltip") }}
             </div>
           </div>
         </template>
       </UPopover>
       <UPopover mode="hover" :popper="{ placement: 'bottom' }">
         <a href="https://twitter.com/parz1zhou" target="_blank" @click.stop>
-          <UButton icon="i-carbon-logo-x" color="neutral" variant="ghost" aria-label="Theme">
-            <template #fallback>X</template>
+          <UButton
+            icon="i-carbon-logo-x"
+            color="neutral"
+            variant="ghost"
+            :aria-label="t('introCard.links.x.ariaLabel')"
+          >
+            <template #fallback>{{ t("introCard.links.x.fallback") }}</template>
           </UButton>
         </a>
 
@@ -116,7 +138,7 @@ const handleCopyEmailToClipboard2 = () => copy2()
           <div class="p-2 text-sm">
             @parz1zhou
             <div class="text-xs mt-1 font-light">
-              Click icon to <span class="font-bold">X</span>
+              {{ t("introCard.links.x.tooltip") }}
             </div>
           </div>
         </template>
@@ -129,9 +151,11 @@ const handleCopyEmailToClipboard2 = () => copy2()
             icon="i-carbon-logo-instagram"
             color="neutral"
             variant="ghost"
-            aria-label="Theme"
+            :aria-label="t('introCard.links.instagram.ariaLabel')"
           >
-            <template #fallback>Instagram</template>
+            <template #fallback>
+              {{ t("introCard.links.instagram.fallback") }}
+            </template>
           </UButton>
         </a>
 
@@ -139,7 +163,7 @@ const handleCopyEmailToClipboard2 = () => copy2()
           <div class="p-2 text-sm">
             @_parz1
             <div class="text-xs mt-1 font-light">
-              Click icon to <span class="font-bold">Instagram</span>
+              {{ t("introCard.links.instagram.tooltip") }}
             </div>
           </div>
         </template>
@@ -148,4 +172,15 @@ const handleCopyEmailToClipboard2 = () => copy2()
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@media (min-width: 1024px) {
+  .ruby-name {
+    ruby-position: over;
+    ruby-align: start;
+  }
+  .ruby-name rt {
+    // 使其不能被选中
+    user-select: none;
+  }
+}
+</style>

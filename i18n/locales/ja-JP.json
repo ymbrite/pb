@@ -8,5 +8,36 @@
     "devlogs": "開発ログ",
     "about": "私について",
     "gallery": " ギャラリー"
+  },
+  "introCard": {
+    "avatarAlt": "parz1のアバター",
+    "name": {
+      "phoneticFamily": "シュウ",
+      "phoneticGiven": "ライ",
+      "family": "周",
+      "given": "磊"
+    },
+    "motto": "物に喜ばず、己に悲しまず",
+    "workEmailLabel": "仕事メール",
+    "academicEmailLabel": "アカデミックメール",
+    "copyEmailAria": "メールアドレスをコピー",
+    "linksTitle": "リンク",
+    "links": {
+      "github": {
+        "ariaLabel": "GitHubプロフィールを開く",
+        "fallback": "GitHub",
+        "tooltip": "アイコンをクリックしてGitHubへ"
+      },
+      "x": {
+        "ariaLabel": "Xプロフィールを開く",
+        "fallback": "X",
+        "tooltip": "アイコンをクリックしてXへ"
+      },
+      "instagram": {
+        "ariaLabel": "Instagramプロフィールを開く",
+        "fallback": "Instagram",
+        "tooltip": "アイコンをクリックしてInstagramへ"
+      }
+    }
   }
 }

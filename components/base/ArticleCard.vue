@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import type { BlogCollectionItem } from '@nuxt/content'
 
+type ArticleWithLang = BlogCollectionItem & {
+  availableLangs?: string[]
+}
+
 const localePath = useLocalePath()
 
 const props = defineProps<{
-  article: BlogCollectionItem
+  article: ArticleWithLang
 }>()
 
 const publishedDate = computed(() => new Date(props.article.published as unknown as string))
@@ -15,6 +19,30 @@ const i18nTime = computed(() =>
 
 // 供 <time datetime> 使用，确保是有效 ISO
 const datetimeAttr = computed(() => publishedDate.value.toISOString())
+
+const languageBadges = computed(() => {
+  const languages = [
+    ...(props.article.availableLangs ?? []),
+    (props.article.lang as string | undefined) ?? undefined,
+  ]
+
+  const normalized = Array.from(
+    new Set(
+      languages
+        .filter((lang): lang is string => Boolean(lang))
+        .map(lang => lang.toUpperCase())
+    )
+  )
+
+  const current = (props.article.lang as string | undefined)?.toUpperCase()
+
+  return normalized.map(code => ({
+    code,
+    isCurrent: code === current,
+  }))
+})
+
+const hasAlternateLangs = computed(() => languageBadges.value.length > 1)
 </script>
 
 <template>
@@ -47,6 +75,23 @@ const datetimeAttr = computed(() => publishedDate.value.toISOString())
       <p class="relative z-10 mt-1 text-sm text-gray-600 dark:text-gray-400">
         {{ article.description }}
       </p>
+      <div
+        v-if="hasAlternateLangs"
+        class="mt-3 flex flex-wrap items-center gap-2 text-xs text-gray-500 dark:text-gray-400"
+      >
+        <span>Lang</span>
+        <div class="flex flex-wrap gap-1">
+          <UBadge
+            v-for="lang in languageBadges"
+            :key="lang.code"
+            :color="lang.isCurrent ? 'primary' : 'neutral'"
+            size="xs"
+            variant="soft"
+          >
+            {{ lang.code }}
+          </UBadge>
+        </div>
+      </div>
     </article>
   </NuxtLink>
 </template>
