@@ -13,7 +13,7 @@
     <div class="w-full lg:ml-[40%] grow flex flex-col justify-start items-start">
       <div class="">
         <!-- <GradientTitle title="Tools" subtitle="私が使っています" /> -->
-        <div class="text-xl font-bold mb-2">Tools</div>
+        <div class="text-xl font-bold mb-2 hidden lg:block">Tools</div>
         <div class="hidden lg:block">
           <div>
             <!-- <div class="text-xl mb-0">I build apps mainly with</div> -->

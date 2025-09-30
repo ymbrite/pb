@@ -8,5 +8,36 @@
     "devlogs": "开发日志",
     "about": "关于",
     "gallery": "画廊"
+  },
+  "introCard": {
+    "avatarAlt": "parz1 的头像",
+    "name": {
+      "phoneticFamily": "Zhou",
+      "phoneticGiven": "Lei",
+      "family": "周",
+      "given": "磊"
+    },
+    "motto": "不以物喜，不以己悲",
+    "workEmailLabel": "工作邮箱",
+    "academicEmailLabel": "学术邮箱",
+    "copyEmailAria": "复制邮箱地址",
+    "linksTitle": "链接",
+    "links": {
+      "github": {
+        "ariaLabel": "打开 GitHub 主页",
+        "fallback": "GitHub",
+        "tooltip": "点击图标前往 GitHub"
+      },
+      "x": {
+        "ariaLabel": "打开 X 主页",
+        "fallback": "X",
+        "tooltip": "点击图标前往 X"
+      },
+      "instagram": {
+        "ariaLabel": "打开 Instagram 主页",
+        "fallback": "Instagram",
+        "tooltip": "点击图标前往 Instagram"
+      }
+    }
   }
 }

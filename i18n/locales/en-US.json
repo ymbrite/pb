@@ -6,6 +6,38 @@
     "blog": "Blog",
     "posts": "Posts",
     "devlogs": "Devlogs",
+    "about": "About Me",
     "gallery": "Gallery"
+  },
+  "introCard": {
+    "avatarAlt": "Portrait of parz1",
+    "name": {
+      "phoneticFamily": "ZHOU",
+      "phoneticGiven": "LEI",
+      "family": "周",
+      "given": "磊"
+    },
+    "motto": "Rejoice not in possessions,\ngrieve not over yourself",
+    "workEmailLabel": "Work email",
+    "academicEmailLabel": "Academic email",
+    "copyEmailAria": "Copy email address",
+    "linksTitle": "Links",
+    "links": {
+      "github": {
+        "ariaLabel": "Open GitHub profile",
+        "fallback": "GitHub",
+        "tooltip": "Click the icon to GitHub"
+      },
+      "x": {
+        "ariaLabel": "Open X profile",
+        "fallback": "X",
+        "tooltip": "Click the icon to X"
+      },
+      "instagram": {
+        "ariaLabel": "Open Instagram profile",
+        "fallback": "Instagram",
+        "tooltip": "Click the icon to Instagram"
+      }
+    }
   }
 }
