@@ -5,31 +5,47 @@ const { locales, locale, setLocale } = useI18n()
 const slug = route.params.slug
 
 const { data: variants } = await useAsyncData(
-  'slug-variants',
+  "slug-variants",
   async () => {
     if (!slug) return []
     // Query strictly by slug; frontend will handle variants
-    return await queryCollection('blog').where('slug', '=', slug).all()
+    return await queryCollection("blog").where("slug", "=", slug).all()
   },
   // lazy load may cause SEO issue and get some trouble for toc comp
-  { lazy: false }
+  { lazy: false },
 )
 
 // chose the variant based on locale or default to first
 const doc = computed(() => {
   if (!variants.value || variants.value.length === 0) return null
-  const byLocale = variants.value.find(item => item.lang === locale.value)
+  const byLocale = variants.value.find((item) => item.lang === locale.value)
   return byLocale || variants.value[0]
+})
+
+const publishedDate = computed(() => {
+  // localize date display
+  if (!doc.value || !doc.value.published) return null
+  return new Date(doc.value.published as unknown as string).toLocaleDateString(
+    locale.value,
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    },
+  )
 })
 
 useSeoMeta({
   ogImage: doc.value?.cover,
-  twitterCard: 'summary_large_image',
-  articleAuthor: ['parz1'],
+  twitterCard: "summary_large_image",
+  articleAuthor: ["parz1"],
 })
 useHead({
   link: [
-    { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css' },
+    {
+      rel: "stylesheet",
+      href: "https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css",
+    },
   ],
   title: doc.value?.title,
 })
@@ -44,18 +60,20 @@ const observerOptions = reactive({
 })
 
 onMounted(() => {
-  observer.value = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      const id = entry.target.getAttribute('id')
+  observer.value = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const id = entry.target.getAttribute("id")
       if (entry.isIntersecting) {
         activeTocId.value = id
       }
     })
   }, observerOptions)
 
-  document.querySelectorAll('.nuxt-content h2[id], .nuxt-content h3[id]').forEach(section => {
-    observer.value?.observe(section)
-  })
+  document
+    .querySelectorAll(".nuxt-content h2[id], .nuxt-content h3[id]")
+    .forEach((section) => {
+      observer.value?.observe(section)
+    })
 })
 
 onUnmounted(() => {
@@ -71,9 +89,9 @@ onUnmounted(() => {
   </template>
   <template v-else>
     <div
-      class="min-h-screen max-w-(--breakpoint-sm) md:max-w-(--breakpoint-xl) py-4 flex justify-center"
+      class="min-h-screen max-w-(--breakpoint-sm) md:max-w-(--breakpoint-xl) py-4 pb-40 flex justify-center"
     >
-      <div class="relative w-60 hidden md:block">
+      <div v-if="activeTocId" class="relative w-60 hidden md:block">
         <div class="sticky top-20 flex flex-col items-start pr-4">
           <div class="text-xl font-normal">ToC</div>
           <ClientOnly>
@@ -87,12 +105,14 @@ onUnmounted(() => {
       <div class="nuxt-content w-screen px-4 md:px-0 md:max-w-2xl">
         <article>
           <div class="mb-4">
-            <div class="text-4xl font-bold font-sans text-black dark:text-white">
+            <div
+              class="text-4xl font-bold font-sans text-black dark:text-white"
+            >
               {{ doc?.title }}
             </div>
             <div class="text-lg mb-2">{{ doc?.description }}</div>
             <div class="text-gray-500 flex gap-4">
-              {{ doc?.published }}
+              {{ publishedDate }}
               <div>
                 <UBadge
                   v-for="tag in doc?.tags"

@@ -2,7 +2,8 @@
 tags: []
 categories: []
 title: 電子ペットは許されるのか
-published: 2025-10-29T00:00:00.000Z
+description: AIと死の境界をめぐる問い。死者再現技術が生む倫理と存在の揺らぎを考える
+published: 2025/10/29
 slug: electronic-pets
 lang: ja
 ---
