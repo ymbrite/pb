@@ -30,9 +30,23 @@ export default defineContentConfig({
         published: z.string().datetime(),
       }),
     }),
-    devlogs: defineCollection({
+    logs: defineCollection({
       type: 'page',
-      source: 'blog/devlogs/*.md',
+      source: 'blog/logs/*.md',
+      schema: z.object({
+        title: z.string(),
+        slug: z.string().optional(),
+        lang: z.enum(['cn', 'ja', 'en']).default('cn').optional(),
+        description: z.string().optional(),
+        categories: z.array(z.string()).optional(),
+        tags: z.array(z.string()).optional(),
+        cover: z.string().optional(),
+        published: z.string().datetime(),
+      }),
+    }),
+    crap: defineCollection({
+      type: 'page',
+      source: 'blog/crap/*.md',
       schema: z.object({
         title: z.string(),
         slug: z.string().optional(),

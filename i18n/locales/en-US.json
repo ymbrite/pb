@@ -5,7 +5,8 @@
     "demo": "Demo",
     "blog": "Blog",
     "posts": "Posts",
-    "devlogs": "Devlogs",
+    "logs": "Logs",
+    "crap": "Crap",
     "about": "About Me",
     "gallery": "Gallery"
   },
