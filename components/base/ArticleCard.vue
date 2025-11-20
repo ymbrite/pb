@@ -14,7 +14,7 @@ const props = defineProps<{
 const publishedDate = computed(() => new Date(props.article.published as unknown as string))
 
 const i18nTime = computed(() =>
-  new Intl.DateTimeFormat('ja-JP', { dateStyle: 'long' }).format(publishedDate.value)
+  new Intl.DateTimeFormat(useI18n().locale.value, { dateStyle: 'long' }).format(publishedDate.value)
 )
 
 // 供 <time datetime> 使用，确保是有效 ISO
@@ -41,8 +41,6 @@ const languageBadges = computed(() => {
     isCurrent: code === current,
   }))
 })
-
-const hasAlternateLangs = computed(() => languageBadges.value.length > 1)
 </script>
 
 <template>
@@ -51,9 +49,9 @@ const hasAlternateLangs = computed(() => languageBadges.value.length > 1)
     class="group"
   >
     <article>
-      <div class="flex gap-4">
+      <div class="flex flex-wrap items-center gap-4">
         <time
-          class="relative z-10 order-first mb-1 flex items-center text-sm text-gray-400 dark:text-gray-500 pl-3.5"
+          class="relative flex items-center text-sm text-gray-400 dark:text-gray-500 pl-3.5"
           :datetime="datetimeAttr"
         >
           <span class="absolute inset-y-0 left-0 flex items-center" aria-hidden="true">
@@ -61,11 +59,20 @@ const hasAlternateLangs = computed(() => languageBadges.value.length > 1)
           </span>
           {{ i18nTime }}
         </time>
-        <span v-if="article.categories">
-          <UBadge v-for="category in article.categories" :key="category" class="mr-1">
-            {{ category }}
+        <div
+          v-if="languageBadges.length"
+          class="flex flex-wrap items-center gap-2 text-xs text-gray-500 dark:text-gray-400"
+        >
+          <UBadge
+            v-for="lang in languageBadges"
+            :key="lang.code"
+            :color="lang.isCurrent ? 'primary' : 'neutral'"
+            size="sm"
+            variant="subtle"
+          >
+            {{ lang.code }}
           </UBadge>
-        </span>
+        </div>
       </div>
       <h2
         class="text-lg font-semibold font-display tracking-tight text-gray-800 dark:text-gray-100 group-hover:text-primary-600"
@@ -76,21 +83,12 @@ const hasAlternateLangs = computed(() => languageBadges.value.length > 1)
         {{ article.description }}
       </p>
       <div
-        v-if="hasAlternateLangs"
-        class="mt-3 flex flex-wrap items-center gap-2 text-xs text-gray-500 dark:text-gray-400"
+        v-if="article.tags?.length"
+        class="mt-2 flex flex-wrap gap-2 text-xs text-gray-500 dark:text-gray-400"
       >
-        <span>Lang</span>
-        <div class="flex flex-wrap gap-1">
-          <UBadge
-            v-for="lang in languageBadges"
-            :key="lang.code"
-            :color="lang.isCurrent ? 'primary' : 'neutral'"
-            size="xs"
-            variant="soft"
-          >
-            {{ lang.code }}
-          </UBadge>
-        </div>
+        <UBadge v-for="tag in article.tags" :key="tag" color="neutral" size="md" variant="soft">
+          {{ tag }}
+        </UBadge>
       </div>
     </article>
   </NuxtLink>
