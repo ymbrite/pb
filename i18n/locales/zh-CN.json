@@ -5,7 +5,8 @@
     "demo": "演示",
     "blog": "博客",
     "posts": "文章",
-    "devlogs": "开发日志",
+    "logs": "记录",
+    "crap": "扯",
     "about": "关于",
     "gallery": "画廊"
   },

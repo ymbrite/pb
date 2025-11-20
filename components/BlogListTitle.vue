@@ -17,9 +17,15 @@ const links = [
     prefetch: true,
   },
   {
-    label: 'DevLogs',
+    label: 'Logs',
     icon: 'i-heroicons-command-line',
-    to: '/blog/devlogs',
+    to: '/blog/logs',
+    prefetch: true,
+  },
+  {
+    label: 'Crap',
+    icon: 'i-heroicons-face-frown',
+    to: '/blog/crap',
     prefetch: true,
   },
 ]

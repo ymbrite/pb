@@ -6,7 +6,12 @@ useSeoMeta({
   description,
 })
 const route = useRoute()
-const showListTitleRoutes = ['/blog', '/blog/posts', '/blog/devlogs']
+const showListTitleRoutes = [
+  '/blog',
+  '/blog/posts',
+  '/blog/logs',
+  '/blog/crap',
+]
 const showListTitle = computed(() => showListTitleRoutes.includes(route.path))
 </script>
 
