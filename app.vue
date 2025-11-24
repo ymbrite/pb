@@ -4,9 +4,21 @@
 
 <template>
   <UApp>
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
+    <UHeader>
+      <template #left>
+        <NuxtLink to="/docs">
+          <Logo class="h-6 w-auto" />
+        </NuxtLink>
+      </template>
+    </UHeader>
+
+    <UMain>
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
+    </UMain>
+
+    <UFooter />
   </UApp>
   <!-- 避免 SSR 时的告警 -->
   <!-- <ClientOnly>

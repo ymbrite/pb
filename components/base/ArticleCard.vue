@@ -48,7 +48,9 @@ const languageBadges = computed(() => {
     :to="localePath(`/blog/${(article as any).slug ?? (article.path || '').split('/').pop()}`)"
     class="group"
   >
-    <article>
+    <article
+      class="rounded-xl p-2 transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-gray-800/50"
+    >
       <div class="flex flex-wrap items-center gap-4">
         <time
           class="relative flex items-center text-sm text-gray-400 dark:text-gray-500 pl-3.5"
@@ -75,11 +77,11 @@ const languageBadges = computed(() => {
         </div>
       </div>
       <h2
-        class="text-lg font-semibold font-display tracking-tight text-gray-800 dark:text-gray-100 group-hover:text-primary-600"
+        class="text-xl font-bold font-display tracking-tight text-gray-800 dark:text-gray-100 group-hover:text-primary-600"
       >
         {{ article.title }}
       </h2>
-      <p class="relative z-10 mt-1 text-sm text-gray-600 dark:text-gray-400">
+      <p class="relative z-10 text-sm text-gray-600 dark:text-gray-400">
         {{ article.description }}
       </p>
       <div
