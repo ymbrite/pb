@@ -8,9 +8,9 @@ type ArticleWithLang = BlogCollectionItem & {
 const { locale } = useI18n()
 
 const { data: articles } = await useAsyncData<ArticleWithLang[]>(
-  'posts-preview',
+  'crap-preview',
   async () => {
-    const allArticles = await queryCollection('posts').order('published', 'DESC').all()
+    const allArticles = await queryCollection('crap').order('published', 'DESC').all()
 
     const groups = new Map<string, BlogCollectionItem[]>()
 

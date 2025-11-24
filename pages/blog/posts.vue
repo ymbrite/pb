@@ -2,7 +2,7 @@
 const { data: articles } = await useAsyncData(
   'latest-posts',
   () => queryCollection('posts').order('published', 'DESC').all(),
-  { lazy: false }
+  { lazy: false },
 )
 </script>
 

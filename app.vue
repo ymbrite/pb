@@ -4,9 +4,15 @@
 
 <template>
   <UApp>
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
+    <Header />
+
+    <UMain>
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
+    </UMain>
+
+    <UFooter />
   </UApp>
   <!-- 避免 SSR 时的告警 -->
   <!-- <ClientOnly>

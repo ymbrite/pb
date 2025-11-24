@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import type { DropdownMenuItem } from '@nuxt/ui'
+import type { DropdownMenuItem } from "@nuxt/ui"
 
 const { locale: curLocale, locales, setLocale } = useI18n()
 
 const items = computed<DropdownMenuItem[]>(() =>
-  locales.value.map(locale => ({
+  locales.value.map((locale) => ({
     label: locale.name,
     code: locale.code,
     disabled: locale.code === curLocale.value,
-    onSelect: () => {
+    onSelect: async () => {
       // console.log(locale.code)
-      setLocale(locale.code)
+      await setLocale(locale.code)
     },
-  }))
+  })),
 )
 
 const curLocaleName = computed(() => {
-  return locales.value.find(locale => locale.code === curLocale.value)?.name
+  return locales.value.find((locale) => locale.code === curLocale.value)?.name
 })
 </script>
 
@@ -29,10 +29,11 @@ const curLocaleName = computed(() => {
     {{ locale.name }}
   </NuxtLink> -->
   <UDropdownMenu :items="items" :content="{ side: 'bottom', align: 'end' }">
-    <div class="flex items-center gap-2 hover:text-primary-600 cursor-pointer">
-      <UIcon name="i-carbon-ibm-watson-language-translator" />
-      <!-- <span class="text-xs">{{ curLocaleName }}</span> -->
-    </div>
+    <UButton
+      variant="ghost"
+      color="neutral"
+      icon="i-carbon-ibm-watson-language-translator"
+    />
     <!-- <UButton color="white" label="Options" trailing-icon="i-heroicons-chevron-down-20-solid" /> -->
     <!-- <UButton
       size="xs"

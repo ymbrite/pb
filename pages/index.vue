@@ -14,7 +14,7 @@
       <!-- <HomePage /> -->
       <section class="max-w-xl px-4 sm:px-0 mt-8">
         <div class="flex items-center justify-between mb-4">
-          <h2 class="text-xl font-semibold">Latest Posts</h2>
+          <h2 class="text-3xl font-serif pl-2">Latest Posts</h2>
         </div>
         <PostsPreview />
       </section>
