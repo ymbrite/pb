@@ -4,13 +4,7 @@
 
 <template>
   <UApp>
-    <UHeader>
-      <template #left>
-        <NuxtLink to="/docs">
-          <Logo class="h-6 w-auto" />
-        </NuxtLink>
-      </template>
-    </UHeader>
+    <Header />
 
     <UMain>
       <NuxtLayout>
