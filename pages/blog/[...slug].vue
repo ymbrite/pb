@@ -82,72 +82,66 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <template v-if="!doc">
-    <div class="text-xl">Page not found</div>
-    <p>Oops! The content you're looking for doesn't exist.</p>
-    <NuxtLink to="/">Go back home</NuxtLink>
-  </template>
-  <template v-else>
-    <div
-      class="min-h-screen max-w-(--breakpoint-sm) md:max-w-(--breakpoint-xl) py-4 pb-40 flex justify-center"
-    >
-      <div v-if="activeTocId" class="relative w-60 hidden md:block">
-        <div class="sticky top-20 flex flex-col items-start pr-4">
-          <div class="text-xl font-normal">ToC</div>
+  <UContainer class="relative pt-8">
+    <div v-if="!doc">
+      <div class="text-xl">Page not found</div>
+      <p>Oops! The content you're looking for doesn't exist.</p>
+      <NuxtLink to="/">Go back home</NuxtLink>
+    </div>
+    <template v-else>
+      <div
+        v-if="activeTocId"
+        class="hidden lg:block w-64"
+      >
+        <div class="fixed top-24 left-[min(5vw,56px)] max-h-[70vh] overflow-y-auto pr-4">
+          <div class="text-xl font-normal mb-2">ToC</div>
           <ClientOnly>
             <TableOfContents :active-toc-id="activeTocId" :doc="doc" />
           </ClientOnly>
-
-          <!-- <UCard class="w-full my-4"> TODO: sharing module </UCard> -->
         </div>
       </div>
 
-      <div class="nuxt-content w-screen px-4 md:px-0 md:max-w-2xl">
-        <article>
-          <div class="mb-4">
-            <div
-              class="text-4xl font-bold font-sans text-black dark:text-white"
-            >
-              {{ doc?.title }}
-            </div>
-            <div class="text-lg mb-2">{{ doc?.description }}</div>
-            <div class="text-gray-500 flex gap-4">
-              {{ publishedDate }}
-              <div>
-                <UBadge
-                  v-for="tag in doc?.tags"
-                  :key="tag"
-                  color="neutral"
-                  variant="solid"
-                  class="mr-1"
-                >
-                  {{ tag }}
-                </UBadge>
+      <div class="flex justify-center">
+        <div class="nuxt-content w-full max-w-3xl px-4 md:px-6 lg:px-8">
+          <article>
+            <div class="mb-6">
+              <div
+                class="text-4xl font-bold font-sans text-black dark:text-white"
+              >
+                {{ doc?.title }}
               </div>
-              <!-- Variants by same slug can be handled by the page UI if needed -->
+              <div class="text-lg mb-3">{{ doc?.description }}</div>
+              <div class="text-gray-500 flex flex-wrap gap-4 items-center">
+                {{ publishedDate }}
+                <div class="flex flex-wrap gap-2">
+                  <UBadge
+                    v-for="tag in doc?.tags"
+                    :key="tag"
+                    color="neutral"
+                    variant="solid"
+                  >
+                    {{ tag }}
+                  </UBadge>
+                </div>
+                <!-- Variants by same slug can be handled by the page UI if needed -->
+              </div>
             </div>
-          </div>
-          <!-- <USeparator size="lg" /> -->
-          <!-- {{ doc.body?.toc }} -->
-          <ContentRenderer
-            v-if="doc"
-            ref="nuxtContent"
-            :value="doc"
-            class="prose dark:prose-invert"
-          >
-            <template #empty>
-              <div class="text-xl">Document is empty</div>
-              <p>maybe I will write it tomorrow... :)</p>
-            </template>
-          </ContentRenderer>
-        </article>
+            <ContentRenderer
+              v-if="doc"
+              ref="nuxtContent"
+              :value="doc"
+              class="prose dark:prose-invert"
+            >
+              <template #empty>
+                <div class="text-xl">Document is empty</div>
+                <p>maybe I will write it tomorrow... :)</p>
+              </template>
+            </ContentRenderer>
+          </article>
+        </div>
       </div>
-
-      <div class="hidden md:block">
-        <!-- right sidebar -->
-      </div>
-    </div>
-  </template>
+    </template>
+  </UContainer>
 </template>
 
 <style></style>

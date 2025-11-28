@@ -1,21 +1,66 @@
 <script lang="ts" setup>
-import LanguageSwitch from "./LanguageSwitch.vue"
+import type { NavigationMenuItem } from "@nuxt/ui"
 
-const { t } = useI18n()
+const route = useRoute()
+
+const { t, locale } = useI18n()
 const localePath = useLocalePath()
 
-const navLinks = computed(() => [
-  { label: t("menu.home"), to: localePath("/") },
-  { label: t("menu.blog"), to: localePath("/blog") },
-  { label: t("menu.gallery"), to: null },
-  { label: t("menu.demo"), to: localePath("/demo") },
+const normalizePath = (path: string) => {
+  const segments = path.split("/").filter(Boolean)
+  if (segments[0]?.toLowerCase() === locale.value.toLowerCase()) {
+    return "/" + segments.slice(1).join("/")
+  }
+  return path.startsWith("/") ? path : `/${path}`
+}
+
+const normalizedRoutePath = computed(() => normalizePath(route.path))
+
+const isActivePath = (path?: string | null) => {
+  if (!path) return false
+  const target = normalizePath(localePath(path))
+  if (target === "/") return normalizedRoutePath.value === "/"
+  return normalizedRoutePath.value.startsWith(target)
+}
+
+const navLinks = computed<NavigationMenuItem[]>(() => [
+  {
+    label: t("menu.home"),
+    to: localePath("/"),
+    active: isActivePath("/"),
+  },
+  {
+    label: t("menu.blog"),
+    to: localePath("/blog"),
+    active: isActivePath("/blog"),
+    children: [
+      {
+        label: t("menu.posts"),
+        to: localePath("/blog/posts"),
+      },
+      {
+        label: t("menu.logs"),
+        to: localePath("/blog/logs"),
+      },
+      {
+        label: t("menu.crap"),
+        to: localePath("/blog/crap"),
+      },
+    ],
+  },
+  { label: t("menu.gallery"), to: undefined, active: false },
+  {
+    label: t("menu.demo"),
+    to: localePath("/demo"),
+    active: isActivePath("/demo"),
+  },
 ])
 </script>
 
 <template>
   <UHeader
     mode="slideover"
-    class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-gray-900/70 bg-white/90 dark:bg-gray-900/90 border-b border-gray-200/80 dark:border-gray-800/80"
+    class="sticky top-0 z-50 backdrop-blur"
     :ui="{ container: 'py-3' }"
   >
     <template #title>
@@ -27,11 +72,13 @@ const navLinks = computed(() => [
       </NuxtLink>
     </template>
 
-    <template #default> </template>
+    <template #default>
+      <UNavigationMenu :items="navLinks" />
+    </template>
 
     <template #right>
       <div class="hidden md:flex items-center gap-2">
-        <nav class="items-center gap-0 text-xl">
+        <!-- <nav class="items-center gap-0 text-xl">
           <template v-for="link in navLinks" :key="link.label">
             <ULink
               v-if="link.to"
@@ -44,7 +91,8 @@ const navLinks = computed(() => [
               {{ link.label }}
             </span>
           </template>
-        </nav>
+        </nav> -->
+
         <LanguageSwitch />
         <ThemeSwitcher />
         <UButton
@@ -83,7 +131,7 @@ const navLinks = computed(() => [
             :to="link.to || undefined"
             :disabled="!link.to"
             color="neutral"
-            variant="ghost"
+            :variant="link.active ? 'soft' : 'ghost'"
             class="justify-start"
             @click="link.to ? close?.() : undefined"
           >
