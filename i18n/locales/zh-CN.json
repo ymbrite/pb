@@ -5,8 +5,11 @@
     "demo": "演示",
     "blog": "博客",
     "posts": "文章",
+    "postsDescription": "所有博客文章",
     "logs": "记录",
+    "logsDescription": "技术、学习的随机记录",
     "crap": "扯",
+    "crapDescription": "扯淡随机的东西",
     "about": "关于",
     "gallery": "画廊"
   },

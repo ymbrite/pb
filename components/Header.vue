@@ -37,14 +37,17 @@ const navLinks = computed<NavigationMenuItem[]>(() => [
       {
         label: t("menu.posts"),
         to: localePath("/blog/posts"),
+        description: t("menu.postsDescription"),
       },
       {
         label: t("menu.logs"),
         to: localePath("/blog/logs"),
+        description: t("menu.logsDescription"),
       },
       {
         label: t("menu.crap"),
         to: localePath("/blog/crap"),
+        description: t("menu.crapDescription"),
       },
     ],
   },
@@ -61,20 +64,12 @@ const navLinks = computed<NavigationMenuItem[]>(() => [
   <UHeader
     mode="slideover"
     class="sticky top-0 z-50 backdrop-blur"
+    :to="localePath('/about')"
     :ui="{ container: 'py-3' }"
   >
-    <template #title>
-      <NuxtLink
-        :to="localePath('/about')"
-        class="font-sans text-2xl font-light"
-      >
-        <span class="font-bold">parz1</span>
-      </NuxtLink>
-    </template>
+    <template #title> parz1 </template>
 
-    <template #default>
-      <UNavigationMenu :items="navLinks" />
-    </template>
+    <UNavigationMenu class="w-100 flex justify-center" :items="navLinks" />
 
     <template #right>
       <div class="hidden md:flex items-center gap-2">
@@ -106,13 +101,20 @@ const navLinks = computed<NavigationMenuItem[]>(() => [
       </div>
     </template>
 
+    <template #toggle="{ toggle }">
+      <UButton
+        icon="i-heroicons-bars-3-20-solid"
+        color="neutral"
+        variant="ghost"
+        aria-label="Open navigation"
+        @click="toggle"
+      />
+    </template>
+
     <template #content="{ close }">
       <div class="p-6 space-y-6">
         <div class="flex items-center justify-between">
-          <NuxtLink
-            :to="localePath('/about')"
-            class="font-sans text-2xl font-light"
-          >
+          <NuxtLink :to="localePath('/')" class="font-sans text-2xl font-light">
             <span class="font-bold">parz1</span>
           </NuxtLink>
           <UButton
@@ -124,20 +126,7 @@ const navLinks = computed<NavigationMenuItem[]>(() => [
           />
         </div>
 
-        <div class="flex flex-col gap-2">
-          <UButton
-            v-for="link in navLinks"
-            :key="link.label"
-            :to="link.to || undefined"
-            :disabled="!link.to"
-            color="neutral"
-            :variant="link.active ? 'soft' : 'ghost'"
-            class="justify-start"
-            @click="link.to ? close?.() : undefined"
-          >
-            {{ link.label }}
-          </UButton>
-        </div>
+        <UNavigationMenu orientation="vertical" :items="navLinks" />
 
         <div class="flex items-center gap-3">
           <LanguageSwitch />

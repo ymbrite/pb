@@ -102,7 +102,7 @@ onUnmounted(() => {
       </div>
 
       <div class="flex justify-center">
-        <div class="nuxt-content w-full max-w-3xl px-4 md:px-6 lg:px-8">
+        <div class="nuxt-content w-full max-w-3xl px-0 md:px-6 lg:px-8">
           <article>
             <div class="mb-6">
               <div

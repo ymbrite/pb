@@ -1,7 +1,7 @@
 export default defineAppConfig({
   ui: {
     container: {
-      base: "w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8",
+      base: "w-full max-w-(--ui-container) mx-auto",
     },
     main: {
       base: "min-h-[calc(100vh-var(--ui-header-height))]",
@@ -9,6 +9,11 @@ export default defineAppConfig({
     colors: {
       primary: "blue",
       neutral: "zinc",
+    },
+    button: {
+      slots: {
+        base: ["cursor-pointer"],
+      },
     },
     link: {
       base: "focus-visible:outline-primary hover:underline",

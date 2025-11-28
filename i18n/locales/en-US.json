@@ -5,8 +5,11 @@
     "demo": "Demo",
     "blog": "Blog",
     "posts": "Posts",
+    "postsDescription": "Blog posts all together",
     "logs": "Logs",
+    "logsDescription": "Random records of tech and learning",
     "crap": "Crap",
+    "crapDescription": "Random stuff and nonsense",
     "about": "About Me",
     "gallery": "Gallery"
   },

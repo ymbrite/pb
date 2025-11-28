@@ -5,8 +5,11 @@
     "demo": "デモ",
     "blog": "ブログ",
     "posts": "文章",
+    "postsDescription": "すべてのブログ記事",
     "logs": "ログ",
+    "logsDescription": "技術、学習のランダムな記録",
     "crap": "デタラメ",
+    "crapDescription": "ランダムなものとナンセンス",
     "about": "私について",
     "gallery": " ギャラリー"
   },
