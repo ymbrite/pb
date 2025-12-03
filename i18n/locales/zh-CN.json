@@ -43,5 +43,14 @@
         "tooltip": "点击图标前往 Instagram"
       }
     }
+  },
+  "base": {
+    "tocTitle": "目录",
+    "backToHome": "返回首页",
+    "refresh": "刷新",
+    "noBlogPosts": "未找到博客文章。",
+    "contentYouAreLookingForDoesNotExist": "您正在寻找的内容不存在。",
+    "readMore": "阅读更多",
+    "availableLanguages": "可用语言"
   }
 }

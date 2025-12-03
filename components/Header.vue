@@ -87,7 +87,7 @@ const navLinks = computed<NavigationMenuItem[]>(() => [
             </span>
           </template>
         </nav> -->
-
+        <UContentSearchButton :collapsed="false" />
         <LanguageSwitch />
         <ThemeSwitcher />
         <UButton
@@ -99,16 +99,6 @@ const navLinks = computed<NavigationMenuItem[]>(() => [
           target="_blank"
         />
       </div>
-    </template>
-
-    <template #toggle="{ toggle }">
-      <UButton
-        icon="i-heroicons-bars-3-20-solid"
-        color="neutral"
-        variant="ghost"
-        aria-label="Open navigation"
-        @click="toggle"
-      />
     </template>
 
     <template #content="{ close }">

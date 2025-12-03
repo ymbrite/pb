@@ -43,5 +43,14 @@
         "tooltip": "Click the icon to Instagram"
       }
     }
+  },
+  "base": {
+    "tocTitle": "Table of Contents",
+    "backToHome": "Back to Home",
+    "refresh": "Refresh",
+    "noBlogPosts": "No blog posts found.",
+    "contentYouAreLookingForDoesNotExist": "The content you are looking for does not exist.",
+    "readMore": "Read More",
+    "availableLanguages": "Available Languages"
   }
 }

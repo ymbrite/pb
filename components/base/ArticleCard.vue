@@ -5,20 +5,24 @@ type ArticleWithLang = BlogCollectionItem & {
   availableLangs?: string[]
 }
 
+const { locale } = useI18n()
 const localePath = useLocalePath()
 
 const props = defineProps<{
   article: ArticleWithLang
 }>()
 
-const publishedDate = computed(() => new Date(props.article.published as unknown as string))
-
-const i18nTime = computed(() =>
-  new Intl.DateTimeFormat(useI18n().locale.value, { dateStyle: 'long' }).format(publishedDate.value)
+const publishedDate = computed(() =>
+  props.article.published ? new Date(props.article.published as unknown as string) : null,
 )
 
+const i18nTime = computed(() => {
+  if (!publishedDate.value) return ''
+  return new Intl.DateTimeFormat(locale.value, { dateStyle: 'long' }).format(publishedDate.value)
+})
+
 // 供 <time datetime> 使用，确保是有效 ISO
-const datetimeAttr = computed(() => publishedDate.value.toISOString())
+const datetimeAttr = computed(() => publishedDate.value?.toISOString?.() ?? '')
 
 const languageBadges = computed(() => {
   const languages = [

@@ -43,5 +43,14 @@
         "tooltip": "アイコンをクリックしてInstagramへ"
       }
     }
+  },
+  "base": {
+    "tocTitle": "目次",
+    "backToHome": "ホームに戻る",
+    "refresh": "更新",
+    "noBlogPosts": "ブログ記事が見つかりません。",
+    "contentYouAreLookingForDoesNotExist": "お探しのコンテンツは存在しません。",
+    "readMore": "続きを読む",
+    "availableLanguages": "利用可能な言語"
   }
 }
