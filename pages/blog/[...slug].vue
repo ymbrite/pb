@@ -4,7 +4,7 @@ const { locales, locale, setLocale } = useI18n()
 
 const slug = route.params.slug
 
-const { data: variants } = await useAsyncData(
+const { data: variants, refresh } = await useAsyncData(
   "slug-variants",
   async () => {
     if (!slug) return []
@@ -40,6 +40,7 @@ useSeoMeta({
   twitterCard: "summary_large_image",
   articleAuthor: ["parz1"],
 })
+
 useHead({
   link: [
     {
@@ -82,72 +83,87 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <template v-if="!doc">
-    <div class="text-xl">Page not found</div>
-    <p>Oops! The content you're looking for doesn't exist.</p>
-    <NuxtLink to="/">Go back home</NuxtLink>
-  </template>
-  <template v-else>
-    <div
-      class="min-h-screen max-w-(--breakpoint-sm) md:max-w-(--breakpoint-xl) py-4 pb-40 flex justify-center"
-    >
-      <div v-if="activeTocId" class="relative w-60 hidden md:block">
-        <div class="sticky top-20 flex flex-col items-start pr-4">
-          <div class="text-xl font-normal">ToC</div>
-          <ClientOnly>
-            <TableOfContents :active-toc-id="activeTocId" :doc="doc" />
-          </ClientOnly>
-
-          <!-- <UCard class="w-full my-4"> TODO: sharing module </UCard> -->
-        </div>
+  <UPage class="lg:pt-8">
+    <UPageBody>
+      <div v-if="!doc">
+        <UEmpty
+          icon="i-lucide-file"
+          :title="$t('base.noBlogPosts')"
+          size="lg"
+          :description="$t('base.contentYouAreLookingForDoesNotExist')"
+          :actions="[
+            {
+              icon: 'i-lucide-arrow-left',
+              label: $t('base.backToHome'),
+              to: '/',
+            },
+            {
+              icon: 'i-lucide-refresh-cw',
+              label: $t('base.refresh'),
+              color: 'neutral',
+              variant: 'subtle',
+              onClick: () => refresh(),
+            },
+          ]"
+        />
       </div>
-
-      <div class="nuxt-content w-screen px-4 md:px-0 md:max-w-2xl">
-        <article>
-          <div class="mb-4">
-            <div
-              class="text-4xl font-bold font-sans text-black dark:text-white"
-            >
-              {{ doc?.title }}
-            </div>
-            <div class="text-lg mb-2">{{ doc?.description }}</div>
-            <div class="text-gray-500 flex gap-4">
-              {{ publishedDate }}
-              <div>
-                <UBadge
-                  v-for="tag in doc?.tags"
-                  :key="tag"
-                  color="neutral"
-                  variant="solid"
-                  class="mr-1"
+      <template v-else>
+        <div class="flex justify-center lg:block">
+          <div class="w-full max-w-3xl px-0 md:px-6 lg:px-8">
+            <article>
+              <div class="mb-6">
+                <div
+                  class="text-4xl font-bold font-sans text-black dark:text-white"
                 >
-                  {{ tag }}
-                </UBadge>
+                  {{ doc?.title }}
+                </div>
+                <div class="text-lg mb-3">{{ doc?.description }}</div>
+                <div class="text-gray-500 flex flex-wrap gap-4 items-center">
+                  {{ publishedDate }}
+                  <div class="flex flex-wrap gap-2">
+                    <UBadge
+                      v-for="tag in doc?.tags"
+                      :key="tag"
+                      color="neutral"
+                      variant="solid"
+                    >
+                      {{ tag }}
+                    </UBadge>
+                  </div>
+                  <!-- Variants by same slug can be handled by the page UI if needed -->
+                </div>
               </div>
-              <!-- Variants by same slug can be handled by the page UI if needed -->
-            </div>
+              <ContentRenderer
+                v-if="doc"
+                ref="nuxtContent"
+                :value="doc"
+                class="prose dark:prose-invert"
+              >
+                <template #empty>
+                  <div class="text-xl">Document is empty</div>
+                  <p>maybe I will write it tomorrow... :)</p>
+                </template>
+              </ContentRenderer>
+            </article>
           </div>
-          <!-- <USeparator size="lg" /> -->
-          <!-- {{ doc.body?.toc }} -->
-          <ContentRenderer
-            v-if="doc"
-            ref="nuxtContent"
-            :value="doc"
-            class="prose dark:prose-invert"
-          >
-            <template #empty>
-              <div class="text-xl">Document is empty</div>
-              <p>maybe I will write it tomorrow... :)</p>
-            </template>
-          </ContentRenderer>
-        </article>
-      </div>
+        </div>
+      </template>
+    </UPageBody>
 
-      <div class="hidden md:block">
-        <!-- right sidebar -->
-      </div>
-    </div>
-  </template>
+    <template #left>
+      <UPageAside>
+        <!-- <div class="text-xl font-normal mb-2">{{ $t('base.tocTitle') }}</div> -->
+        <UContentToc
+          class=""
+          :title="$t('base.tocTitle')"
+          :links="doc?.body?.toc?.links"
+        />
+        <!-- <ClientOnly>
+            <TableOfContents :active-toc-id="activeTocId" :doc="doc" />
+          </ClientOnly> -->
+      </UPageAside>
+    </template>
+  </UPage>
 </template>
 
 <style></style>

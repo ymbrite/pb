@@ -12,7 +12,13 @@
       </NuxtLayout>
     </UMain>
 
-    <UFooter />
+    <UFooter>
+      <template #left>
+        <p class="text-muted text-sm">
+          Copyright © {{ new Date().getFullYear() }} parz1 • MIT License
+        </p>
+      </template>
+    </UFooter>
   </UApp>
   <!-- 避免 SSR 时的告警 -->
   <!-- <ClientOnly>

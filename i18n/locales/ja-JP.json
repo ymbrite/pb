@@ -5,8 +5,11 @@
     "demo": "デモ",
     "blog": "ブログ",
     "posts": "文章",
+    "postsDescription": "すべてのブログ記事",
     "logs": "ログ",
+    "logsDescription": "技術、学習のランダムな記録",
     "crap": "デタラメ",
+    "crapDescription": "ランダムなものとナンセンス",
     "about": "私について",
     "gallery": " ギャラリー"
   },
@@ -40,5 +43,14 @@
         "tooltip": "アイコンをクリックしてInstagramへ"
       }
     }
+  },
+  "base": {
+    "tocTitle": "目次",
+    "backToHome": "ホームに戻る",
+    "refresh": "更新",
+    "noBlogPosts": "ブログ記事が見つかりません。",
+    "contentYouAreLookingForDoesNotExist": "お探しのコンテンツは存在しません。",
+    "readMore": "続きを読む",
+    "availableLanguages": "利用可能な言語"
   }
 }
