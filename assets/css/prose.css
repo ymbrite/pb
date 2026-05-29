@@ -3,6 +3,15 @@
 /* 容器：开大行距、去掉宽度限制（按文档站风格） */
 .prose {
   @apply leading-relaxed max-w-none;
+  min-width: 0;
+  max-width: 100%;
+  font-family: var(--font-serif);
+  font-size: 1.04rem;
+  line-height: 1.82;
+  overflow-wrap: break-word;
+  font-feature-settings:
+    'kern' 1,
+    'liga' 1;
   /* Typography 插件的颜色变量（亮色） */
   --tw-prose-body: theme(colors.gray.800);
   --tw-prose-headings: inherit;
@@ -44,13 +53,44 @@
 .prose p {
 }
 
+.prose :where(p, li, blockquote, figcaption, h1, h2, h3, h4, h5, h6) {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.prose :where(h1, h2, h3, h4, h5, h6) {
+  text-wrap: balance;
+  letter-spacing: 0;
+}
+
+.prose a {
+  overflow-wrap: anywhere;
+}
+
+.prose a.concept-wikilink {
+  @apply rounded-md bg-gray-100 px-1.5 py-0.5 font-sans text-sm font-medium no-underline text-gray-800 transition-colors hover:bg-primary-50 hover:text-primary-700 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-primary-950 dark:hover:text-primary-300;
+}
+
+.prose a.article-wikilink {
+  @apply rounded-md border border-gray-200 px-1.5 py-0.5 font-sans text-sm font-medium no-underline text-gray-800 transition-colors hover:border-primary-200 hover:bg-primary-50 hover:text-primary-700 dark:border-gray-700 dark:text-gray-100 dark:hover:border-primary-900 dark:hover:bg-primary-950 dark:hover:text-primary-300;
+}
+
 .prose :where(h1, h2, h3, h4, h5, h6) a {
   @apply font-bold text-gray-900 dark:text-gray-100;
 }
 
+.prose :where(code, kbd, samp, pre) {
+  font-family: var(--font-mono);
+}
+
+.prose :where(:not(pre) > code, kbd, samp) {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 /* 标题尺寸与锚点滚动偏移（有固定头部时很关键） */
 .prose h1 {
-  @apply text-4xl font-extrabold tracking-tight mt-8 mb-4 scroll-mt-24;
+  @apply text-3xl font-extrabold mt-8 mb-4 scroll-mt-24;
 }
 .prose h2 {
   @apply text-3xl font-bold leading-9 mt-4 mb-4 scroll-mt-24;
@@ -100,6 +140,7 @@
 /* 代码块圆角和阴影，内部 code 去掉背景 */
 .prose pre {
   @apply rounded-2xl shadow-sm overflow-x-auto;
+  max-width: 100%;
 }
 .prose pre code {
   @apply bg-transparent p-0;
@@ -110,6 +151,7 @@
 .prose table {
   @apply w-full text-center border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm overflow-hidden mx-auto;
   border-collapse: collapse;
+  max-width: 100%;
 }
 
 /* 表头 */
@@ -132,13 +174,16 @@
   @apply bg-primary-50 dark:bg-primary-900/30 transition-colors;
 }
 
-
 /* 图片/图注 */
 .prose img {
   @apply rounded-lg;
+  max-width: 100%;
+  height: auto;
 }
 .prose figure {
   @apply text-center;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 .prose figcaption {
   @apply text-gray-500 dark:text-gray-400 text-sm mt-2;
@@ -146,10 +191,83 @@
 
 /* 脚注区（content 会渲染 .footnotes） */
 .prose .footnotes {
-  @apply border-t mt-8 pt-4 text-sm text-gray-600 dark:text-gray-400;
+  @apply mt-10 border-t border-gray-200 pt-5 font-sans text-sm leading-6 text-gray-600 dark:border-gray-800 dark:text-gray-400;
+}
+
+.prose .footnotes h2 {
+  @apply mt-0 mb-3 font-sans text-xs font-medium uppercase tracking-[0.18em] text-gray-500 dark:text-gray-500;
+}
+
+.prose .footnotes ol {
+  @apply my-0 pl-5;
+}
+
+.prose .footnotes li {
+  @apply my-2 pl-1;
+}
+
+.prose .footnotes li > p {
+  @apply my-0;
+}
+
+.prose a[data-footnote-ref],
+.prose a[data-footnote-backref] {
+  @apply font-sans text-primary-600 no-underline dark:text-primary-400;
+}
+
+.prose a[data-footnote-ref] {
+  @apply ml-0.5 rounded-sm px-0.5 text-xs;
+}
+
+.content-title {
+  text-wrap: balance;
+  letter-spacing: 0;
+}
+
+.content-description {
+  text-wrap: pretty;
+}
+
+.prose:lang(zh) p,
+.prose:lang(zh-CN) p,
+.prose:lang(ja) p,
+.prose:lang(ja-JP) p,
+.content-description:lang(zh),
+.content-description:lang(zh-CN),
+.content-description:lang(ja),
+.content-description:lang(ja-JP) {
+  text-wrap: wrap;
 }
 
 /* 分割线更淡 */
 .prose hr {
   @apply my-6 border-gray-200 dark:border-gray-700;
+}
+
+@media (max-width: 640px) {
+  .prose:lang(zh),
+  .prose:lang(zh-CN),
+  .prose:lang(ja),
+  .prose:lang(ja-JP) {
+    line-break: strict;
+    word-break: normal;
+  }
+
+  .prose:lang(zh) p,
+  .prose:lang(zh-CN) p,
+  .prose:lang(ja) p,
+  .prose:lang(ja-JP) p {
+    text-align: start;
+    text-align-last: auto;
+    text-justify: auto;
+  }
+
+  @supports (word-break: auto-phrase) {
+    .prose:lang(zh) p,
+    .prose:lang(zh-CN) p,
+    .prose:lang(ja) p,
+    .prose:lang(ja-JP) p {
+      word-break: auto-phrase;
+    }
+  }
 }

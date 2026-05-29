@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DropdownMenuItem } from "@nuxt/ui"
+import type { DropdownMenuItem } from '@nuxt/ui'
 
 const { locale: curLocale, locales, setLocale } = useI18n()
 
@@ -28,19 +28,18 @@ const curLocaleName = computed(() => {
   >
     {{ locale.name }}
   </NuxtLink> -->
-  <UDropdownMenu :items="items" :content="{ side: 'bottom', align: 'end' }">
+  <UDropdownMenu
+    :modal="false"
+    :items="items"
+    :content="{ side: 'bottom', align: 'end' }"
+  >
     <UButton
       variant="ghost"
       color="neutral"
       icon="i-carbon-ibm-watson-language-translator"
+      aria-label="Switch language"
+      @mousedown.prevent
     />
-    <!-- <UButton color="white" label="Options" trailing-icon="i-heroicons-chevron-down-20-solid" /> -->
-    <!-- <UButton
-      size="xs"
-      color="white"
-      :label="curLocaleName"
-      trailing-icon="i-heroicons-chevron-down-20-solid"
-    /> -->
     <template #item="{ item }">
       <div
         class="w-full flex justify-between"

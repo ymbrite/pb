@@ -33,7 +33,7 @@ const props = withDefaults(
     align: 'center' as Alignment,
     gap: '1.25rem',
     columns: undefined,
-  }
+  },
 )
 
 const slots = useSlots()
@@ -47,7 +47,7 @@ const normalizeSize = (value?: string | number) => {
 
 const items = computed<FigureImage[]>(() => {
   if (props.images && props.images.length) {
-    return props.images.filter(image => Boolean(image?.src))
+    return props.images.filter((image) => Boolean(image?.src))
   }
   if (props.src) {
     return [
@@ -87,14 +87,18 @@ const textAlignClass = computed(() => {
 
 const gapValue = computed(() => normalizeSize(props.gap) ?? '1.5rem')
 
-const hasGroupCaption = computed(() => Boolean(slots.caption) || Boolean(props.caption))
+const hasGroupCaption = computed(
+  () => Boolean(slots.caption) || Boolean(props.caption),
+)
 
 const columnCount = computed(() => {
   if (!items.value.length) {
     return 0
   }
 
-  const fallback = props.columns ?? (items.value.length > 1 ? Math.min(items.value.length, 3) : 1)
+  const fallback =
+    props.columns ??
+    (items.value.length > 1 ? Math.min(items.value.length, 3) : 1)
   const numeric = Number(fallback)
 
   if (!Number.isFinite(numeric)) {
@@ -175,12 +179,11 @@ const imageStyleFor = (image: FigureImage): CSSProperties | undefined => {
 </script>
 
 <template>
-  <figure class="cf-figure flex flex-col gap-2 my-0" :class="figureAlignClasses">
-    <div
-      v-if="items.length"
-      class="cf-gallery"
-      :style="containerStyle"
-    >
+  <figure
+    class="cf-figure flex flex-col gap-2 my-0"
+    :class="figureAlignClasses"
+  >
+    <div v-if="items.length" class="cf-gallery" :style="containerStyle">
       <template v-for="(image, index) in items" :key="`${image.src}-${index}`">
         <div class="cf-image-cell" :style="imageCellStyleFor(image)">
           <img
@@ -200,11 +203,8 @@ const imageStyleFor = (image: FigureImage): CSSProperties | undefined => {
         </p>
       </template>
     </div>
-    <figcaption
-      v-if="hasGroupCaption"
-      class="cf-caption"
-    >
-    <!-- 标注大小样式在 @/assets/css/prose.css -->
+    <figcaption v-if="hasGroupCaption" class="cf-caption">
+      <!-- 标注大小样式在 @/assets/css/prose.css -->
       <slot name="caption">
         {{ props.caption }}
       </slot>
@@ -213,21 +213,40 @@ const imageStyleFor = (image: FigureImage): CSSProperties | undefined => {
 </template>
 
 <style scoped>
+.cf-figure {
+  max-width: 100%;
+}
+
 .cf-figure img {
   border-radius: 0.75rem;
   margin: 0;
+  max-width: 100%;
 }
 
 .cf-gallery {
   display: grid;
+  max-width: 100%;
 }
 
 .cf-image-cell {
   display: flex;
   align-items: center;
+  min-width: 0;
 }
 
 .cf-caption-cell {
   margin: 0;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 640px) {
+  .cf-gallery {
+    grid-auto-flow: row !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: none !important;
+    grid-auto-columns: auto !important;
+    width: 100%;
+  }
 }
 </style>

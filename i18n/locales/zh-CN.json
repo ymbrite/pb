@@ -1,17 +1,269 @@
 {
   "hello": "你好",
+  "search": {
+    "title": "搜索",
+    "description": "搜索站内内容",
+    "placeholder": "搜索文章、札记、概念、项目...",
+    "empty": "没有匹配的内容。"
+  },
   "menu": {
     "home": "首页",
     "demo": "演示",
+    "demoDescription": "小型交互和渲染实验",
+    "lab": "实验室",
     "blog": "博客",
     "posts": "文章",
-    "postsDescription": "所有博客文章",
-    "logs": "记录",
-    "logsDescription": "技术、学习的随机记录",
+    "postsDescription": "整理过的长文和完整观点",
+    "logs": "札记",
+    "logsDescription": "开发记录、配置笔记和学习过程",
     "crap": "扯",
     "crapDescription": "扯淡随机的东西",
+    "concepts": "概念",
+    "conceptsDescription": "持续演化的概念笔记和研究节点",
+    "projects": "项目",
+    "projectsDescription": "正在开发的工具、实验和产品工作",
     "about": "关于",
     "gallery": "画廊"
+  },
+  "home": {
+    "latestActivities": "最新动态",
+    "latestActivitiesDescription": "文章、札记和开发记录的最近更新",
+    "profile": {
+      "name": "周磊 / ZHOU LEI",
+      "heading": "关于我",
+      "education": {
+        "school": "东京大学",
+        "program": "GSII / III",
+        "role": "修士"
+      },
+      "identity": "东京大学 GSII / III 修士",
+      "location": "东京",
+      "summary": "我做 AI-native 应用、开发者工具和以人为中心的系统，把研究、交互和真实落地连接起来。",
+      "note": "现在最关心的问题是：AI 如何进入人的记忆、工作、研究和日常思考。",
+      "actions": {
+        "about": "了解更多"
+      },
+      "focus": {
+        "heading": "我正在做",
+        "items": {
+          "memory": {
+            "title": "Minerei / Kotolog",
+            "description": "一个结合任务、记录与长期记忆的 AI-native personal system。"
+          },
+          "research": {
+            "title": "研究",
+            "description": "多模态情绪识别、疲劳 / 衰弱估计，以及长期的人本数据采集。"
+          },
+          "engineering": {
+            "title": "工程",
+            "description": "用全栈和本地 AI pipeline 快速做 0 到 1 原型，让想法真正可用。"
+          }
+        }
+      },
+      "tech": {
+        "heading": "我正在使用这些",
+        "description": "这些不是完整清单，更像我现在把研究、产品和个人系统拼起来时会反复拿起的工具。",
+        "stackLabel": "技术栈",
+        "lanes": {
+          "research": "研究",
+          "bridge": "交叉",
+          "engineering": "工程"
+        },
+        "categories": {
+          "language": "语言",
+          "frontend": "Web / UI",
+          "backend": "后端",
+          "infra": "基础设施",
+          "desktop": "桌面与本地",
+          "mobile": "移动端",
+          "research": "研究工具",
+          "workflow": "工作流"
+        },
+        "items": {
+          "python": {
+            "description": "研究实验、数据处理、本地 AI pipeline 和快速验证想法的主力语言。"
+          },
+          "colab": {
+            "description": "临时实验、模型验证和远程 GPU notebook 的轻量入口。"
+          },
+          "jupyter": {
+            "description": "把数据探索、实验过程和可复现分析放在同一个上下文里。"
+          },
+          "pytorch": {
+            "description": "做多模态识别、原型模型和实验训练时最常用的深度学习框架。"
+          },
+          "numpy": {
+            "description": "处理实验数据、信号特征和模型前后处理时的基础工具。"
+          },
+          "typescript": {
+            "description": "主要用来组织产品原型、前端状态和可维护的系统边界。"
+          },
+          "react": {
+            "description": "做交互密度更高的界面，尤其是工具型产品和实验原型。"
+          },
+          "rust": {
+            "description": "偏向本地性能、桌面应用和需要稳定边界的系统部分。"
+          },
+          "next": {
+            "description": "用于需要内容、产品体验和服务端能力结合的 Web 应用。"
+          },
+          "node": {
+            "description": "连接 API、脚本、数据处理和快速工程原型的日常运行时。"
+          },
+          "docker": {
+            "description": "把研究环境、服务依赖和部署流程整理成可复现的形态。"
+          },
+          "vue": {
+            "description": "博客和内容系统里常用的 UI 层，也适合快速做轻量交互。"
+          },
+          "nuxt": {
+            "description": "支撑这个站点的框架，用来处理内容、国际化和页面体验。"
+          },
+          "javascript": {
+            "description": "快速验证想法、浏览器实验和小工具脚本的基础语言。"
+          },
+          "expo": {
+            "description": "做移动端 AI workflow 和跨平台原型时最快的入口之一。"
+          },
+          "tauri": {
+            "description": "适合做本地优先、轻量桌面和本地 AI pipeline 的应用外壳。"
+          },
+          "zotero": {
+            "description": "研究阅读、引用管理和长期知识整理的核心工具。"
+          },
+          "obsidian": {
+            "description": "承接个人知识、项目笔记和长期记忆系统的工作台。"
+          },
+          "cplusplus": {
+            "description": "在本地 AI、音视频和性能敏感模块里仍然很重要。"
+          },
+          "turborepo": {
+            "description": "管理多应用、多包原型，让产品和工具链能一起迭代。"
+          },
+          "tailwind": {
+            "description": "把界面样式快速落地，同时保持工具型 UI 的一致性。"
+          },
+          "gitea": {
+            "description": "偏自托管的代码与协作基础设施，适合个人系统的长期维护。"
+          },
+          "vite": {
+            "description": "快速启动前端实验和组件原型，减少从想法到界面的等待。"
+          },
+          "electron": {
+            "description": "在需要成熟桌面能力和 Web 技术栈时仍然很实用。"
+          },
+          "reactNative": {
+            "description": "连接移动端交互、记录场景和个人工作流的跨平台方案。"
+          },
+          "vscode": {
+            "description": "日常工程、AI 辅助开发和研究代码整理的主编辑器。"
+          },
+          "xcode": {
+            "description": "做 iOS 相关原型、真机调试和移动端体验验证时会用到。"
+          },
+          "postman": {
+            "description": "验证 API、调试服务边界和整理接口工作流的工具。"
+          }
+        }
+      }
+    }
+  },
+  "contentKind": {
+    "post": "文章",
+    "log": "札记",
+    "crap": "散记"
+  },
+  "blog": {
+    "kicker": "写作",
+    "description": "文章、札记和一些松散片段，按时间组织在同一个写作流里。",
+    "all": "全部",
+    "sidebar": {
+      "onThisPage": "本文目录",
+      "concepts": "相关概念",
+      "noConcepts": "No concepts yet.",
+      "backlinks": "反向链接",
+      "noBacklinks": "No backlinks yet.",
+      "details": "文章信息",
+      "collection": "集合",
+      "published": "发布于",
+      "languages": "语言",
+      "tags": "标签"
+    }
+  },
+  "concepts": {
+    "kicker": "数字花园",
+    "description": "围绕研究、工程、产品思考和世界观持续演化的概念笔记。这里不是最终定义，而是仍在工作的思考节点。",
+    "filters": {
+      "state": "状态",
+      "tag": "标签"
+    },
+    "states": {
+      "seed": "种子",
+      "growing": "生长中",
+      "mature": "成熟",
+      "shifting": "变化中"
+    },
+    "empty": {
+      "title": "没有找到概念",
+      "description": "试试换一个状态或标签筛选。"
+    },
+    "detail": {
+      "notFound": {
+        "title": "没有找到这个概念",
+        "description": "你正在寻找的概念节点还不存在。"
+      },
+      "backToConcepts": "返回概念",
+      "updated": "更新于 {date}",
+      "emptyBody": "这个概念还没有正文。",
+      "localGraph": "局部图谱",
+      "expandGraph": "打开局部图谱",
+      "closeGraph": "关闭局部图谱",
+      "connections": "连接",
+      "noConnections": "还没有显式连接。",
+      "backlinks": "反向链接",
+      "noBacklinks": "还没有反向链接。",
+      "mentions": "写作中提到",
+      "noMentions": "还没有写作提到这个概念。",
+      "relatedProjects": "相关项目",
+      "noGraphLinks": "这个概念还没有可见连接。"
+    }
+  },
+  "projects": {
+    "kicker": "项目索引",
+    "description": "用 wiki 的方式整理正在推进的项目、稳定项目说明、release 和仓库动态。",
+    "status": {
+      "active": "活跃",
+      "paused": "暂停",
+      "archived": "归档",
+      "experimental": "实验中"
+    },
+    "empty": {
+      "title": "还没有项目",
+      "description": "项目笔记会出现在这里。"
+    },
+    "detail": {
+      "notFound": {
+        "title": "没有找到这个项目",
+        "description": "你正在寻找的项目页还不存在。"
+      },
+      "backToProjects": "返回项目",
+      "emptyBody": "这个项目笔记还没有正文。",
+      "relatedConcepts": "相关概念"
+    },
+    "github": {
+      "status": "GitHub 状态",
+      "stars": "stars",
+      "forks": "forks",
+      "issues": "issues",
+      "defaultBranch": "默认分支",
+      "pushedAt": "最近推送",
+      "latestRelease": "最新 release",
+      "recentCommits": "最近 commits",
+      "noRelease": "还没有 release",
+      "noCommits": "没有找到 commit。",
+      "unknown": "未知",
+      "loadFailed": "无法加载 GitHub 状态"
+    }
   },
   "introCard": {
     "avatarAlt": "parz1 的头像",
